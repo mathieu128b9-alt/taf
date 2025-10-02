@@ -26,7 +26,18 @@ int	ft_atoi(const char *str)
 	i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		
+		total = total * 10;
+		total = total + (str[i] - '0');
+		i++;
 	}
+	return (total * sign);
+}
 
+int main (void)
+{
+	char *str = "    			-243729";
+
+	printf("%d\n", ft_atoi(str));
+
+	printf("%d\n", atoi(str));
 }
