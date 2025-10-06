@@ -1,37 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/06 15:29:27 by msuter            #+#    #+#             */
+/*   Updated: 2025/10/06 16:17:06 by msuter           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
-{
-	size_t	i;
-
-	i = 0;
-	while (src[i] && size > 1)
-	{
-		dest[i] = src[i];
-		i++;
-		size--;
-	}
-	if (size != 0)
-		dest[i] = '\0';
-	i = 0;
-	while (src[i])
-		i++;
-	return (i);
-}
-
+#include "libft.h"
 
 int	mot(const char *chaine, char c)
 {
@@ -99,19 +78,4 @@ char	**ft_split(char const *s, char c)
 		final[nb_mot] = NULL;
 	}
 	return (final);
-}
-
-
-
-int main (void)
-{
-	const char *tab = "";
-	char sep = ' ';
-	char **fin = ft_split(tab, sep);
-	size_t	i = 0;
-	while (fin[i] != NULL)
-	{
-		printf("%s\n", fin[i]);
-		i++;
-	}
 }
