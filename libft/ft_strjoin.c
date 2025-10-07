@@ -6,13 +6,13 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 16:12:15 by mathieu           #+#    #+#             */
-/*   Updated: 2025/10/04 16:19:01 by mathieu          ###   ########.fr       */
+/*   Updated: 2025/10/07 19:11:53 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strcpy(char *dest, const char *src1, const char *src2)
+static void	ft_strcpy(char *dest, const char *src1, const char *src2)
 {
 	size_t	i;
 	size_t	j;

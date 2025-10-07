@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:35:28 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/06 18:00:11 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/07 19:11:10 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count(int n)
+static int	count(int n)
 {
 	int	i;
 	int	comp;
@@ -32,7 +32,7 @@ int	count(int n)
 	return (i + 1);
 }
 
-int	reverse_sign(int n)
+static int	reverse_sign(int n)
 {
 	if (n < 0)
 		return (-1);
@@ -40,7 +40,7 @@ int	reverse_sign(int n)
 		return (1);
 }
 
-char	*algo(int n, char *tab, int placement)
+static char	*algo(int n, char *tab, int placement)
 {
 	placement = count(n);
 	if (n < 0)

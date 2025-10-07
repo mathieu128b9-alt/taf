@@ -6,13 +6,13 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 01:17:15 by mathieu           #+#    #+#             */
-/*   Updated: 2025/10/03 01:18:31 by mathieu          ###   ########.fr       */
+/*   Updated: 2025/10/07 19:10:40 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_negatif(char t, int negat)
+static int	is_negatif(char t, int negat)
 {
 	if (t == '+')
 		return (negat);

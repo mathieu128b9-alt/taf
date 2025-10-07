@@ -6,13 +6,13 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 02:20:31 by mathieu           #+#    #+#             */
-/*   Updated: 2025/10/05 03:04:04 by mathieu          ###   ########.fr       */
+/*   Updated: 2025/10/07 19:12:20 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	count_fin(const char *s1, const char *set, size_t *fin, size_t *debut)
+static void	count_fin(const char *s1, const char *set, size_t *fin, size_t *debut)
 {
 	size_t	i;
 	size_t	j;
@@ -32,7 +32,7 @@ void	count_fin(const char *s1, const char *set, size_t *fin, size_t *debut)
 	}
 }
 
-void	count_debut(const char *s1, const char *set, size_t *debut)
+static void	count_debut(const char *s1, const char *set, size_t *debut)
 {
 	size_t	i;
 	size_t	j;
