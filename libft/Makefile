@@ -1,4 +1,117 @@
+NAME : libft.a
 
+clean :
+	rm -f *.o
 
-ft_isdigit.o : ft_isdigit.c
-	gcc ft_isdigit.c -c -o ft_isdigit.o
+fclean : clean
+	rm -f libft.a
+
+libft.a : *.o
+	ar rcs libft.a *.o
+
+all : libft.a
+
+re : fclean all
+
+ft_toupper.o : ft_toupper.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_toupper.c -o ft_toupper.o
+
+ft_tolower.o : ft_tolower.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_tolower.c -o ft_tolower.o
+
+ft_substr.o  :ft_substr.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_substr.c -o ft_substr.o
+
+ft_strtrim.o : ft_strtrim.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_strtrim.c -o ft_strtrim.o
+
+ft_strrchr.o : ft_strrchr.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_strrchr.c -o ft_strrchr.o
+
+ft_strnstr.o : ft_strnstr.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_strnstr.c -o ft_strnstr.o
+
+ft_strncmp.o : ft_strncmp.c libft
+	gcc -Wall -Wextra -Werror -c ft_strncmp.c -o ft_strncmp.o
+
+ft_strmapi.o :ft_strmapi.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_strmapi.c -o ft_strmapi.o
+
+ft_strlen.o : ft_strlen.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_strlen.c -o ft_strlen.o
+
+ft_strlcpy.o : ft_strlcpy.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_strlcpy.c -o ft_strlcpy.o
+
+ft_strlcat.o : ft_strlcat.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_strlcat.c -o ft_strlcat.o
+
+ft_strjoin.o :ft_strjoin.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_strjoin.c -o ft_strjoin.o
+
+ft_striteri.o : ft_striteri.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_striteri.c -o ft_striteri.o
+
+ft_strdup.o : ft_strdup.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_strdup.c -o ft_strdup.o
+
+ft_strchr.o : ft_strchr.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_strchr.c -o ft_strchr.o
+
+ft_split.o : ft_split.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_split.c -o ft_split.o
+
+ft_putstr_fd.o :ft_putstr_fd.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_putstr_fd.c -o ft_putstr_fd.o
+
+ft_punbr_fd.o : ft_punbr_fd.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_punbr_fd.c -o ft_punbr_fd.o
+
+ft_putend_fd.o : ft_putend_fd.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_putend_fd.c -o ft_putend_fd.o
+
+ft_putchar_fd.o : ft_putchar_fd.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_putchar_fd.c -o ft_putchar_fd.o
+
+ft_memset.o : ft_memset.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_memset,c -o ft_memset.o
+
+ft_memmove.o : ft_memmove.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_memmove.c -o ft_memmove.o
+
+ft_memcpy.o : ft_memcpy.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_memcpy.c -o ft_memcpy.o
+
+ft_memcmp.o : ft_memcmp.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_memcmp.c -o ft_memcmp.o
+
+ft_memchr.o :ft_memchr.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_memchr.c -o ft_memchr.o
+
+ft_itoa.o :ft_itoa.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_itoa.c -o ft_itoa.o
+
+ft_isprint.o : ft_isprint.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_isprint.c -o ft_isprint.o
+
+ft_isdigit.o : ft_isdigit.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_isdigit.c -o ft_isdigit.o
+
+ft_isascii.o : ft_isascii.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_isascii.c -o ft_isascii.o
+
+ft_isalpha.o : ft_isalpha.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_isalpha.c -o ft_isalpha.o
+
+ft_isalnum.o :ft_isalnum.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_isalnum.c -o ft_isalnum.o
+
+ft_calloc.o :ft_calloc.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_calloc.c -o ft_calloc.o
+
+ft_bzero.o : ft_bzero.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_bzero.c -o ft_bzero.o
+
+ft_atoi.o :ft_atoi.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_atoi.c -o ft_atoi.o
+
