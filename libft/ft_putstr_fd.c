@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 19:53:46 by mathieu           #+#    #+#             */
-/*   Updated: 2025/10/06 19:56:15 by mathieu          ###   ########.fr       */
+/*   Updated: 2025/10/07 17:14:41 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_putstr_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return ;
 	while (s[i])
 	{
 		write (fd, &s[i], 1);

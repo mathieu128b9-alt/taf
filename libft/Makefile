@@ -1,17 +1,26 @@
-NAME : libft.a
+NAME = libft.a
+SRCS = ft_strlen.c ft_memcpy.c ft_strdup.c ft_atoi.c ft_isalpha.c \
+		ft_isdigit.c ft_memmove.c ft_calloc.c ft_substr.c ft_strjoin.c \
+		ft_putnbr_fd.c ft_putstr_fd.c ft_putchar_fd.c ft_putendl_fd.c \
+		ft_strlcpy.c ft_strlcat.c ft_strncmp.c ft_strnstr.c ft_strchr.c \
+		ft_strrchr.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_toupper.c \
+		ft_tolower.c ft_itoa.c ft_split.c ft_strtrim.c ft_strmapi.c \
+		ft_striteri.c ft_memset.c ft_bzero.c ft_memchr.c ft_memcmp.c
 
-clean :
-	rm -f *.o
+OBJS = $(SRCS:.c=.o)
 
-fclean : clean
-	rm -f libft.a
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
-libft.a : *.o
-	ar rcs libft.a *.o
+all: $(NAME)
 
-all : libft.a
+clean:
+	rm -f $(OBJS)
 
-re : fclean all
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
 
 ft_toupper.o : ft_toupper.c libft.h
 	gcc -Wall -Wextra -Werror -c ft_toupper.c -o ft_toupper.o
@@ -31,7 +40,7 @@ ft_strrchr.o : ft_strrchr.c libft.h
 ft_strnstr.o : ft_strnstr.c libft.h
 	gcc -Wall -Wextra -Werror -c ft_strnstr.c -o ft_strnstr.o
 
-ft_strncmp.o : ft_strncmp.c libft
+ft_strncmp.o : ft_strncmp.c libft.h
 	gcc -Wall -Wextra -Werror -c ft_strncmp.c -o ft_strncmp.o
 
 ft_strmapi.o :ft_strmapi.c libft.h
@@ -64,17 +73,17 @@ ft_split.o : ft_split.c libft.h
 ft_putstr_fd.o :ft_putstr_fd.c libft.h
 	gcc -Wall -Wextra -Werror -c ft_putstr_fd.c -o ft_putstr_fd.o
 
-ft_punbr_fd.o : ft_punbr_fd.c libft.h
-	gcc -Wall -Wextra -Werror -c ft_punbr_fd.c -o ft_punbr_fd.o
+ft_putnbr_fd.o : ft_putnbr_fd.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_putnbr_fd.c -o ft_putnbr_fd.o
 
-ft_putend_fd.o : ft_putend_fd.c libft.h
-	gcc -Wall -Wextra -Werror -c ft_putend_fd.c -o ft_putend_fd.o
+ft_putendl_fd.o : ft_putendl_fd.c libft.h
+	gcc -Wall -Wextra -Werror -c ft_putendl_fd.c -o ft_putendl_fd.o
 
 ft_putchar_fd.o : ft_putchar_fd.c libft.h
 	gcc -Wall -Wextra -Werror -c ft_putchar_fd.c -o ft_putchar_fd.o
 
 ft_memset.o : ft_memset.c libft.h
-	gcc -Wall -Wextra -Werror -c ft_memset,c -o ft_memset.o
+	gcc -Wall -Wextra -Werror -c ft_memset.c -o ft_memset.o
 
 ft_memmove.o : ft_memmove.c libft.h
 	gcc -Wall -Wextra -Werror -c ft_memmove.c -o ft_memmove.o
