@@ -150,7 +150,7 @@ int main (void)
 	}*/
 
 
-	/*char *s1 = "hello world";				ft_memcmp
+	/*char *s1 = "hello world";				//ft_memcmp
 	char *s2 = "hello world";
 
 	char *str1 = "hhhhhhhheeeeeeelllllo";
@@ -169,12 +169,60 @@ int main (void)
 	printf("%d\n", memcmp(st1, st2, 21));*/
 
 
-	char *src1 = "hello world";
-	char dest[3];
-	size_t n = 0;
+	/*char *src1 = "hello world";			//ft_memcpy
+	char dest[10];
+	size_t n = 4;
 	char *res = ft_memcpy(dest, src1, n);
 	printf("%s\n", res);
 
 	char *res1 = memcpy(dest, src1, n);
+	printf("%s\n", res1);*/
+
+													//ft_memmove
+
+	//cas avant, je veux copier ma source +2 (10 char), a dans ma dest +12, (pas de chevauchement, les donnees sont toutes conservees)
+	//cas arriere, je veux copier ma source + 2 (10char), dans ma dest +3, (les chaines se chevauchent, les donnes seront perdues, donc en arriere)
+	/*char tab[] = "memmove un exemple concret, j'essaie de compendre quand ca copie en avant ou en arriere";
+	char tab2[] = "memmove un exemple concret, j'essaie de compendre quand ca copie en avant ou en arriere";
+
+	char *res1 = ft_memmove(tab + 12, tab + 2, 10);
 	printf("%s\n", res1);
+
+	char *res2 = memmove(tab2 + 12, tab2 + 2, 10);
+	printf("%s\n", res2);*/
+
+
+	/*char str[50] = "helloworlllllld";				//ft_memset
+	int c = 'b';
+	char *modif = ft_memset(str, c, 13);
+	printf("%s\n", modif);
+	char str2[50] = "helloworlllllld";
+		char *modif2 = memset(str2, c, 13);
+	printf("%s\n", modif2);*/
+
+
+	/*ft_putnbr_fd(3245635, 1);				//ft_putnbr_fd
+	printf("%s", "\n");
+	ft_putnbr_fd(-573489, 1);
+	printf("%s", "\n");
+	ft_putnbr_fd(0, 1);*/
+
+	/*char *tab = "bonjour , je test ma fonction split";		//ft_split
+	char c = ' ';
+	char **final = ft_split(tab, c);
+	int i = 0;
+	while (final[i])
+	{
+		printf("%s", final[i]);
+		printf("%s", "\n");
+		i++;
+	}*/
+
+
+	int c = 'z';
+	char str[] = "hello warld";
+
+	printf("%s\n", ft_strchr(str, c));
+	printf("%s", strchr(str, c));
+
 }

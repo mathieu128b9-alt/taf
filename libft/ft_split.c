@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:29:27 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/07 19:10:23 by mathieu          ###   ########.fr       */
+/*   Updated: 2025/10/09 15:26:02 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static size_t	mot(const char *chaine, char c)
 	size_t	i;
 	size_t	nbmot;
 
-	if (!chaine)
-		return (0);
 	i = 0;
 	nbmot = 0;
 	while (chaine[i])
