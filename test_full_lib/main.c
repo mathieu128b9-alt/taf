@@ -6,6 +6,24 @@
 #include <ctype.h>
 #include <string.h>
 
+
+
+	/*void test(unsigned int i, char *c)			//ft_striteri
+	{
+		
+		if (*c >= 'a' && *c <= 'z')
+			*c = *c - 32;
+		(void)i;
+	}*/
+
+	char test(unsigned int i, char c)
+	{
+		(void)i;
+		if (c >= 'a' && c <= 'z')
+			return (c -32);
+		return (c);
+	}
+
 int main (void)
 {
 	/*printf("%d\n", ft_atoi("380129"));			//ft_atoi
@@ -219,10 +237,84 @@ int main (void)
 	}*/
 
 
-	int c = 'z';
+	/*int c = 'z';							//ft_strchr
 	char str[] = "hello warld";
 
 	printf("%s\n", ft_strchr(str, c));
-	printf("%s", strchr(str, c));
+	printf("%s", strchr(str, c));*/
 
+	/*char *s1 = "hello world";				//ft_strdup
+	char *s2 = "";
+	printf("%s\n", ft_strdup(s1));
+	printf("%s\n", ft_strdup(s2));
+	printf("%s\n", strdup(s1));
+	printf("%s\n", strdup(s2));*/
+	
+	
+	/*char s1[] = "hello world";			//ft_striteri
+	printf("%s\n", s1);
+	ft_striteri(s1, test);
+	printf("%s\n", s1);*/
+
+
+
+	/*char *debut = "hello ";				//ft_strjoin
+	char *fin = "world";
+	char *res1 = ft_strjoin(debut, fin);
+	printf("%s", res1);*/
+
+	/*char *src = "hello world";			//ft_strlcat
+	char dest[15] = "test strlcat";
+	char dest2[15] = "test strlcat";
+
+	ft_strlcat(dest, src, sizeof(dest));
+	printf("%s\n", dest);
+	strlcat(dest2, src, sizeof(dest2));
+	printf("%s\n", dest2);*/
+
+
+	/*char *debut = "fhwiehfiwnhfiwjwofjoewjd";		//ft_strlcpy
+	char fin[10] = "world";
+	char fin2[10] = "world";
+
+	ft_strlcpy(fin, debut, sizeof(fin));
+	printf("%s\n", fin);
+	strlcpy(fin2, debut, sizeof(fin2));
+	printf("%s\n", fin2);*/
+
+
+	/*const char *s1 = "hello world";			//ft_strmapi
+	printf("%s", ft_strmapi(s1, test));*/
+
+
+	/*char *s1 = "hllo world";					//ft_strncmp
+	char *s2 = "hello world";
+	printf("%d\n", ft_strncmp(s1, s2, 2));
+	printf("%d\n", strncmp(s1, s2, 2));*/
+
+
+	/*char *princip = "a la recherche d'un mot dans une chaine de char";;		//ft_strnstr
+	char *cherche = "ans";
+	printf("%s\n", ft_strnstr(princip, cherche, 50));
+	printf("%s\n", strnstr(princip, cherche, 50));*/
+
+
+	/*const char *s1 = "hello worlddhniwenc";			//ft_strrchr
+	char c = 'z';
+	printf("%s\n", ft_strrchr(s1, c));
+	printf("%s\n", strrchr(s1, c));*/
+
+
+	/*const char *big = "abccabcbcbahelloabca worldabcabcbbcac";		ft_strtrim
+	const char *trim = "abc";
+	printf("%s\n", ft_strtrim(big, trim));*/
+
+
+	/*const char *s1 = "test de ma fontion substr, /.4324";			ft_substr
+	unsigned int i = 15;
+	size_t j = 5;
+	printf("%s\n", ft_substr(s1, i, j));*/
+
+
+	
 }
