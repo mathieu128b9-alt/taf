@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 16:09:13 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/09 16:17:58 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/12 03:30:13 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,3 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
-

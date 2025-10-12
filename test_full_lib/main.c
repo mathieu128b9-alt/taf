@@ -305,9 +305,9 @@ int main (void)
 	printf("%s\n", strrchr(s1, c));*/
 
 
-	/*const char *big = "abccabcbcbahelloabca worldabcabcbbcac";		ft_strtrim
+	const char *big = "abccabcbcbahelloabca worldabcabcbbcac";		//ft_strtrim
 	const char *trim = "abc";
-	printf("%s\n", ft_strtrim(big, trim));*/
+	printf("%s\n", ft_strtrim(big, trim));
 
 
 	/*const char *s1 = "test de ma fontion substr, /.4324";			ft_substr
