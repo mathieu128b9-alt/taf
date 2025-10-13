@@ -16,32 +16,19 @@
 		(void)i;
 	}*/
 
-	char test(unsigned int i, char c)
+	/*char test(unsigned int i, char c)
 	{
 		(void)i;
 		if (c >= 'a' && c <= 'z')
 			return (c -32);
 		return (c);
-	}
+	}*/
 
 int main (void)
 {
-	/*printf("%d\n", ft_atoi("380129"));			//ft_atoi
-	printf("%d\n", ft_atoi("-317298"));
-	printf("%d\n", ft_atoi("0"));
-	printf("%d\n", ft_atoi("842384320848484"));
-	printf("%d\n", ft_atoi("dwhdh"));
-	printf("%d\n", ft_atoi("  	3182"));
-	printf("%d\n", ft_atoi(" 3182"));
-	printf("%d\n", atoi("3801aaa29"));
-	printf("\n%d\n", atoi("380129"));
-	printf("%d\n", atoi("-317298"));
-	printf("%d\n", atoi("0"));
-	printf("%d\n", atoi("842384320848484"));
-	printf("%d\n", atoi("dwhdh"));
-	printf("%d\n", atoi("  	3182"));
-	printf("%d\n", atoi(" 3182"));
-	printf("%d", atoi("3801aaa29"));*/
+	//printf("%d\n", ft_atoi("+548"));			//ft_atoi
+	
+	//printf("%d\n", atoi("+548"));
 
 
 	/*char tab[10] = "123456789";			//ft_bzero
@@ -141,9 +128,9 @@ int main (void)
 	printf("%d\n", isprint('9'));*/
 
 
-	/*printf("%s\n", ft_itoa(381321));		ft_itoa
-	printf("%s\n", ft_itoa(-41384330));
-	printf("%s\n", ft_itoa(0));*/
+	printf("%s\n", ft_itoa(381321));		//ft_itoa
+	printf("%s\n", ft_itoa(-2147483648));
+	printf("%s\n", ft_itoa(0));
 
 
 
@@ -305,16 +292,13 @@ int main (void)
 	printf("%s\n", strrchr(s1, c));*/
 
 
-	const char *big = "abccabcbcbahelloabca worldabcabcbbcac";		//ft_strtrim
+	/*const char *big = "abccabcbcbahelloabca worldabcabcbbcac";		//ft_strtrim
 	const char *trim = "abc";
-	printf("%s\n", ft_strtrim(big, trim));
+	printf("%s\n", ft_strtrim(big, trim));*/
 
 
 	/*const char *s1 = "test de ma fontion substr, /.4324";			ft_substr
 	unsigned int i = 15;
 	size_t j = 5;
 	printf("%s\n", ft_substr(s1, i, j));*/
-
-
-	
 }

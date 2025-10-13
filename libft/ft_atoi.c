@@ -6,21 +6,11 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 01:17:15 by mathieu           #+#    #+#             */
-/*   Updated: 2025/10/08 14:18:06 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/13 17:14:25 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	is_negatif(char t, int negat)
-{
-	if (t == '+')
-		return (negat);
-	else if (t == '-')
-		return (-negat);
-	else
-		return (negat);
-}
 
 int	ft_atoi(const char *str)
 {
@@ -33,9 +23,12 @@ int	ft_atoi(const char *str)
 	total = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 		i++;
-	sign = is_negatif(str[i], sign);
-	if (sign == -1)
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
 		i++;
+	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		total = total * 10;

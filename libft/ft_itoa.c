@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:35:28 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/07 19:11:10 by mathieu          ###   ########.fr       */
+/*   Updated: 2025/10/13 18:11:35 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ char	*ft_itoa(int n) // convertir in int en char *, (inverse de atoi)
 	char	*number;
 	int		placement;
 
+	if (n == -2147483648)
+		return ("-2147483648");
 	placement = 0;
 	number = malloc(sizeof(char) * (count(n) + 1));
 	if (!number)

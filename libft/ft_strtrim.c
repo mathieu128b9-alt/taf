@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 02:20:31 by mathieu           #+#    #+#             */
-/*   Updated: 2025/10/12 03:32:02 by mathieu          ###   ########.fr       */
+/*   Updated: 2025/10/13 15:26:28 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	count_fin(char *s1, char *set, int *fin, int *debut)
+static void	count_fin(const char *s1, const char *set, int *fin, int *debut)
 {
 	size_t	i;
-	size_t	j;
+	int		j;
 
 	i = 0;
 	j = ft_strlen(s1);
@@ -32,7 +32,7 @@ static void	count_fin(char *s1, char *set, int *fin, int *debut)
 	}
 }
 
-static void	count_debut(const char *s1, const char *set, size_t *debut)
+static void	count_debut(const char *s1, const char *set, int	*debut)
 {
 	size_t	i;
 	size_t	j;
@@ -55,8 +55,8 @@ static void	count_debut(const char *s1, const char *set, size_t *debut)
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*final;
-	size_t	debut;
-	size_t	fin;
+	int		debut;
+	int		fin;
 	size_t	j;
 
 	if (!s1 || !set)
