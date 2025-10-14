@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:17:09 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/13 16:36:40 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/14 15:04:05 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ char	*ft_strrchr(const char *s, int c)
 	int				i;
 
 	a = (unsigned char)c;
-	if (!s)
-		return (NULL);
 	i = ft_strlen(s);
 	while (i >= 0)
 	{

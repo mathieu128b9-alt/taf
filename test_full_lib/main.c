@@ -128,9 +128,9 @@ int main (void)
 	printf("%d\n", isprint('9'));*/
 
 
-	printf("%s\n", ft_itoa(381321));		//ft_itoa
+	/*printf("%s\n", ft_itoa(381321));		//ft_itoa
 	printf("%s\n", ft_itoa(-2147483648));
-	printf("%s\n", ft_itoa(0));
+	printf("%s\n", ft_itoa(0));*/
 
 
 
@@ -292,9 +292,9 @@ int main (void)
 	printf("%s\n", strrchr(s1, c));*/
 
 
-	/*const char *big = "abccabcbcbahelloabca worldabcabcbbcac";		//ft_strtrim
-	const char *trim = "abc";
-	printf("%s\n", ft_strtrim(big, trim));*/
+	const char *big = "aaaaaaaaaaaaaaaaaaa";		//ft_strtrim
+	const char *trim = "a";
+	printf("%s\n", ft_strtrim(big, trim));
 
 
 	/*const char *s1 = "test de ma fontion substr, /.4324";			ft_substr
