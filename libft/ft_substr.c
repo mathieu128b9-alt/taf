@@ -17,16 +17,20 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	char	*str;
 
+	if (!s)
+		return (NULL);
 	i = ft_strlen(s);
-	if (start >= i || !s)
+	if (start >= i || len == 0)
 	{
-		str = malloc(1 * sizeof(char));
-		str = "";
+		str = malloc(1);
+		if (!str)
+			return (NULL);
+		str[0] = '\0';
 		return (str);
 	}
-	else if (len > i - start)
+	if (len > i - start)
 		len = i - start;
-	str = malloc((len + 1) * sizeof(char));
+	str = malloc(len + 1);
 	if (!str)
 		return (NULL);
 	ft_strlcpy(str, s + start, len + 1);
