@@ -12,6 +12,49 @@
 
 #include "ft_printf.h"
 
+void decimal_char_percent_integer(va_list li, char *frmt, size_t *i)
+{
+	if (frmt[*i + 1] == 'd' || frmt[*i + 1] == 'i')
+	{
+		int	res;
+		char *printable;
+
+		res = va_arg(li, int);
+		printable = ft_itoa(res);
+		ft_putstr(printable);
+		*i++;
+	}
+	else if (frmt[*i + 1] == 'c')
+	{
+		char	res;
+
+		res = va_arg(li, unsigned int);
+		ft_putchar(res);
+		*i++;
+	}
+	else
+	{
+		ft_putchar('%');
+		*i++;
+	}
+}
+
+void string_pointer(va_list li, char *frmt, size_t *i)
+{
+	if (frmt[*i + 1] == 's')
+	{
+		char	*res;
+
+		res = va_arg(li, char *);
+		ft_putstr(res);
+		i++;
+	}
+	else if (frmt[*i + 1] == 'p')
+	{
+		
+	}
+}
+
 int	ft_printf(const char *format, ...)
 {
 	va_list	li;
@@ -23,35 +66,8 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == '%')
-			{
-				ft_putchar('%');
-				i++;
-			}
-			else if (format[i + 1] == 'd')
-			{
-				int	res;
-				char *printable;
-				
-				res = va_arg(li, int);
-				printable = ft_itoa(res);
-				ft_putstr(printable);
-				i++;
-			}
-			else if (format[i + 1] == 'c')
-			{
-				char	res;
-				
-				res = va_arg(li, unsigned int);
-				ft_putchar(res);
-				i++;
-			}
 			else if (format[i + 1] == 's')
 			{
-				char	*res;
-				res = va_arg(li, char *);
-				ft_putstr(res);
-				i++;
 			}
 		}
 		else
