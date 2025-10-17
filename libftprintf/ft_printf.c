@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 14:55:11 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/15 17:28:57 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/17 15:26:32 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void decimal_char_percent_integer(va_list li, const char *frmt, size_t *i) {
 		res = va_arg(li, int);
 		printable = ft_itoa(res);
 		ft_putstr(printable);
-		i++;
+		(*i)++;
 	}
 	else if (frmt[*i + 1] == 'c') 
 	{
@@ -29,12 +29,12 @@ void decimal_char_percent_integer(va_list li, const char *frmt, size_t *i) {
 
 		res = va_arg(li, unsigned int);
 		ft_putchar(res);
-		i++;
+		(*i)++;
 	}
 	else 
 	{
 		ft_putchar('%');
-		i++;
+		(*i)++;
 	}
 }
 
@@ -45,28 +45,34 @@ void string_pointer(va_list li, const char *frmt, size_t *i) {
 
 		res = va_arg(li, char *);
 		ft_putstr(res);
-		i++;
+		(*i)++;
 	}
 	else if (frmt[*i + 1] == 'p')
 	{
-	
+		long int	res;
+
+		res = va_arg(li, long int);
+		
 	}
 }
 
-int ft_printf(const char *format, ...) {
+int ft_printf(const char *format, ...)
+{
 	va_list li;
 	size_t i;
 
 	i = 0;
 	va_start(li, format);
-	while (format[i] != '\0') {
-		if (format[i] == '%') {
-			if (format[i] == 'd' || format[i] == 'c' || format[i] == '%' ||
-				format[i] == 'i')
+	while (format[i] != '\0')
+	{
+		if (format[i] == '%')
+		{
+			if (format[i + 1] == 'd' || format[i + 1] == 'c' || format[i + 1] == '%' || format[i + 1] == 'i')
 				decimal_char_percent_integer(li, format, &i);
-			else if (format[i] == 's' || format[i] == 'p')
-				string_pointer(li, format, &i);
-		} else
+			else if (format[i + 1] == 's' || format[i + 1] == 'p')
+			string_pointer(li, format, &i);
+		}
+		else
 			ft_putchar(format[i]);
 		i++;
 	}
@@ -74,7 +80,7 @@ int ft_printf(const char *format, ...) {
 	return (i);
 }
 
-int main(void) {
-	ft_printf("bonjour, je m'apelle %s, j'ai %d, mon char presere est le %c",
-			  "mathieu", 23, 'a');
+int main(void)
+{
+	ft_printf("bonjour, je m'apelle %s, j'ai %d, mon char presere est le %c", "mathieu", 23, 'a');
 }
