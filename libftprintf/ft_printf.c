@@ -12,38 +12,36 @@
 
 #include "ft_printf.h"
 
-void decimal_char_percent_integer(va_list li, char *frmt, size_t *i)
-{
+void decimal_char_percent_integer(va_list li, const char *frmt, size_t *i) {
 	if (frmt[*i + 1] == 'd' || frmt[*i + 1] == 'i')
 	{
-		int	res;
+		int res;
 		char *printable;
 
 		res = va_arg(li, int);
 		printable = ft_itoa(res);
 		ft_putstr(printable);
-		*i++;
+		i++;
 	}
-	else if (frmt[*i + 1] == 'c')
+	else if (frmt[*i + 1] == 'c') 
 	{
-		char	res;
+		char res;
 
 		res = va_arg(li, unsigned int);
 		ft_putchar(res);
-		*i++;
+		i++;
 	}
-	else
+	else 
 	{
 		ft_putchar('%');
-		*i++;
+		i++;
 	}
 }
 
-void string_pointer(va_list li, char *frmt, size_t *i)
-{
+void string_pointer(va_list li, const char *frmt, size_t *i) {
 	if (frmt[*i + 1] == 's')
 	{
-		char	*res;
+		char *res;
 
 		res = va_arg(li, char *);
 		ft_putstr(res);
@@ -51,28 +49,32 @@ void string_pointer(va_list li, char *frmt, size_t *i)
 	}
 	else if (frmt[*i + 1] == 'p')
 	{
-		
+	
 	}
 }
 
-int	ft_printf(const char *format, ...)
-{
-	va_list	li;
-	size_t	i;
+int ft_printf(const char *format, ...) {
+	va_list li;
+	size_t i;
 
 	i = 0;
 	va_start(li, format);
-	while (format[i] != '\0')
-	{
-		if (format[i] == '%')
-		{
-			else if (format[i + 1] == 's')
-			{
-			}
-		}
-		else
+	while (format[i] != '\0') {
+		if (format[i] == '%') {
+			if (format[i] == 'd' || format[i] == 'c' || format[i] == '%' ||
+				format[i] == 'i')
+				decimal_char_percent_integer(li, format, &i);
+			else if (format[i] == 's' || format[i] == 'p')
+				string_pointer(li, format, &i);
+		} else
 			ft_putchar(format[i]);
 		i++;
 	}
 	va_end(li);
+	return (i);
+}
+
+int main(void) {
+	ft_printf("bonjour, je m'apelle %s, j'ai %d, mon char presere est le %c",
+			  "mathieu", 23, 'a');
 }
