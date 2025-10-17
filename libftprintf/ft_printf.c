@@ -6,13 +6,13 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 14:55:11 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/17 15:26:32 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/17 16:46:41 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void decimal_char_percent_integer(va_list li, const char *frmt, size_t *i) {
+static void decimal_char_percent_integer(va_list li, const char *frmt, size_t *i) {
 	if (frmt[*i + 1] == 'd' || frmt[*i + 1] == 'i')
 	{
 		int res;
@@ -38,7 +38,7 @@ void decimal_char_percent_integer(va_list li, const char *frmt, size_t *i) {
 	}
 }
 
-void string_pointer(va_list li, const char *frmt, size_t *i) {
+static void string_pointer(va_list li, const char *frmt, size_t *i) {
 	if (frmt[*i + 1] == 's')
 	{
 		char *res;
@@ -49,9 +49,9 @@ void string_pointer(va_list li, const char *frmt, size_t *i) {
 	}
 	else if (frmt[*i + 1] == 'p')
 	{
-		long int	res;
+		long	res;
 
-		res = va_arg(li, long int);
+		res = va_arg(li, long);
 		
 	}
 }

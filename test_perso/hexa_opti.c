@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   hexa_opti.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 20:03:46 by mathieu           #+#    #+#             */
-/*   Updated: 2025/10/17 19:31:16 by msuter           ###   ########.fr       */
+/*   Created: 2025/10/17 18:15:56 by msuter            #+#    #+#             */
+/*   Updated: 2025/10/17 19:30:22 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
-void	ft_putnbr_fd(int n, int fd)
+void ft_putnbr_base(long nb)
 {
-	if (n == -2147483648)
+	char *base;
+
+	base = "0123456789abcdef";
+	if (nb < 0)
 	{
-		write (fd, "-2147483648", 11);
-		return ;
+		write (1, "-", 1);
+		nb = -nb;
 	}
-	if (n < 0)
-	{
-		write (fd, "-", 1);
-		n = -n;
-	}
-	if (n >= 10)
-	{
-		ft_putnbr_fd(n / 10, fd);
-	}
-	ft_putchar_fd((n % 10) + '0', fd);
+	if (nb >= 16)
+		ft_putnbr_base(nb / 16);
+	write(1, &base[nb % 16], 1);
+	
+}
+
+int main (void)
+{
+	ft_putnbr_base(37812379);
 }
