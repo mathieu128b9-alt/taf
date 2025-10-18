@@ -12,54 +12,56 @@
 
 #include "ft_printf.h"
 
-static void decimal_char_percent_integer(va_list li, const char *frmt, size_t *i) {
+static void	dec_char_perc_int(va_list *li, const char *frmt, size_t *i)
+{
+	int		result;
+	char	*printable;
+	char	res;
+
 	if (frmt[*i + 1] == 'd' || frmt[*i + 1] == 'i')
 	{
-		int res;
-		char *printable;
-
-		res = va_arg(li, int);
-		printable = ft_itoa(res);
+		result = va_arg(*li, int);
+		printable = ft_itoa(result);
 		ft_putstr(printable);
 		(*i)++;
 	}
-	else if (frmt[*i + 1] == 'c') 
+	else if (frmt[*i + 1] == 'c')
 	{
-		char res;
-
-		res = va_arg(li, unsigned int);
+		res = va_arg(*li, unsigned int);
 		ft_putchar(res);
 		(*i)++;
 	}
-	else 
+	else
 	{
 		ft_putchar('%');
 		(*i)++;
 	}
 }
 
-static void string_pointer(va_list li, const char *frmt, size_t *i) {
+static void	string_pointer(va_list *li, const char *frmt, size_t *i)
+{
+	char	*res;
+	void	*result;
+
 	if (frmt[*i + 1] == 's')
 	{
-		char *res;
-
-		res = va_arg(li, char *);
+		res = va_arg(*li, char *);
 		ft_putstr(res);
 		(*i)++;
 	}
 	else if (frmt[*i + 1] == 'p')
 	{
-		long	res;
-
-		res = va_arg(li, long);
-		
+		write (1, "ox", 2);
+		result = va_arg(*li, void *);
+		ft_putnbr_base((long)result);
+		(*i)++;
 	}
 }
 
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
-	va_list li;
-	size_t i;
+	va_list	li;
+	size_t	i;
 
 	i = 0;
 	va_start(li, format);
@@ -67,10 +69,11 @@ int ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == 'd' || format[i + 1] == 'c' || format[i + 1] == '%' || format[i + 1] == 'i')
-				decimal_char_percent_integer(li, format, &i);
+			if (format[i + 1] == 'd' || format[i + 1] == 'c'
+				|| format[i + 1] == '%' || format[i + 1] == 'i')
+				dec_char_perc_int(&li, format, &i);
 			else if (format[i + 1] == 's' || format[i + 1] == 'p')
-			string_pointer(li, format, &i);
+				string_pointer(&li, format, &i);
 		}
 		else
 			ft_putchar(format[i]);
@@ -79,8 +82,11 @@ int ft_printf(const char *format, ...)
 	va_end(li);
 	return (i);
 }
-
-int main(void)
+#include <stdio.h>
+int main (void)
 {
-	ft_printf("bonjour, je m'apelle %s, j'ai %d, mon char presere est le %c", "mathieu", 23, 'a');
+	char *p = NULL;
+	ft_printf("%p je m'apelle %s j'ai %d, et mon char prefere %% est %c\n", &p, "mathieu", 23, 'a');
+	printf("%p je m'apelle %s j'ai %d, et mon char prefere %% est %c\n", &p, "mathieu", 23, 'a');
+
 }

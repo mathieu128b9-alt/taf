@@ -1,4 +1,52 @@
 {
-	"C_Cpp.errorSquiggles": "disabled",
-	"norminette.fileregex": ""
+	// --- C / 42 / configuration générale ---
+	"C_Cpp.errorSquiggles": "enabled",            // ✅ garde les vagues rouges
+	"C_Cpp.intelliSenseEngine": "Default",        // moteur complet d'analyse
+	"C_Cpp.formatting": "disabled",               // pas de formatage automatique
+	"C_Cpp.clang_format_style": "file",           // laisse la liberté à un .clang-format
+	"C_Cpp.autocompleteAddParentheses": true,     // ✅ ajoute les parenthèses automatiques
+	"norminette.fileregex": "",
+
+	// --- Sauvegarde / propreté du code ---
+	"editor.formatOnSave": false,                 // pas de format auto à la sauvegarde
+	"editor.codeActionsOnSave": {},               // pas d'actions automatiques
+	"files.trimTrailingWhitespace": true,         // enlève les espaces inutiles
+	"files.insertFinalNewline": true,             // ajoute une ligne vide à la fin du fichier
+	"files.autoSave": "off",                      // tu sauvegardes manuellement
+	"files.encoding": "utf8",                     // encodage standard
+	"files.eol": "\n",                            // fins de ligne UNIX
+	"files.associations": {                       // reconnaît les .h comme du C
+		"*.h": "c"
+	},
+
+	// --- Apparence & confort ---
+	"editor.fontFamily": "JetBrains Mono, Consolas, 'Courier New', monospace",
+	"editor.fontLigatures": false,
+	"editor.fontSize": 14,
+	"editor.lineHeight": 1.35,
+	"editor.cursorSmoothCaretAnimation": true,
+	"editor.cursorBlinking": "smooth",
+	"editor.smoothScrolling": true,
+	"editor.minimap.enabled": false,
+	"editor.wordWrap": "on",
+	"editor.renderWhitespace": "all",             // ✅ affiche les espaces, tabulations et retours à la ligne
+	"editor.renderControlCharacters": true,       // ✅ affiche les flèches ↹ pour les tabulations
+	"editor.renderFinalNewline": false,
+	"editor.scrollBeyondLastLine": false,
+	"editor.rulers": [80],                        // guide visuel 80 colonnes (Norminette)
+	"workbench.colorTheme": "Kolada",
+	"workbench.startupEditor": "none",
+	"workbench.tree.indent": 16,
+	"terminal.integrated.cursorBlinking": true,
+	"terminal.integrated.fontSize": 13,
+
+	// --- Couleur personnalisée pour les commentaires ---
+	"editor.tokenColorCustomizations": {
+		"[Kolada]": {
+			"comments": {
+				"foreground": "#D7A66F",
+				"fontStyle": "italic"
+			}
+		}
+	}
 }
