@@ -6,29 +6,39 @@
 #    By: msuter <msuter@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/18 21:42:01 by msuter            #+#    #+#              #
-#    Updated: 2025/10/18 21:52:33 by msuter           ###   ########.fr        #
+#    Updated: 2025/10/18 22:29:59 by msuter           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_printf
+NAME = libftprintf.a
 CC = gcc
-CFLAG = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ft_putchar.c ft_putnbr_base_maj.c ft_putstr.c hexa_opti.c modif_putnbr.C
+SRCS = ft_putchar.c ft_putnbr_base_maj.c ft_putstr.c hexa_opti.c \
+		modif_putnbr.c ft_printf.c
 
 OBJS = $(SRCS:.c=.o)
 
-all : $(NAME)
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
-(NAME) : $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+$(LIBFT):
+	make -C $(LIBFT_DIR)
+
+all : $(LIBFT) $(NAME)
+
+$(NAME): $(OBJS) $(LIBFT)
+	@cp $(LIBFT) $(NAME)
+	@ar rcs $(NAME) $(OBJS)
 %.o : %.c ft_printf.h
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -c $< -o $@
 clean:
 	rm -f $(OBJS)
+	make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
