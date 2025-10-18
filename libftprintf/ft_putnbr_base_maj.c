@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr_base_maj.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/15 14:42:59 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/18 21:36:11 by msuter           ###   ########.fr       */
+/*   Created: 2025/10/18 21:35:02 by msuter            #+#    #+#             */
+/*   Updated: 2025/10/18 21:37:06 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include "libft.h"
-# include <stdarg.h>
-# include <unistd.h>
+void	ft_putnbr_base_maj(long nb)
+{
+	char	*base;
 
-int		ft_printf(const char *format, ...);
-void	ft_putchar(char c);
-void	ft_putstr(char *str);
-void	ft_putnbr_base(long nb);
-void	modif_putnbr(unsigned int n);
-void	ft_putnbr_base_maj(long nb);
-
-#endif
+	base = "0123456789ABCDEF";
+	if (nb < 0)
+	{
+		write (1, "-", 1);
+		nb = -nb;
+	}
+	if (nb >= 16)
+		ft_putnbr_base_maj(nb / 16);
+	write(1, &base[nb % 16], 1);
+}

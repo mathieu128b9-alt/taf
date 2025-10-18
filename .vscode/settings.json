@@ -24,14 +24,14 @@
 	"editor.fontLigatures": false,
 	"editor.fontSize": 14,
 	"editor.lineHeight": 1.35,
-	"editor.cursorSmoothCaretAnimation": true,
+	"editor.cursorSmoothCaretAnimation": "on",
 	"editor.cursorBlinking": "smooth",
 	"editor.smoothScrolling": true,
 	"editor.minimap.enabled": false,
 	"editor.wordWrap": "on",
 	"editor.renderWhitespace": "all",             // ✅ affiche les espaces, tabulations et retours à la ligne
 	"editor.renderControlCharacters": true,       // ✅ affiche les flèches ↹ pour les tabulations
-	"editor.renderFinalNewline": false,
+	"editor.renderFinalNewline": "off",
 	"editor.scrollBeyondLastLine": false,
 	"editor.rulers": [80],                        // guide visuel 80 colonnes (Norminette)
 	"workbench.colorTheme": "Kolada",

@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   modif_putnbr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/15 14:42:59 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/18 21:36:11 by msuter           ###   ########.fr       */
+/*   Created: 2025/10/18 21:14:16 by msuter            #+#    #+#             */
+/*   Updated: 2025/10/18 21:25:22 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include "libft.h"
-# include <stdarg.h>
-# include <unistd.h>
-
-int		ft_printf(const char *format, ...);
-void	ft_putchar(char c);
-void	ft_putstr(char *str);
-void	ft_putnbr_base(long nb);
-void	modif_putnbr(unsigned int n);
-void	ft_putnbr_base_maj(long nb);
-
-#endif
+void	modif_putnbr(unsigned int n)
+{
+	if (n >= 10)
+	{
+		modif_putnbr(n / 10);
+	}
+	ft_putchar((n % 10) + '0');
+}
