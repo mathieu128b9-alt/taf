@@ -6,13 +6,14 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:55:38 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/15 17:09:36 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/19 17:42:16 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
 	write (1, &c, 1);
+	return (1);
 }
