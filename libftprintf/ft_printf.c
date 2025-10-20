@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 14:55:11 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/19 18:23:36 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/20 10:13:03 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static void	d_c_p_i(va_list *li, const char *frmt, size_t *i, int *count)
 	char	*printable;
 	char	res;
 
-	if (frmt[*i + 1] == 'd' || frmt[*i + 1] == 'i')
+	if (frmt[*i] == 'd' || frmt[*i] == 'i')
 	{
 		result = va_arg(*li, int);
 		printable = ft_itoa(result);
 		*count += ft_putstr(printable);
 	}
-	else if (frmt[*i + 1] == 'c')
+	else if (frmt[*i] == 'c')
 	{
 		res = va_arg(*li, int);
 		*count += ft_putchar(res);
@@ -38,12 +38,12 @@ static void	s_p(va_list *li, const char *frmt, size_t *i, int *count)
 	char	*res;
 	void	*result;
 
-	if (frmt[*i + 1] == 's')
+	if (frmt[*i] == 's')
 	{
 		res = va_arg(*li, char *);
 		*count += ft_putstr(res);
 	}
-	else if (frmt[*i + 1] == 'p')
+	else if (frmt[*i] == 'p')
 	{
 		result = va_arg(*li, void *);
 		if (result == NULL)
@@ -62,17 +62,17 @@ static void	u_xmaj_x(va_list *li, const char *frmt, size_t *i, int *count)
 	unsigned int	res;
 	unsigned int	result;
 
-	if (frmt[*i + 1] == 'u')
+	if (frmt[*i] == 'u')
 	{
 		res = va_arg(*li, unsigned int);
 		*count += modif_putnbr(res);
 	}
-	else if (frmt[*i + 1] == 'x')
+	else if (frmt[*i] == 'x')
 	{
 		result = va_arg(*li, unsigned int);
 		*count += ft_putnbr_base(result);
 	}
-	else if (frmt[*i + 1] == 'X')
+	else if (frmt[*i] == 'X')
 	{
 		result = va_arg(*li, unsigned int);
 		*count += ft_putnbr_base_maj(result);
@@ -83,15 +83,16 @@ static void	case_percent(va_list *li, const char *format, size_t *i, int *count)
 {
 	if (format[*i] == '%')
 	{
-		if (format[*i + 1] == 'd' || format[*i + 1] == 'c'
-			|| format[*i + 1] == '%' || format[*i + 1] == 'i')
+		(*i)++;
+		if (format[*i] == 'd' || format[*i] == 'c'
+			|| format[*i] == '%' || format[*i] == 'i')
 			d_c_p_i(li, format, i, count);
-		else if (format[*i + 1] == 's' || format[*i + 1] == 'p')
+		else if (format[*i] == 's' || format[*i] == 'p')
 			s_p(li, format, i, count);
-		else if (format[*i + 1] == 'u' || format[*i + 1] == 'x'
-			|| format[*i + 1] == 'X')
+		else if (format[*i] == 'u' || format[*i] == 'x'
+			|| format[*i] == 'X')
 			u_xmaj_x(li, format, i, count);
-		*i += 2;
+		(*i)++;
 	}
 	else
 	{
@@ -118,10 +119,14 @@ int	ft_printf(const char *format, ...)
 	return (count);
 }
 
-/*#include <stdio.h>
+#include <stdio.h>
 int main (void)
 {
-	int i = -1;
-	ft_printf(" %p\n ", &i);
-	printf(" %p ", &i);
-}*/
+	int i = -2147483648;
+	ft_printf("?%p\n?", &i);
+	printf("?%p\n?", &i);
+
+	int j = 2147483648;
+	ft_printf("?%p\n?", &j);
+	printf("?%p?",&j);
+}
