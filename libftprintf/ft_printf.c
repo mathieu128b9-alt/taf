@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 14:55:11 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/20 13:47:08 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/20 14:05:32 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,16 +119,3 @@ int	ft_printf(const char *format, ...)
 	va_end(li);
 	return (count);
 }
-
-/*#include <stdio.h>
-int main (void)
-{
-
-	int pri = printf("%u", -1);
-	int mypri = ft_printf("%u", -1);
-	
-	printf("\n%d\n", pri);
-	ft_printf("%d", mypri);
-	
-}*/
-// gcc *.c -Ilibft -L. -lftprintf -Llibft -lft
