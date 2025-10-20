@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 18:15:56 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/20 09:55:18 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/20 13:47:30 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ int	ft_putnbr_base(unsigned long nb)
 	base = "0123456789abcdef";
 	if (nb >= 16)
 	{
-		ft_putnbr_base(nb / 16);
-		i++;
+		i = ft_putnbr_base(nb / 16);
 	}
-	i++;
 	write(1, &base[nb % 16], 1);
+	i++;
 	return (i);
 }

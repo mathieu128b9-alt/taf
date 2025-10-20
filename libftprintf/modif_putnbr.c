@@ -6,23 +6,22 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 21:14:16 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/19 17:14:06 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/20 13:46:02 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	modif_putnbr(unsigned int n)
+int	modif_putnbr(unsigned long n)
 {
 	int	i;
 
 	i = 0;
 	if (n >= 10)
 	{
-		modif_putnbr(n / 10);
-		i++;
+		i = modif_putnbr(n / 10);
 	}
-	i++;
 	ft_putchar((n % 10) + '0');
+	i++;
 	return (i);
 }

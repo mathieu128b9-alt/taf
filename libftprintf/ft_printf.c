@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 14:55:11 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/20 10:13:03 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/20 13:47:08 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	u_xmaj_x(va_list *li, const char *frmt, size_t *i, int *count)
 	}
 }
 
-static void	case_percent(va_list *li, const char *format, size_t *i, int *count)
+static int	case_percent(va_list *li, const char *format, size_t *i, int *count)
 {
 	if (format[*i] == '%')
 	{
@@ -100,6 +100,7 @@ static void	case_percent(va_list *li, const char *format, size_t *i, int *count)
 		(*count)++;
 		(*i)++;
 	}
+	return (1);
 }
 
 int	ft_printf(const char *format, ...)
@@ -119,14 +120,15 @@ int	ft_printf(const char *format, ...)
 	return (count);
 }
 
-#include <stdio.h>
+/*#include <stdio.h>
 int main (void)
 {
-	int i = -2147483648;
-	ft_printf("?%p\n?", &i);
-	printf("?%p\n?", &i);
 
-	int j = 2147483648;
-	ft_printf("?%p\n?", &j);
-	printf("?%p?",&j);
-}
+	int pri = printf("%u", -1);
+	int mypri = ft_printf("%u", -1);
+	
+	printf("\n%d\n", pri);
+	ft_printf("%d", mypri);
+	
+}*/
+// gcc *.c -Ilibft -L. -lftprintf -Llibft -lft
