@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:57:50 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/24 09:46:50 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/24 13:19:07 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,19 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
-	read(fd, buffer, BUFFER_SIZE);
-	if (!ft_new_node(buffer))
-		return (NULL);
+	char			*buffer;
+	t_list			*node;
+	static t_list	*ligne;
 	
+	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!buffer)
+		return (NULL);
+	while (read(fd, buffer, BUFFER_SIZE) > 0)
+	{
+		buffer[BUFFER_SIZE + 1] = '\0';
+		node = ft_new_node(buffer);
+		add_node(&ligne, node);
+	}
 }
 /*int main (void)
 {

@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:58:37 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/24 09:39:50 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/24 13:13:44 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct c_list
 }					t_list;
 
 char	*get_next_line(int fd);
-t_list	*ft_new_node(void *content)
+t_list	*ft_new_node(void *content);
+void	add_node(t_list **lst, t_list *new);
 
 #endif

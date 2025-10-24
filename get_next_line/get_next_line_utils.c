@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:58:34 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/24 09:47:28 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/24 13:08:51 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,21 @@ t_list	*ft_new_node(void *content)
 	node->content = content;
 	node->next = NULL;
 	return (node);
+}
+
+void	add_node(t_list **lst, t_list *new)
+{
+	t_list	*temp;
+	
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	temp = *lst;
+	while (temp ->next)
+		temp = temp->next;
+	temp->next = new;
 }
