@@ -6,16 +6,24 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:58:37 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/22 17:52:21 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/24 09:39:50 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-#include <stdlib.h>
+# include <stdlib.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 2
 # endif
-char	**get_next_line(int fd);
+
+typedef struct c_list
+{
+	void			*content;
+	struct c_list	*next;
+}					t_list;
+
+char	*get_next_line(int fd);
+t_list	*ft_new_node(void *content)
 
 #endif
