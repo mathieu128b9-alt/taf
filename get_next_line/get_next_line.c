@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:57:50 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/25 19:48:58 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/26 14:49:08 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,36 @@
 char	*get_next_line(int fd)
 {
 	char			*buffer;
-	t_list			*node;
 	static t_list	*ligne;
+	int				nb_bytes;
+	int				i;
+	char 			*temp;
 
 	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	while (read(fd, buffer, BUFFER_SIZE) > 0)
-	{
-		if (!buffer)
+	if (!buffer)
 			return (NULL);
-		buffer[BUFFER_SIZE] = '\0';
-		node = ft_new_node(buffer);
-		add_node(&ligne, node);
+	while ((nb_bytes = read(fd, buffer, BUFFER_SIZE)) > 0)
+	{
+		buffer[nb_bytes] = '\0';
+		if ((i = find_backslash) != -1)
+		{
+			temp = ft_strdup_before(buffer);
+		}
+		
+	}
+	if (nb_bytes < 0)
+	{
+		free(buffer);
+		return (NULL);
+	}
+	else if (nb_bytes == 0)
+	{
+		if ((char *)ligne->content == NULL)
+			return (ligne);
+		else
+		{
+			
+		}
 	}
 }
 /*int main (void)

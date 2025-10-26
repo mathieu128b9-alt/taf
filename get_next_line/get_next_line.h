@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:58:37 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/25 19:42:06 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/26 14:34:35 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ typedef struct c_list
 char	*get_next_line(int fd);
 t_list	*ft_new_node(void *content);
 void	add_node(t_list **lst, t_list *new);
+int		find_backslash(char *str);
+char	*ft_strdup_before(const char *s1);
 
 #endif
