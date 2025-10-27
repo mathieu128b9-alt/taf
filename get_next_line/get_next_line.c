@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:57:50 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/27 13:48:00 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/27 15:04:35 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*fill_stash(int fd, char *stash)
 	int		nb;
 	char	*temp;
 
-	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	buffer = malloc(sizeof(char) * BUFFER_SIZE);
 	if (!buffer)
 		return (NULL);
 	nb = 1;
@@ -85,9 +85,9 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/*int main (void)
+int main (void)
 {
 	int fd = open("test", O_RDWR);
 	get_next_line(fd);
-}*/
+}
 //valgrind
