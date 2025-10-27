@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:57:50 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/27 11:27:28 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/27 12:36:39 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,90 +14,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fcntl.h>
 
-size_t	ft_strlen(const char *str)
+static char	*fill_stash(int fd, char *stash)
 {
-	size_t	i;
+	char	*buffer;
+	int		nb;
+	char	*temp;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-void	ft_strcpy(char *dest, const char *src1, const char *src2)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	while (src1[i])
-	{
-		dest[i] = src1[i];
-		i ++;
-	}
-	while (src2[j])
-	{
-		dest[i + j] = src2[j];
-		j++;
-	}
-	dest[i + j] = '\0';
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*final;
-	size_t	i;
-
-	i = ft_strlen(s1) + ft_strlen(s2);
-	final = malloc((i + 1) * sizeof(char));
-	if (!final)
+	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!buffer)
 		return (NULL);
-	ft_strcpy(final, s1, s2);
-	return (final);
+	nb = 1;
+	while (nb > 0)
+	{
+		nb = read(fd, buffer, BUFFER_SIZE);
+		if (nb < 0)
+		{
+			free (buffer);
+			free (stash);
+			return (NULL);
+		}
+		temp = stash;
+		stash = (ft_strjoin(stash, buffer));
+	}
 }
 
 char	*get_next_line(int fd)
 {
-	char			*buffer;
-	static t_list	*ligne;
-	int				nb_bytes;
-	int				i;
-	char 			*temp;
+	static char	*stash;
+	char		*line;
+	char		*temp;
 
-	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!buffer)
-			return (NULL);
-	while ((nb_bytes = read(fd, buffer, BUFFER_SIZE)) > 0)
+	if (BUFFER_SIZE <= 0 || fd == -1)
 	{
-		i = 0;
-		buffer[nb_bytes] = '\0';
-		temp = ft_strdup_before(buffer);
-		add_node(&ligne, ft_new_node(temp));
-		if ((i = find_backslash(buffer)) != 0)
-		{
-			i++;
-			temp = ft_strdup_before(buffer + i);
-			add_node(&ligne, ft_new_node(temp + i));
-		}
-	}
-	if (nb_bytes < 0)
-	{
-		free(buffer);
+		if (stash)
+			free(stash);
 		return (NULL);
 	}
-	else if (nb_bytes == 0)
-	{
-		if ((char *)ligne == NULL ||(char *)ligne->content == NULL)
-			return (NULL);
-	}
-}
-int main (void)
-{
-	int fd = open("test.txt", O_RDWR);
-	get_next_line(fd);
 	
 }
-//gcc *.c -Wall -Werror -Wextra -D BUFFER_SIZE=1
+//valgrind

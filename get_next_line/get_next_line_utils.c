@@ -6,87 +6,112 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:58:34 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/27 11:19:22 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/27 12:42:07 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_list	*ft_new_node(void *content)
+char	*ft_strchr(const char *s, int c)
 {
-	t_list	*node;
-	
-	node = malloc(sizeof(t_list));
-	if (!node)
-		return (NULL);
-	node->content = content;
-	node->next = NULL;
-	return (node);
-}
-
-void	add_node(t_list **lst, t_list *new)
-{
-	t_list	*temp;
-	
-	if (!lst || !new)
-		return ;
-	if (*lst == NULL)
-	{
-		*lst = new;
-		return ;
-	}
-	temp = *lst;
-	while (temp->next)
-		temp = temp->next;
-	temp->next = new;
-}
-
-int	find_backslash(char *str)
-{
-	int	i;
+	unsigned char	ch;
+	size_t			i;
 
 	i = 0;
-	while (str[i])
+	ch = (unsigned char)c;
+	while (1)
 	{
-		if (str[i] == '\n')
-			return (i);
-		else
-			i++;
+		if ((unsigned char)s[i] == ch)
+			return ((char *)s + i);
+		if (s[i] == '\0')
+			break ;
+		i++;
 	}
-	return (0);
+	return (NULL);
 }
 
-char	*ft_strdup_before(const char *s1)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*s2;
+	char	*final;
+	size_t	k;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	k = ft_strlen(s1) + ft_strlen(s2);
+	if (!s1 && !s2)
+		return (NULL);
+	final = malloc((k + 1) * sizeof(char));
+	if (!final)
+		return (NULL);
+	while (s1[i])
+	{
+		final[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		final[i + j] = s2[j];
+		j++;
+	}
+	final[i + j] = '\0';
+	return (final);
+}
+
+size_t	ft_strlen(const char *str)
+{
 	size_t	i;
 
 	i = 0;
-	while (s1[i] && s1[i])
-	{
+	while (str[i])
 		i++;
-		if (s1[i] == '\n')
-		{	
-			i++;
-			break ;
-		}
-	}
-	s2 = malloc((i + 1) * sizeof(char));
-	if (!s2)
+	return (i);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	char	*str;
+
+	if (!s)
 		return (NULL);
-	i = 0;
-	while (s1[i] && s1[i])
+	i = ft_strlen(s);
+	if (start >= i || len == 0)
 	{
-		s2[i] = s1[i];
-		i++;
-		if (s1[i] == '\n')
-		{
-			s2[i] = '\n';
-			i++;
-			break ;
-		}
+		str = malloc(1);
+		if (!str)
+			return (NULL);
+		str[0] = '\0';
+		return (str);
 	}
-	s2[i] = '\0';
-	return (s2);
+	if (len > i - start)
+		len = i - start;
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s + start, len + 1);
+	return (str);
+}
+
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	if (size == 0)
+		return (ft_strlen(src));
+	while (src[i] && size > 1)
+	{
+		dest[i] = src[i];
+		i++;
+		size--;
+	}
+	if (size != 0)
+		dest[i] = '\0';
+	i = 0;
+	while (src[i])
+		i++;
+	return (i);
 }
 
