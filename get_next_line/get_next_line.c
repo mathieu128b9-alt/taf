@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:57:50 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/27 15:04:35 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/27 15:06:45 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*fill_stash(int fd, char *stash)
 	int		nb;
 	char	*temp;
 
-	buffer = malloc(sizeof(char) * BUFFER_SIZE);
+	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
 	nb = 1;
@@ -39,7 +39,10 @@ static char	*fill_stash(int fd, char *stash)
 			break ;
 		else
 		{
+			buffer[nb] = '\0';
 			temp = stash;
+			if (stash == NULL)
+				stash = "";
 			stash = (ft_strjoin(stash, buffer));
 			free(temp);
 			if (ft_strchr(stash, '\n') != NULL)
@@ -55,15 +58,13 @@ static char *create_line(char *stash)
 	int		i;
 	char	*line;
 
+	if (!stash || stash[0] == '\0')
+		return (NULL);
 	i = 0;
-	while (stash)
-	{
-		if (stash[i] == '\n')
-		{
-			break ;
-		}
+	while (stash[i] && stash[i] != '\n')
 		i++;
-	}
+	if (stash[i] == '\n')
+		i++;
 	line = ft_substr(stash, 0, i);
 	return (line);
 }
@@ -85,9 +86,9 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int main (void)
+/*int main (void)
 {
 	int fd = open("test", O_RDWR);
 	get_next_line(fd);
-}
+}*/
 //valgrind
