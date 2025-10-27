@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:58:34 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/26 14:45:03 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/27 11:19:22 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	find_backslash(char *str)
 		else
 			i++;
 	}
-	return (-1);
+	return (0);
 }
 
 char	*ft_strdup_before(const char *s1)
@@ -62,17 +62,31 @@ char	*ft_strdup_before(const char *s1)
 	size_t	i;
 
 	i = 0;
-	while (s1[i] && s1[i] != '\n')
+	while (s1[i] && s1[i])
+	{
 		i++;
+		if (s1[i] == '\n')
+		{	
+			i++;
+			break ;
+		}
+	}
 	s2 = malloc((i + 1) * sizeof(char));
 	if (!s2)
 		return (NULL);
 	i = 0;
-	while (s1[i] && s1[i] != '\n')
+	while (s1[i] && s1[i])
 	{
 		s2[i] = s1[i];
 		i++;
+		if (s1[i] == '\n')
+		{
+			s2[i] = '\n';
+			i++;
+			break ;
+		}
 	}
 	s2[i] = '\0';
 	return (s2);
 }
+
