@@ -6,54 +6,74 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:57:50 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/27 15:06:45 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/27 19:25:09 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
+
+static char	*after_backslash(char *stash)
+{
+	int		i;
+	char	*new;
+
+	if (!stash || stash[0] == '\0')
+		return (NULL);
+	i = 0;
+	while (stash[i] && stash[i] != '\n')
+		i++;
+	if (stash[i] == '\n')
+	{
+		i++;
+		new = ft_substr(stash, i, ft_strlen(stash) - i);
+		free(stash);
+		if (!new || new[0] == '\0')
+		{
+			free(new);
+			return (NULL);
+		}
+		return (new);
+	}
+	free(stash);
+	return (NULL);
+}
+
+static char	*free_and_return(char *buf, char *stash)
+{
+	free(buf);
+	free(stash);
+	return (NULL);
+}
 
 static char	*fill_stash(int fd, char *stash)
 {
-	char	*buffer;
-	int		nb;
-	char	*temp;
+	char	*buf;
+	char	*tmp;
+	ssize_t	nb;
 
-	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!buffer)
+	buf = malloc(BUFFER_SIZE + 1);
+	if (!buf)
 		return (NULL);
 	nb = 1;
 	while (nb > 0)
 	{
-		nb = read(fd, buffer, BUFFER_SIZE);
-		if (nb < 0)
-		{
-			free (buffer);
-			free (stash);
-			return (NULL);
-		}
-		else if (nb == 0)
+		nb = read(fd, buf, BUFFER_SIZE);
+		if (nb <= 0)
 			break ;
-		else
-		{
-			buffer[nb] = '\0';
-			temp = stash;
-			if (stash == NULL)
-				stash = "";
-			stash = (ft_strjoin(stash, buffer));
-			free(temp);
-			if (ft_strchr(stash, '\n') != NULL)
-				break;
-		}
+		buf[nb] = '\0';
+		tmp = stash;
+		stash = ft_strjoin(stash, buf);
+		free(tmp);
+		if (!stash || ft_strchr(buf, '\n'))
+			break ;
 	}
-	free (buffer);
+	if (nb < 0)
+		return (free_and_return(buf, stash));
+	free(buf);
 	return (stash);
 }
 
-static char *create_line(char *stash)
+static char	*create_line(char *stash)
 {
 	int		i;
 	char	*line;
@@ -73,7 +93,6 @@ char	*get_next_line(int fd)
 {
 	static char	*stash;
 	char		*line;
-	//char		*temp;
 
 	if (BUFFER_SIZE <= 0 || fd == -1)
 	{
@@ -83,12 +102,6 @@ char	*get_next_line(int fd)
 	}
 	stash = fill_stash(fd, stash);
 	line = create_line(stash);
+	stash = after_backslash(stash);
 	return (line);
 }
-
-/*int main (void)
-{
-	int fd = open("test", O_RDWR);
-	get_next_line(fd);
-}*/
-//valgrind

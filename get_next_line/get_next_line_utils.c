@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:58:34 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/27 15:08:25 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/27 18:49:38 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strchr(const char *s, int c)
 	size_t			i;
 
 	if (!s)
-		return NULL;
+		return (NULL);
 	i = 0;
 	ch = (unsigned char)c;
 	while (1)
@@ -34,31 +34,30 @@ char	*ft_strchr(const char *s, int c)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*final;
-	size_t	k;
+	char	*dst;
 	size_t	i;
 	size_t	j;
 
-	i = 0;
-	j = 0;
-	k = ft_strlen(s1) + ft_strlen(s2);
 	if (!s1 && !s2)
 		return (NULL);
-	final = malloc((k + 1) * sizeof(char));
-	if (!final)
+	if (!s1)
+		s1 = "";
+	if (!s2)
+		s2 = "";
+	dst = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!dst)
 		return (NULL);
+	i = 0;
 	while (s1[i])
 	{
-		final[i] = s1[i];
+		dst[i] = s1[i];
 		i++;
 	}
+	j = 0;
 	while (s2[j])
-	{
-		final[i + j] = s2[j];
-		j++;
-	}
-	final[i + j] = '\0';
-	return (final);
+		dst[i++] = s2[j++];
+	dst[i] = '\0';
+	return (dst);
 }
 
 size_t	ft_strlen(const char *str)
@@ -116,4 +115,3 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 		i++;
 	return (i);
 }
-
