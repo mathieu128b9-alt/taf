@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:57:50 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/27 19:25:09 by msuter           ###   ########.fr       */
+/*   Updated: 2025/10/28 09:30:49 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char	*fill_stash(int fd, char *stash)
 {
 	char	*buf;
 	char	*tmp;
-	ssize_t	nb;
+	int		nb;
 
 	buf = malloc(BUFFER_SIZE + 1);
 	if (!buf)
