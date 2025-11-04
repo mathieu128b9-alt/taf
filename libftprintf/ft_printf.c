@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 14:55:11 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/20 16:10:00 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/04 17:35:07 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	d_c_p_i(va_list *li, const char *frmt, size_t *i, int *count)
 		result = va_arg(*li, int);
 		printable = ft_itoa(result);
 		*count += ft_putstr(printable);
+		free(printable);
 	}
 	else if (frmt[*i] == 'c')
 	{
@@ -48,11 +49,11 @@ static void	s_p(va_list *li, const char *frmt, size_t *i, int *count)
 		result = va_arg(*li, void *);
 		if (result == NULL)
 		{
-			write (1, "(nil)", 5);
+			write(1, "(nil)", 5);
 			*count += 5;
 			return ;
 		}
-		write (1, "0x", 2);
+		write(1, "0x", 2);
 		*count += ft_putnbr_base((unsigned long)result) + 2;
 	}
 }
@@ -79,43 +80,39 @@ static void	u_xmaj_x(va_list *li, const char *frmt, size_t *i, int *count)
 	}
 }
 
-static int	case_percent(va_list *li, const char *format, size_t *i, int *count)
+/* fusion end + '%%' + dispatch après '%' */
+static void	percent_flow(va_list *li, const char *fmt, size_t *i, int *count)
 {
-	if (format[*i] == '%')
+	if (fmt[*i + 1] == '\0')
 	{
 		(*i)++;
-		if (format[*i] == 'd' || format[*i] == 'c'
-			|| format[*i] == '%' || format[*i] == 'i')
-			d_c_p_i(li, format, i, count);
-		else if (format[*i] == 's' || format[*i] == 'p')
-			s_p(li, format, i, count);
-		else if (format[*i] == 'u' || format[*i] == 'x'
-			|| format[*i] == 'X')
-			u_xmaj_x(li, format, i, count);
-		(*i)++;
+		return ;
 	}
-	else
+	if (fmt[*i + 1] == '%')
 	{
-		ft_putchar(format[*i]);
-		(*count)++;
-		(*i)++;
+		*count += ft_putchar('%');
+		*i += 2;
+		return ;
 	}
-	return (1);
+	(*i)++;
+	if (fmt[*i] == 'd' || fmt[*i] == 'c' || fmt[*i] == 'i' || fmt[*i] == '%')
+		d_c_p_i(li, fmt, i, count);
+	else if (fmt[*i] == 's' || fmt[*i] == 'p')
+		s_p(li, fmt, i, count);
+	else if (fmt[*i] == 'u' || fmt[*i] == 'x' || fmt[*i] == 'X')
+		u_xmaj_x(li, fmt, i, count);
+	(*i)++;
 }
 
-int	ft_printf(const char *format, ...)
+int	case_percent(va_list *li, const char *fmt, size_t *i, int *count)
 {
-	va_list	li;
-	size_t	i;
-	int		count;
-
-	i = 0;
-	count = 0;
-	va_start(li, format);
-	while (format[i] != '\0')
+	if (fmt[*i] != '%')
 	{
-		case_percent(&li, format, &i, &count);
+		ft_putchar(fmt[*i]);
+		(*count)++;
+		(*i)++;
+		return (1);
 	}
-	va_end(li);
-	return (count);
+	percent_flow(li, fmt, i, count);
+	return (1);
 }

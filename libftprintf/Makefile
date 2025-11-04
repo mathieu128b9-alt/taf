@@ -6,7 +6,7 @@
 #    By: msuter <msuter@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/18 21:42:01 by msuter            #+#    #+#              #
-#    Updated: 2025/10/18 22:29:59 by msuter           ###   ########.fr        #
+#    Updated: 2025/11/04 17:31:43 by msuter           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 SRCS = ft_putchar.c ft_putnbr_base_maj.c ft_putstr.c hexa_opti.c \
-		modif_putnbr.c ft_printf.c
+		modif_putnbr.c ft_printf.c main.c
 
 OBJS = $(SRCS:.c=.o)
 
