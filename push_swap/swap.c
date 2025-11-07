@@ -1,18 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_a.c                                           :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:23:39 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/07 18:35:15 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/07 21:43:42 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-char	*swap_a()
+void	swap_a(int *tab_a, int *size_a)
 {
-	
+	int	temp;
+
+	if (*size_a < 1)
+		return ;
+	temp = tab_a[0];
+	tab_a[0] = tab_a[1];
+	tab_a[1] = temp;
+}
+
+void	swap_b(int *tab_b, int *size_b)
+{
+	int	temp;
+
+	if (*size_b < 1)
+		return ;
+	temp = tab_b[0];
+	tab_b[0] = tab_b[1];
+	tab_b[1] = temp;
+}
+
+void	swap_both(int *tab_a, int *tab_b, int *size_a, int *size_b)
+{
+	int	temp;
+
+	if (size_a >= 1)
+	{
+		temp = tab_a[0];
+		tab_a[0] = tab_a[1];
+		tab_a[1] = temp;
+	}
+	if (size_b >= 1)
+	{
+		temp = tab_b[0];
+		tab_b[0] = tab_b[1];
+		tab_b[1] = temp;
+	}
 }
