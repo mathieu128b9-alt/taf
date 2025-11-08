@@ -1,46 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_and_reatribute.c                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/07 21:00:06 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/07 22:23:38 by msuter           ###   ########.fr       */
+/*   Created: 2025/11/08 20:55:56 by msuter            #+#    #+#             */
+/*   Updated: 2025/11/08 21:31:35 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-
-int	count_tab(int *tab)
+void	rotate_a(int *tab_a, int *size_a)
 {
+	int	temp;
 	int	i;
 
 	i = 0;
-	while (tab[i])
+	temp = tab_a[*size_a - 1];
+	while (i < *size_a - 1)				// FAUXXXXXXXXXXXXXXXXXXX recommencer
 	{
+		tab_a[i] = tab_a[i + 1];
 		i++;
 	}
-	return (i + 1);
-}
-
-void	reatribute(int *tab, int *tab_temp, int *size, int start)
-{
-	int	i;
-
-	i = 0;
-	while (start < *size)
-	{
-		tab_temp[start] = tab[i];
-		start++;
-		i++;
-	}
-}
-
-void	malloc_and_verif(int *tab, int size)
-{
-	tab = malloc(sizeof(int) * size);
-	if(!tab)
-		return (NULL);
+	tab_a[0] = temp;
 }

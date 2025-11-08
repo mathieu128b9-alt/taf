@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:23:39 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/07 21:43:42 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/08 20:55:03 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	swap_a(int *tab_a, int *size_a)
 	temp = tab_a[0];
 	tab_a[0] = tab_a[1];
 	tab_a[1] = temp;
+	ft_printf("sa\n");
 }
 
 void	swap_b(int *tab_b, int *size_b)
@@ -32,6 +33,7 @@ void	swap_b(int *tab_b, int *size_b)
 	temp = tab_b[0];
 	tab_b[0] = tab_b[1];
 	tab_b[1] = temp;
+	ft_printf("sb\n");
 }
 
 void	swap_both(int *tab_a, int *tab_b, int *size_a, int *size_b)
@@ -50,4 +52,5 @@ void	swap_both(int *tab_a, int *tab_b, int *size_a, int *size_b)
 		tab_b[0] = tab_b[1];
 		tab_b[1] = temp;
 	}
+	ft_printf("ss\n");
 }

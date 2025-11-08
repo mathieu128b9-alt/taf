@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 20:18:51 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/07 22:36:15 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/08 20:55:47 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,48 @@
 
 void	push_a(int *tab_a, int *tab_b, int *size_a, int *size_b)
 {
-	int	*tab_temp;
+	int	i;
+
 	if (*size_b < 1)
 		return ;
-		*size_a++;
-		malloc_and_verif(tab_temp, size_a);
-		tab_temp[0] = tab_b[0];
-		reatribute(tab_a, tab_temp, size_a, 1);
-		free(tab_a);
-		malloc_and_verif(tab_a, size_a);
-		reatribute(tab_temp, tab_a, size_a, 0);
-		free(tab_temp);
-		*size_b--;
-		malloc_and_verif(tab_temp, size_b);
-		reatribute(tab_b, tab_temp, size_b, 1);
-		free(tab_b);
-		malloc_and_verif(tab_b, size_b);
-		reatribute(tab_temp, tab_b, size_b, 0);
-		free(tab_temp);
+	i = *size_a;
+	while (i > 0)
+	{
+		tab_a[i] = tab_a[i - 1];
+		i--;
+	}
+	tab_a[0] = tab_b[0];
+	(*size_a)++;
+	i = 0;
+	while (i < *size_b - 1)
+	{
+		tab_b[i] = tab_b[i + 1];
+		i++;
+	}
+	(*size_b)--;
+	ft_printf("pa\n");
+}
+
+void	push_b(int *tab_a, int *tab_b, int *size_a, int *size_b)
+{
+	int	i;
+
+	if (*size_a < 1)
+		return ;
+	i = *size_b;
+	while (i > 0)
+	{
+		tab_b[i] = tab_b[i - 1];
+		i--;
+	}
+	tab_b[0] = tab_a[0];
+	(*size_b)++;
+	i = 0;
+	while (i < *size_a - 1)
+	{
+		tab_a[i] = tab_a[i + 1];
+		i++;
+	}
+	(*size_a)--;
+	ft_printf("pb\n");
 }
