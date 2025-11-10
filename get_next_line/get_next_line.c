@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:57:50 by msuter            #+#    #+#             */
-/*   Updated: 2025/10/28 09:30:49 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/10 19:57:22 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	*fill_stash(int fd, char *stash)
 
 	buf = malloc(BUFFER_SIZE + 1);
 	if (!buf)
-		return (NULL);
+		return (free_and_return(buf, stash));
 	nb = 1;
 	while (nb > 0)
 	{
@@ -105,3 +105,17 @@ char	*get_next_line(int fd)
 	stash = after_backslash(stash);
 	return (line);
 }
+
+//#include "stdio.h"
+//int main(void)
+//{
+//	int fd = open("get_next_line.c", O_RDONLY);
+//	char *res;
+
+//	while ((res = get_next_line(fd)) != NULL)
+//	{
+//	printf("%s", res);
+//		free(res);
+//	}
+//	close(fd);
+//}
