@@ -1,42 +1,26 @@
-ar
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push_swap.c                                     :+:      :+:    :+:   */
+/*   case_2_3_4_5.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/07 17:56:14 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/07 21:35:04 by msuter           ###   ########.fr       */
+/*   Created: 2025/11/11 21:43:30 by msuter            #+#    #+#             */
+/*   Updated: 2025/11/11 21:48:24 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-void	convert_to_int(int argc, char **argv, int *tab_a)
+void	case_2(int *tab_a, int *size_a)
 {
-	int	i;
-	int	j;
-
-	i = 1;
-	j = 0;
-	while (i < argc)
-	{
-		tab_a[j] = ft_atoi(argv[i]);
-		i++;
-		j++;
-	}
+	if (tab_a[0] > tab_a[1])
+		swap_a(tab_a, size_a);
+	else
+		return ;
 }
 
-int main(int argc, char **argv)
+void	case_3(int *tab_a, int *size_a)
 {
-	int	*tab_a;
-	int	*tab_b;
-	int	size_a;
-	int	size_b;
-
-	size_a = argc - 1;
-	tab_a = malloc(sizeof(int) * size_a);
-	convert_to_int(argc, argv, tab_a);
-
+	
 }
