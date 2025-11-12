@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:57:50 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/10 19:57:22 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/12 12:38:51 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,16 +106,16 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-//#include "stdio.h"
-//int main(void)
-//{
-//	int fd = open("get_next_line.c", O_RDONLY);
-//	char *res;
+// #include "stdio.h"
+// int main(void)
+// {
+// 	int fd = open("get_next_line.c", O_RDONLY);
+// 	char *res;
 
-//	while ((res = get_next_line(fd)) != NULL)
-//	{
-//	printf("%s", res);
-//		free(res);
-//	}
-//	close(fd);
-//}
+// 	while ((res = get_next_line(fd)) != NULL)
+// 	{
+// 	printf("%s", res);
+// 		free(res);
+// 	}
+// 	close(fd);
+// }
