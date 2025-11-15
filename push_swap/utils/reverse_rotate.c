@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 20:05:37 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/10 20:17:45 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/15 16:31:20 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	rev_rot_both(int *tab_a, int *tab_b, int *size_a, int *size_b)
 {
 	if (*size_a < 2 || *size_b < 2)
 		return ;
-	silent_rotate_reverse_a(*tab_a, *size_a);
-	silent_reverse_rotate_b(*tab_b, *size_b);
+	silent_rotate_reverse_a(tab_a, size_a);
+	silent_reverse_rotate_b(tab_b, size_b);
 	ft_printf("rrr\n");
 }

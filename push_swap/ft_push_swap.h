@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:28 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/10 20:17:00 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/15 16:44:11 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void	rotate_both(int *tab_a, int *tab_b, int size_a, int size_b);
 void	reverse_rotate_b(int *tab_b, int *size_b);
 void	rotate_reverse_a(int *tab_a, int *size_a);
 void	rev_rot_both(int *tab_a, int *tab_b, int *size_a, int *size_b);
+void	replace_to_indice(int *tab_a, int *size_a);
 
 #endif
