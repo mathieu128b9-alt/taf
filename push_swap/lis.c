@@ -6,28 +6,11 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 16:41:37 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/17 14:27:42 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/17 19:58:05 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
-
-static int	search_max_lis(int *tab_a, int *size_a, int *len, int *prev)
-{
-	int	i;
-	int	max_in_len;
-	int	k;
-
-	i = 0;
-	max_in_len = 0;
-	while (i < *size_a)
-	{
-		if (max_in_len < len[i])
-			max_in_len = len[i];
-		i++;
-	}
-	return (max_in_len);
-}
 
 static void mall_and_allocate(int **len, int **prev, int size)
 {
@@ -51,10 +34,8 @@ static void mall_and_allocate(int **len, int **prev, int size)
 	}
 }
 
-static int	find_lis(int *tab_a, int *size_a)
+static void	find_lis(int *tab_a, int *size_a, int *len, int *prev)
 {
-	int *len;
-	int *prev;
 	int	i;
 	int	j;
 
@@ -74,12 +55,31 @@ static int	find_lis(int *tab_a, int *size_a)
 		}
 		i++;
 	}
-	return (search_max_lis(tab_a, size_a, len, prev));
 }
 
-void	create_lis(int *tab_a, int *size_a, int *len, int *prev)
+void	search_max_lis(int *tab_a, int *size_a, int *len, int *prev, int **lis)
 {
 	int	i;
-
+	int	max_in_len;
+	int	index_pos;
 	
+	i = 0;
+	max_in_len = 0;
+	while (i < *size_a)
+	{
+		if (max_in_len < len[i])
+			max_in_len = len[i];
+		i++;
+	}
+	*lis = malloc(sizeof(int) * max_in_len);
+	i = 0;
+	index_pos = max_in_len;
+	while (len[i] != max_in_len)
+		i++;
+	while (i != -1)
+	{
+		lis[] = tab_a[i];
+		i = prev[i];
+		index_pos--;
+	}
 }
