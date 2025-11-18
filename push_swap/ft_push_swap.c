@@ -1,4 +1,3 @@
-ar
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@ ar
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:14 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/07 21:35:04 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/18 20:29:55 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +27,7 @@ void	convert_to_int(int argc, char **argv, int *tab_a)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int	*tab_a;
 	int	*tab_b;
@@ -38,5 +37,4 @@ int main(int argc, char **argv)
 	size_a = argc - 1;
 	tab_a = malloc(sizeof(int) * size_a);
 	convert_to_int(argc, argv, tab_a);
-
 }

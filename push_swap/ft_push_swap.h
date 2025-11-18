@@ -6,12 +6,12 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:28 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/18 19:35:18 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/18 20:30:42 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PUSH_SWAP
-#define FT_PUSH_SWAP
+#ifndef FT_PUSH_SWAP_H
+# define FT_PUSH_SWAP_H
 
 # include <stdarg.h>
 # include <unistd.h>
@@ -31,6 +31,6 @@ void	reverse_rotate_b(int *tab_b, int *size_b);
 void	rotate_reverse_a(int *tab_a, int *size_a);
 void	rev_rot_both(int *tab_a, int *tab_b, int *size_a, int *size_b);
 void	replace_to_indice(int *tab_a, int *size_a);
-
+int		new_lis(int *tab_a, int size, int **lis);
 
 #endif
