@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:28 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/18 20:30:42 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/19 08:59:27 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdlib.h>
 # include "ft_printf.h"
 
-void	convert_to_int(int argc, char **argv, int *tab_a);
 void	swap_a(int *tab_a, int *size_a);
 void	swap_b(int *tab_b, int *size_b);
 void	swap_both(int *tab_a, int *tab_b, int *size_a, int *size_b);
@@ -31,6 +30,6 @@ void	reverse_rotate_b(int *tab_b, int *size_b);
 void	rotate_reverse_a(int *tab_a, int *size_a);
 void	rev_rot_both(int *tab_a, int *tab_b, int *size_a, int *size_b);
 void	replace_to_indice(int *tab_a, int *size_a);
-int		new_lis(int *tab_a, int size, int **lis);
+int		new_lis(int *tab_a, int size_a, int **lis);
 
 #endif
