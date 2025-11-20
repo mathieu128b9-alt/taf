@@ -6,13 +6,13 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 20:18:51 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/08 20:55:47 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/20 16:07:58 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-void	push_a(int *tab_a, int *tab_b, int *size_a, int *size_b)
+void	push_a(int *tab_a, int *size_a, int *tab_b, int *size_b)
 {
 	int	i;
 
@@ -36,7 +36,7 @@ void	push_a(int *tab_a, int *tab_b, int *size_a, int *size_b)
 	ft_printf("pa\n");
 }
 
-void	push_b(int *tab_a, int *tab_b, int *size_a, int *size_b)
+void	push_b(int *tab_a, int *size_a, int *tab_b, int *size_b)
 {
 	int	i;
 

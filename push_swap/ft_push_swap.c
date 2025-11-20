@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:14 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/20 10:29:22 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/20 15:55:46 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,24 @@ int	main(int argc, char **argv)
 
 	size_a = argc - 1;
 	tab_a = malloc(sizeof(int) * size_a);
-	size_b = argc - 1;
-	tab_b = malloc(sizeof(int) * size_b);
+	size_b = 0;
+	tab_b = malloc(sizeof(int) * size_a);
 	convert_to_int(argc, argv, tab_a);
 	replace_to_indice(tab_a, &size_a);
 	is_in_lis(tab_a, &size_a, tab_b, &size_b);
 
-	//int i = 0;
-	//int j = 0;
-	//ft_printf("je print moon taba, \n");
-	//while (i < size_a)
-	//{
-	//	ft_printf("%d\n", tab_a[i]);
-	//	i++;
-	//}
-	//ft_printf("je print moon tabb, \n");
-	//while (j < size_b)
-	//{
-	//	ft_printf("%d\n", tab_b[j]);
-	//	j++;
-	//}
+	int i = 0;
+	int j = 0;
+	ft_printf("je print moon taba, \n");
+	while (i < size_a)
+	{
+		ft_printf("%d\n", tab_a[i]);
+		i++;
+	}
+	ft_printf("je print moon tabb, \n");
+	while (j < size_b)
+	{
+		ft_printf("%d\n", tab_b[j]);
+		j++;
+	}
 }

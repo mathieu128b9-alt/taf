@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:28 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/20 10:17:35 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/20 16:08:10 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 void	swap_a(int *tab_a, int *size_a);
 void	swap_b(int *tab_b, int *size_b);
 void	swap_both(int *tab_a, int *tab_b, int *size_a, int *size_b);
-void	push_b(int *tab_a, int *tab_b, int *size_a, int *size_b);
-void	push_a(int *tab_a, int *tab_b, int *size_a, int *size_b);
+void	push_b(int *tab_a, int *size_a, int *tab_b, int *size_b);
+void	push_a(int *tab_a, int *size_a, int *tab_b, int *size_b);
 void	rotate_a(int *tab_a, int *size_a);
 void	rotate_b(int *tab_b, int *size_b);
 void	rotate_both(int *tab_a, int *tab_b, int size_a, int size_b);
