@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:28 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/19 08:59:27 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/20 10:17:35 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@ void	rotate_reverse_a(int *tab_a, int *size_a);
 void	rev_rot_both(int *tab_a, int *tab_b, int *size_a, int *size_b);
 void	replace_to_indice(int *tab_a, int *size_a);
 int		new_lis(int *tab_a, int size_a, int **lis);
+void	is_in_lis(int *tab_a, int *size_a, int *tab_b, int *size_b);
 
 #endif
+
+//gcc -Wall -Wextra -Werror -I. -Ilibftprintf -Ilibftprintf/libft *.c utils/*.c libftprintf/libftprintf.a -o push_swap

@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 20:55:56 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/18 20:26:52 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/20 10:20:01 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	rotate_b(int *tab_b, int *size_b)
 	int	i;
 
 	i = 0;
-	if (size_b < 2)
+	if (*size_b < 2)
 		return ;
 	temp = tab_b[0];
 	while (i < *size_b - 1)
@@ -51,8 +51,8 @@ void	rotate_b(int *tab_b, int *size_b)
 void	rotate_both(int *tab_a, int *tab_b, int size_a, int size_b)
 {
 	if (size_a >= 2)
-		rotate_a(tab_a, size_a);
+		rotate_a(tab_a, &size_a);
 	if (size_b >= 2)
-		rotate_b(tab_b, size_b);
+		rotate_b(tab_b, &size_b);
 	ft_printf("rr\n");
 }
