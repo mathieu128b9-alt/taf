@@ -6,13 +6,13 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:03:14 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/20 15:52:36 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/23 14:02:07 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-static int	find_index_not_in_lis(int *tab_a, int size_a, int *lis, int size_lis)
+static int	find_i_not_in_lis(int *tab_a, int size_a, int *lis, int size_lis)
 {
 	int	i;
 	int	j;
@@ -67,7 +67,7 @@ void	is_in_lis(int *tab_a, int *size_a, int *tab_b, int *size_b)
 	to_push = *size_a - size_lis;
 	while (to_push > 0)
 	{
-		idx = find_index_not_in_lis(tab_a, *size_a, lis, size_lis);
+		idx = find_i_not_in_lis(tab_a, *size_a, lis, size_lis);
 		if (idx == -1)
 			break ;
 		nb_ra_or_rra(tab_a, size_a, idx);

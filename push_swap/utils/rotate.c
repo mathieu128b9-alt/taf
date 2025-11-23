@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 20:55:56 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/20 16:05:53 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/23 14:01:03 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void	silent_rotate_b(int *tab_b, int *size_b)
 	}
 	tab_b[*size_b - 1] = temp;
 }
+
 void	rotate_both(int *tab_a, int *tab_b, int size_a, int size_b)
 {
 	if (size_a >= 2)

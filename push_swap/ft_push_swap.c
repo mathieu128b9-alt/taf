@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:14 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/20 15:55:46 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/23 14:05:03 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,28 @@ static void	convert_to_int(int argc, char **argv, int *tab_a)
 	}
 }
 
+static void	reorganise_order_tab_a(int *tab_a, int size_a)
+{
+	int	indice;
+	int	i;
+
+	i = 0;
+	indice = 0;
+	while (i < size_a)
+	{
+		if (tab_a[i] < tab_a[indice])
+			indice = i;
+		i++;
+	}
+	i = size_a - indice;
+	if (indice > size_a / 2)
+		while (i-- > 0)
+			rotate_reverse_a(tab_a, &size_a);
+	else
+		while (indice-- > 0)
+			rotate_a(tab_a, &size_a);
+}
+
 int	main(int argc, char **argv)
 {
 	int	*tab_a;
@@ -41,19 +63,4 @@ int	main(int argc, char **argv)
 	convert_to_int(argc, argv, tab_a);
 	replace_to_indice(tab_a, &size_a);
 	is_in_lis(tab_a, &size_a, tab_b, &size_b);
-
-	int i = 0;
-	int j = 0;
-	ft_printf("je print moon taba, \n");
-	while (i < size_a)
-	{
-		ft_printf("%d\n", tab_a[i]);
-		i++;
-	}
-	ft_printf("je print moon tabb, \n");
-	while (j < size_b)
-	{
-		ft_printf("%d\n", tab_b[j]);
-		j++;
-	}
 }
