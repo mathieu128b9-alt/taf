@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:14 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/23 14:05:03 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/24 17:25:15 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,10 @@ int	main(int argc, char **argv)
 	convert_to_int(argc, argv, tab_a);
 	replace_to_indice(tab_a, &size_a);
 	is_in_lis(tab_a, &size_a, tab_b, &size_b);
+	while (size_b != 0)
+		who_push(tab_a, &size_a, tab_b, &size_b);
+	reorganise_order_tab_a(tab_a, size_a);
+	free(tab_a);
+	free(tab_b);
+	return (0);
 }

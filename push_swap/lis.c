@@ -6,9 +6,11 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 16:41:37 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/20 15:46:46 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/24 16:27:48 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_push_swap.h"
 
 #include "ft_push_swap.h"
 
@@ -30,6 +32,7 @@ static void	mall_and_allocate(int **len, int **prev, int size)
 	if (!*prev)
 	{
 		free(*len);
+		*len = NULL;
 		return ;
 	}
 	i = 0;
@@ -66,26 +69,31 @@ static void	find_lis(int *tab_a, int size_a, int *len, int *prev)
 static int	*search_lis(int *tab_a, int size_a, int *len, int *prev)
 {
 	int	*lis;
-	int	i;
 	int	max_len;
-	int	pos;
+	int	last;
+	int	i;
 
 	max_len = 0;
-	i = -1;
-	while (++i < size_a)
+	last = 0;
+	i = 0;
+	while (i < size_a)
+	{
 		if (len[i] > max_len)
+		{
 			max_len = len[i];
+			last = i;
+		}
+		i++;
+	}
 	verif_mall(&lis, max_len);
 	if (!lis)
 		return (NULL);
-	pos = max_len - 1;
-	i = size_a - 1;
-	while (i >= 0 && len[i] != max_len)
-		i--;
-	while (i != -1)
+	i = max_len - 1;
+	while (i >= 0)
 	{
-		lis[pos--] = tab_a[i];
-		i = prev[i];
+		lis[i] = tab_a[last];
+		last = prev[last];
+		i--;
 	}
 	return (lis);
 }

@@ -6,73 +6,42 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:03:14 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/23 14:02:07 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/24 16:57:35 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-static int	find_i_not_in_lis(int *tab_a, int size_a, int *lis, int size_lis)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < size_a)
-	{
-		j = 0;
-		while (j < size_lis && tab_a[i] != lis[j])
-			j++;
-		if (j == size_lis)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
-static void	nb_ra_or_rra(int *tab_a, int *size_a, int nb_rot)
-{
-	int	i;
-
-	i = nb_rot;
-	if (nb_rot > *size_a / 2)
-	{
-		while (i < *size_a)
-		{
-			rotate_reverse_a(tab_a, size_a);
-			i++;
-		}
-	}
-	else
-	{
-		while (i > 0)
-		{
-			rotate_a(tab_a, size_a);
-			i--;
-		}
-	}
-}
-
 void	is_in_lis(int *tab_a, int *size_a, int *tab_b, int *size_b)
 {
 	int	*lis;
 	int	size_lis;
-	int	to_push;
-	int	idx;
+	int	orig_size;
+	int	i;
+	int	j;
+	int	in_lis;
 
 	lis = NULL;
 	size_lis = new_lis(tab_a, *size_a, &lis);
 	if (!lis)
 		return ;
-	to_push = *size_a - size_lis;
-	while (to_push > 0)
+	orig_size = *size_a;
+	i = 0;
+	while (i < orig_size)
 	{
-		idx = find_i_not_in_lis(tab_a, *size_a, lis, size_lis);
-		if (idx == -1)
-			break ;
-		nb_ra_or_rra(tab_a, size_a, idx);
-		push_b(tab_a, size_a, tab_b, size_b);
-		to_push--;
+		in_lis = 0;
+		j = 0;
+		while (j < size_lis)
+		{
+			if (tab_a[0] == lis[j])
+				in_lis = 1;
+			j++;
+		}
+		if (in_lis)
+			rotate_a(tab_a, size_a);
+		else
+			push_b(tab_a, size_a, tab_b, size_b);
+		i++;
 	}
 	free(lis);
 }
