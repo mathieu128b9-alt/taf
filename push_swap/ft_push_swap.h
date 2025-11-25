@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:28 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/25 11:58:03 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/25 13:34:44 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	reorganise_order_tab_a(int *tab_a, int size_a);
 int		free_all(int *tab_a, int *tab_b);
 int		ft_atol(const char *str);
 int		min_max(long res);
+int		already_sort(int *tab_a, int size_a);
 
 #endif
 

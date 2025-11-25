@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 20:19:37 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/25 10:24:24 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/25 13:02:33 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,3 @@ void	reorganise_order_tab_a(int *tab_a, int size_a)
 		while (indice-- > 0)
 			rotate_a(tab_a, &size_a);
 }
-

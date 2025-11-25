@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:06:58 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/24 17:14:09 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/25 13:02:10 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	cost_in_b(int index, int size_b)
 
 int	srch_min_in_a(int *tab_a, int size_a)
 {
-	int index;
+	int	index;
 	int	i;
 
 	i = 1;
@@ -44,11 +44,12 @@ static int	cost_in_a(int *tab_a, int size_a, int value)
 		return (size_a - target);
 	return (target);
 }
+
 static int	which_rotate(int *nb_move, int size_b)
 {
 	int	i;
 	int	min;
-	
+
 	i = 0;
 	min = nb_move[0];
 	while (i < size_b)
