@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:28 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/24 17:14:52 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/25 11:58:03 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ void	start_rot_for_b(int *tab_b, int *size_b, int index);
 void	who_push(int *tab_a, int *size_a, int *tab_b, int *size_b);
 int		srch_max_in_a(int *tab_a, int size_a);
 int		find_target_index(int *tab_a, int size_a, int value);
+void	reorganise_order_tab_a(int *tab_a, int size_a);
+int		free_all(int *tab_a, int *tab_b);
+int		ft_atol(const char *str);
+int		min_max(long res);
+
 #endif
 
 //gcc -Wall -Wextra -Werror -I. -Ilibftprintf -Ilibftprintf/libft *.c utils/*.c libftprintf/libftprintf.a -o push_swap

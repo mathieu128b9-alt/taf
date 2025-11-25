@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:05:25 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/17 13:47:47 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/25 10:28:18 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,11 @@ void	replace_to_indice(int *tab_a, int *size_a)
 	}
 	assign_tab(tab_a, index, size_a);
 	free(index);
+}
+
+int	free_all(int *tab_a, int *tab_b)
+{
+	free(tab_a);
+	free(tab_b);
+	return (1);
 }

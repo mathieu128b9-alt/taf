@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:03:14 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/24 17:40:57 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/25 12:48:16 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,36 @@ void	is_in_lis(int *tab_a, int *size_a, int *tab_b, int *size_b)
 		i++;
 	}
 	free(lis);
+}
+
+int	min_max(long res)
+{
+	if (res >= 2147483647 && res <= -2147483648)
+		return (0);
+	return (1);
+}
+
+int	ft_atol(const char *str)
+{
+	int		i;
+	int		sign;
+	long	total;
+
+	i = 0;
+	sign = 1;
+	total = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		total = total * 10 + (str[i] - '0');
+		i++;
+	}
+	return (total * sign);
 }

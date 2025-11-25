@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 20:19:37 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/24 17:15:30 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/25 10:24:24 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,3 +91,26 @@ void	start_rot_for_b(int *tab_b, int *size_b, int index)
 			rotate_b(tab_b, size_b);
 	}
 }
+
+void	reorganise_order_tab_a(int *tab_a, int size_a)
+{
+	int	indice;
+	int	i;
+
+	i = 0;
+	indice = 0;
+	while (i < size_a)
+	{
+		if (tab_a[i] < tab_a[indice])
+			indice = i;
+		i++;
+	}
+	i = size_a - indice;
+	if (indice > size_a / 2)
+		while (i-- > 0)
+			rotate_reverse_a(tab_a, &size_a);
+	else
+		while (indice-- > 0)
+			rotate_a(tab_a, &size_a);
+}
+
