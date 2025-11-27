@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 10:03:14 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/25 12:48:16 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/27 14:33:31 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ void	is_in_lis(int *tab_a, int *size_a, int *tab_b, int *size_b)
 	free(lis);
 }
 
-int	min_max(long res)
-{
-	if (res >= 2147483647 && res <= -2147483648)
-		return (0);
-	return (1);
-}
+// int	min_max(long res)
+// {
+// 	if (res >= -2147483647 && res <= 2147483648)
+// 		return (0);
+// 	return (1);
+// }
 
-int	ft_atol(const char *str)
+long	ft_atol(const char *str)
 {
 	int		i;
 	int		sign;
