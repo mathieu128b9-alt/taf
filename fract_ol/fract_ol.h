@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:22:52 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/28 14:49:59 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/28 22:40:55 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #define FRACT_OL_H
 
 #include <math.h>
-#include "mlx.h"
-#include "libft.h"
+#include "minilibx/mlx.h"
+#include "libft/libft.h"
 
 typedef struct t_graphics
 {
@@ -26,7 +26,8 @@ typedef struct t_graphics
 	int		bytes_per_pixel;
 	int		len_line;
 	int		endian;
-
+	int		width;
+	int		height;
 } t_graphics;
 
 typedef struct t_fractal
@@ -54,5 +55,8 @@ typedef struct t_all
 
 int		error(t_all *all, char *msg);
 void	reset_value(t_all *all);
+int		display(t_all *all);
 
 #endif
+
+//cc -Wall -Wextra -Werror -Iminilibx -Ilibft -Lminilibx -Llibft main.c error.c minilibx/libmlx_Linux.a libft/libft.a -lXext -lX11 -lm -lz
