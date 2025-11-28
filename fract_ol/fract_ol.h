@@ -6,19 +6,53 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:22:52 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/26 10:30:21 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/28 14:49:59 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL
-#define FRACT_OL
+#ifndef FRACT_OL_H
+#define FRACT_OL_H
 
-typedef struct t_fractol
+#include <math.h>
+#include "mlx.h"
+#include "libft.h"
+
+typedef struct t_graphics
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img_ptr;
-	
-	
-} t_fractol;
+	char	*addr;
+	int		bytes_per_pixel;
+	int		len_line;
+	int		endian;
+
+} t_graphics;
+
+typedef struct t_fractal
+{
+	int		fractal_type;
+	double	zoom;
+	double	move_x;
+	double	move_y;
+	double	max_re;
+	double	min_re;
+	double	max_im;
+	double	min_im;
+	int		max_iter;
+	double	julia_c_re;
+	double	julia_c_im;
+
+} t_fractal;
+
+typedef struct t_all
+{
+	t_graphics g;
+	t_fractal f;
+
+} t_all;
+
+int		error(t_all *all, char *msg);
+void	reset_value(t_all *all);
+
 #endif
