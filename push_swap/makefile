@@ -6,22 +6,25 @@
 #    By: msuter <msuter@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 17:56:42 by msuter            #+#    #+#              #
-#    Updated: 2025/11/07 19:35:06 by msuter           ###   ########.fr        #
+#    Updated: 2025/11/28 09:19:56 by msuter           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+NAME	= push_swap
+CC	= gcc
+CFLAGS	= -Wall -Wextra -Werror
 
-SRCS = ft_push_swap.c
-OBJS = $(SRCS:.c=.o)
+SRCS	= utils/push.c utils/reverse_rotate.c utils/rotate.c \
+			utils/swap.c calculate_min_move.c finale_move.c \
+			ft_push_swap.c indice.c is_in_lis.c lis.c verification.c
 
-PRINTF_DIR = libftprintf
-PRINTF = $(PRINTF_DIR)/libftprintf.a
-LIBFT = $(PRINTF_DIR)/libft/libft.a
+OBJS	= $(SRCS:.c=.o)
 
-INCLUDES = -I$(PRINTF_DIR) -I$(PRINTF_DIR)/libft
+PRINTF_DIR	= libftprintf
+PRINTF	= $(PRINTF_DIR)/libftprintf.a
+LIBFT	= $(PRINTF_DIR)/libft/libft.a
+
+INCLUDES	= -I. -I$(PRINTF_DIR) -I$(PRINTF_DIR)/libft
 
 all: $(PRINTF) $(NAME)
 
@@ -43,6 +46,5 @@ fclean: clean
 	$(MAKE) -C $(PRINTF_DIR) fclean
 
 re: fclean all
-
 
 .PHONY: all clean fclean re

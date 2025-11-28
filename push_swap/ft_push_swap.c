@@ -6,27 +6,44 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:14 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/27 15:50:04 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/28 09:34:51 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-
-
-static void	convert_to_int(int argc, char **argv, int *tab_a)
+static int	already_sorted(int *tab_a, int size_a)
 {
 	int	i;
-	int	j;
+
+	i = 0;
+	while (i < size_a - 1)
+	{
+		if (tab_a[i] > tab_a[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static int	convert_to_int(int argc, char **argv, int *tab_a)
+{
+	int		i;
+	int		j;
+	long	temp;
 
 	i = 1;
 	j = 0;
 	while (i < argc)
 	{
-		tab_a[j] = ft_atoi(argv[i]);
+		temp = ft_atol(argv[i]);
+		if (min_max(temp) == 1)
+			return (1);
+		tab_a[j] = temp;
 		i++;
 		j++;
 	}
+	return (0);
 }
 
 static void	reorganise_order_tab_a(int *tab_a, int size_a)
@@ -62,7 +79,14 @@ int	main(int argc, char **argv)
 	tab_a = malloc(sizeof(int) * size_a);
 	size_b = 0;
 	tab_b = malloc(sizeof(int) * size_a);
-	convert_to_int(argc, argv, tab_a);
+	if (valid_number(argc, argv) == 1)
+		return (free_all(tab_a, tab_b));
+	if (convert_to_int(argc, argv, tab_a) == 1)
+		return (free_all(tab_a, tab_b));
+	if (verif_double(tab_a, size_a) == 1)
+		return (free_all(tab_a, tab_b));
+	if (already_sorted(tab_a, size_a) == 1)
+		return (free_all(tab_a, tab_b));
 	replace_to_indice(tab_a, &size_a);
 	is_in_lis(tab_a, &size_a, tab_b, &size_b);
 	while (size_b != 0)

@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 16:41:37 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/24 16:27:48 by msuter           ###   ########.fr       */
+/*   Updated: 2025/11/28 09:44:16 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,24 +76,21 @@ static int	*search_lis(int *tab_a, int size_a, int *len, int *prev)
 	max_len = 0;
 	last = 0;
 	i = 0;
-	while (i < size_a)
+	while (i++ < size_a)
 	{
 		if (len[i] > max_len)
 		{
 			max_len = len[i];
 			last = i;
 		}
-		i++;
 	}
 	verif_mall(&lis, max_len);
 	if (!lis)
 		return (NULL);
-	i = max_len - 1;
-	while (i >= 0)
+	while (max_len--)
 	{
-		lis[i] = tab_a[last];
+		lis[max_len] = tab_a[last];
 		last = prev[last];
-		i--;
 	}
 	return (lis);
 }
