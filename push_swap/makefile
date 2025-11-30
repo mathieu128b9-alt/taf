@@ -6,7 +6,7 @@
 #    By: msuter <msuter@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 17:56:42 by msuter            #+#    #+#              #
-#    Updated: 2025/11/28 09:19:56 by msuter           ###   ########.fr        #
+#    Updated: 2025/11/30 12:49:39 by msuter           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ all: $(PRINTF) $(NAME)
 $(NAME): $(OBJS) $(PRINTF) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(PRINTF) $(LIBFT) -o $(NAME)
 
+# Règle explicite pour compiler les .c en .o avec les includes
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
