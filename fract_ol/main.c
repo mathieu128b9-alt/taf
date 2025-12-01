@@ -6,11 +6,28 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 09:54:08 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/28 23:48:23 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/01 14:48:38 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol.h"
+
+void	initialisation(t_all *all)
+{
+	all->f.max_iter = 70;
+	all->f.min_re = -2;
+	all->f.max_re = 1;
+	all->f.min_im = -1.5;
+	all->f.max_im = 1.5;
+	all->f.julia_c_im = 0;
+	all->f.julia_c_re = 0;
+	all->z.ratio_zoom = 0.90;
+	all->z.global_zoom = 1;
+	all->g.width = 1200;
+	all->g.height = 900;
+	all->f.move_x = 0;
+	all->f.move_y = 0;
+}
 
 static int	create_graphics(t_all *all)
 {
@@ -34,15 +51,15 @@ static int	create_graphics(t_all *all)
 int	main(void)
 {
 	t_all	all;
-
-	all.g.width = 2560;
-	all.g.height = 1540;
+	
 	reset_value(&all);
+	initialisation(&all);
 	if (create_graphics(&all) == 1)
 		return (1);
 	if (display(&all) == 1)
 		return (1);
 	mlx_put_image_to_window(all.g.mlx_ptr, all.g.win_ptr, all.g.img_ptr, 0, 0);
+	mlx_key_hook(all.g.win_ptr, which_button, &all);
 	mlx_loop(all.g.mlx_ptr);
 	return (0);
 }

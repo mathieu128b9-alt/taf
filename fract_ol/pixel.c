@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 20:02:37 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/01 03:49:57 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/01 13:00:45 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@ int	mandelbroot(int x, int y, t_all *all)
 	double	temp;
 	double	z_re;
 	double	z_im;
-	//all->f.max_iter = 500;
-	//all->f.min_re = -2;
-	//all->f.max_re = 1;
-	//all->f.min_im = -1.5;
-	//all->f.max_im = 1.5;
 	i = 0;
 	z_re = 0;
 	z_im = 0;
