@@ -6,15 +6,15 @@
 #    By: msuter <msuter@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/30 10:51:46 by msuter            #+#    #+#              #
-#    Updated: 2025/12/01 01:38:21 by msuter           ###   ########.fr        #
+#    Updated: 2025/12/01 20:07:58 by msuter           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fract_ol
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O2
 
-SRCS = 
+SRCS = main.c error.c buttons.c pixel.c
 
 OBJS = $(SRCS:.c=.o)
 

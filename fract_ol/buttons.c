@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:56:25 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/01 14:41:11 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/01 19:15:02 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,20 @@ void	mouse_point(t_all *all)
 
 void	zoom_in_screen(t_all *all)
 {
+	double	old_min_re;
+	double	old_max_re;
+	double	old_min_im;
+	double	old_max_im;
+
 	mouse_point(all);
-	all->z.center_re = all->z.mouse_re;
-	all->z.center_im = all->z.mouse_im;
-	all->z.range_re = all->f.max_re - all->f.min_re;
-	all->z.range_im = all->f.max_im - all->f.min_im;
-	all->z.half_re = all->z.range_re / 2;
-	all->z.half_im = all->z.range_im / 2;
-	all->z.half_re = all->z.half_re * all->z.ratio_zoom;
-	all->z.half_im = all->z.half_im * all->z.ratio_zoom;
-	all->f.min_re = all->z.center_re - all->z.half_re;
-	all->f.max_re = all->z.center_re + all->z.half_re;
-	all->f.min_im = all->z.center_im - all->z.half_im;
-	all->f.max_im = all->z.center_im + all->z.half_im;
+	old_min_re = all->f.min_re;
+	old_max_re = all->f.max_re;
+	old_min_im = all->f.min_im;
+	old_max_im = all->f.max_im;
+	all->f.min_re = all->z.mouse_re + (old_min_re - all->z.mouse_re) * all->z.ratio_zoom;
+	all->f.max_re = all->z.mouse_re + (old_max_re - all->z.mouse_re) * all->z.ratio_zoom;
+	all->f.min_im = all->z.mouse_im + (old_min_im - all->z.mouse_im) * all->z.ratio_zoom;
+	all->f.max_im = all->z.mouse_im + (old_max_im - all->z.mouse_im) * all->z.ratio_zoom;
 	display(all);
 	mlx_put_image_to_window(all->g.mlx_ptr, all->g.win_ptr, all->g.img_ptr, 0, 0);
 }
@@ -47,4 +48,5 @@ int	which_button(int keycode, void *param)
 	all = param;
 	if (keycode == KEY_PLUS)
 		zoom_in_screen(all);
+	return (0);
 }

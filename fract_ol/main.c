@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 09:54:08 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/01 14:48:38 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/01 20:06:58 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	initialisation(t_all *all)
 {
-	all->f.max_iter = 70;
+	all->f.max_iter = 125;
 	all->f.min_re = -2;
 	all->f.max_re = 1;
 	all->f.min_im = -1.5;
@@ -23,8 +23,8 @@ void	initialisation(t_all *all)
 	all->f.julia_c_re = 0;
 	all->z.ratio_zoom = 0.90;
 	all->z.global_zoom = 1;
-	all->g.width = 1200;
-	all->g.height = 900;
+	all->g.width = 1500;
+	all->g.height = 1000;
 	all->f.move_x = 0;
 	all->f.move_y = 0;
 }

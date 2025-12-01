@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:22:52 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/01 14:40:36 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/01 19:27:37 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct t_zoom
 	int		mouse_y;
 	double	mouse_re;
 	double	mouse_im;
+	double	scale_re;
+	double	scale_im;
 
 }	t_zoom;
 

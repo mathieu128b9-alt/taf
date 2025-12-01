@@ -6,30 +6,30 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 20:02:37 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/01 13:00:45 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/01 20:59:56 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol.h"
 
-int	mandelbroot(int x, int y, t_all *all)
+int	mandelbroot(t_all *all, int i)
 {
-	int	i;
+	double	local_c_re;
+	double	local_c_im;
 	double	temp;
 	double	z_re;
 	double	z_im;
+	
 	i = 0;
 	z_re = 0;
 	z_im = 0;
-	all->f.c_re = (((all->f.max_re - all->f.min_re)
-				/all->g.width) * x) + all->f.min_re;
-	all->f.c_im = all->f.max_im - (((all->f.max_im - all->f.min_im)
-				/ all->g.height) * y);
+	local_c_re = all->f.c_re;
+	local_c_im = all->f.c_im;
 	while (i < all->f.max_iter)
 	{
 		temp = z_re;
-		z_re = ((z_re * z_re) - (z_im * z_im)) + all->f.c_re;
-		z_im = ((2 * temp) * z_im) + all->f.c_im;
+		z_re = ((z_re * z_re) - (z_im * z_im)) + local_c_re;
+		z_im = ((2 * temp) * z_im) + local_c_im;
 		if ((z_im * z_im) + (z_re * z_re) > 4)
 			return (0);
 		i++;
@@ -73,7 +73,7 @@ static int	put_pixel(t_all *all, int x, int y)
 	offset_y = y * all->g.len_line;
 	offset_x = x * all->g.bytes_per_pixel;
 	offset_total = offset_x + offset_y;
-	i = mandelbroot(x, y, all);
+	i = mandelbroot(all, 0);
 	color_pixel(all, offset_total, i);
 	return (0);
 }
@@ -83,17 +83,22 @@ int	display(t_all *all)
 	int	x;
 	int	y;
 
+	all->z.scale_re = (all->f.max_re - all->f.min_re)/all->g.width;
+	all->z.scale_im = (all->f.min_im - all->f.max_im)/ all->g.height;
 	y = 0;
 	while (y < all->g.height)
 	{
+		all->f.c_im = all->f.max_im + y * all->z.scale_im;
+		all->f.c_re = all->f.min_re;
 		x = 0;
 		while (x < all->g.width)
-		{			
+		{
 			if (put_pixel(all, x, y) == 1)
 			{
 				error(all, "erreur d'affichage d'un pixel");
 				return (1);
 			}
+			all->f.c_re = all->f.c_re + all->z.scale_re;
 			x++;
 		}
 		y++;
