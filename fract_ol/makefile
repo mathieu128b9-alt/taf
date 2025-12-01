@@ -6,7 +6,7 @@
 #    By: msuter <msuter@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/30 10:51:46 by msuter            #+#    #+#              #
-#    Updated: 2025/11/30 12:38:39 by msuter           ###   ########.fr        #
+#    Updated: 2025/12/01 01:38:21 by msuter           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,6 @@ all: $(NAME)
 clean:
 	rm -f $(OBJS)
 	$(MAKE) -C libft clean
-	$(MAKE) -C minilibx clean
 
 fclean: clean
 	rm -f $(NAME)

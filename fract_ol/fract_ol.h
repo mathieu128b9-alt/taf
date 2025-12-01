@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:22:52 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/28 22:40:55 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/01 02:02:31 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct t_fractal
 {
 	int		fractal_type;
 	double	zoom;
-	double	move_x;
-	double	move_y;
+	double	c_im;
+	double	c_re;
 	double	max_re;
 	double	min_re;
 	double	max_im;
