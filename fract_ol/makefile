@@ -6,7 +6,7 @@
 #    By: msuter <msuter@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/30 10:51:46 by msuter            #+#    #+#              #
-#    Updated: 2025/12/04 17:52:44 by msuter           ###   ########.fr        #
+#    Updated: 2025/12/05 17:20:21 by msuter           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -O2
 
 THREAD_LINIK = -pthread
 
-SRCS = main.c error.c buttons.c pixel.c d_segment.c
+SRCS = main.c error.c buttons.c pixel.c d_segment.c move.c
 OBJS = $(SRCS:.c=.o)
 
 LIBFT_DIR = libft

@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:22:52 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/04 19:45:06 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/05 17:35:45 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,22 @@
 # include "stdio.h"
 # include <pthread.h>
 
-# define KEY_PLUS 61
+# define KEY_ZOOM 5
+# define KEY_UNZOOM 4
+# define KEY_MOINS 45
+# define KEY_ESC 65307
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_TOP 65362
+# define KEY_BOT 65364
 # define N_THREAD 8
 
 
 typedef struct t_zoom
 {
 	double	global_zoom;
-	double	ratio_zoom;
+	double	ratio_zoom_in;
+	double	ratio_zoom_out;
 	double	center_re;
 	double	center_im;
 	double	current_range_re;
@@ -93,11 +101,11 @@ int		display(t_all *all);
 int		which_button(int keycode, void *param);
 int		put_pixel(t_all *all, int x, int y);
 void	creation_thread(pthread_t *thread_id, t_thread *thread_stk);
-
+int		which_mouse_button(int keycode, int x, int y, void *param);
+void	move_bot(t_all *all);
+void	move_top(t_all *all);
+void	move_left(t_all *all);
+void	move_right(t_all *all);
+void	finish_prog(t_all *all);
 
 #endif
-
-//cc -Wall -Wextra -Werror -Iminilibx -Ilibft -Lminilibx -Llibft main.c error.c minilibx/libmlx_Linux.a libft/libft.a -lXext -lX11 -lm -lz
-	//all->g.addr[offset_total] = 9 * (1 - t) * (t * t * t) * 255;
-	//	all->g.addr[offset_total + 1] = 15 * (1 - t) * (1 - t) * (t * t) * 255;
-	//	all->g.addr[offset_total + 2] = 8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255;

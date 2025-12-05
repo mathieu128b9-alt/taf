@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 09:54:08 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/04 18:43:28 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/05 16:56:44 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	initialisation(t_all *all)
 	all->f.max_im = 1.5;
 	all->f.julia_c_im = 0;
 	all->f.julia_c_re = 0;
-	all->z.ratio_zoom = 0.90;
+	all->z.ratio_zoom_in = 0.95;
+	all->z.ratio_zoom_out = 1.05;
 	all->z.global_zoom = 1;
 	all->g.width = 1440;
 	all->g.height = 810;
@@ -61,6 +62,7 @@ int	main(void)
 		return (1);
 	mlx_put_image_to_window(all.g.mlx_ptr, all.g.win_ptr, all.g.img_ptr, 0, 0);
 	mlx_key_hook(all.g.win_ptr, which_button, &all);
+	mlx_mouse_hook(all.g.win_ptr, which_mouse_button, &all);
 	mlx_loop(all.g.mlx_ptr);
 	return (0);
 }
