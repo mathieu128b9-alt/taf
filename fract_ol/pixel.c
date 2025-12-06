@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 20:02:37 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/04 20:02:02 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/06 00:17:32 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ double mandelbroot(t_all *all, double i, double mandel_c_re, double mandel_c_im)
 		temp = z_re;
 		z_re = ((z_re * z_re) - (z_im * z_im)) + mandel_c_re;
 		z_im = ((2 * temp) * z_im) + mandel_c_im;
-		if (verif_max_nb > 4)
-			return (i);
 		verif_max_nb = z_re * z_re + z_im *z_im;
+		if (verif_max_nb > 4)
+			return (i + 1 - log(log(sqrt(z_re * z_re + z_im * z_im))) / log(2));
 		i++;
 	}
 	return (i);
@@ -57,9 +57,9 @@ void	color_pixel(t_all *all, int offset_total, double i)
 	}
 	else
 	{
-		all->g.addr[offset_total] = 9 * (1 - t) * (t * t * t) * 255;
-		all->g.addr[offset_total + 1] = 15 * (1 - t) * (1 - t) * (t * t) * 255;
-		all->g.addr[offset_total + 2] = 8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255;
+		all->g.addr[offset_total] = all->f.color_r + 127 * cos(2 * N_PI * t);
+		all->g.addr[offset_total + 1] = all->f.color_g + 127 * cos(2 * N_PI * t + 2);
+		all->g.addr[offset_total + 2] = all->f.color_b + 127 * cos(2 * N_PI * t + 4);
 	}
 }
 

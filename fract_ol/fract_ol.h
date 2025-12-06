@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:22:52 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/05 17:35:45 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/05 23:52:51 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define KEY_TOP 65362
 # define KEY_BOT 65364
 # define N_THREAD 8
+# define N_PI 3.14159265358979323846
 
 
 typedef struct t_zoom
@@ -76,6 +77,9 @@ typedef struct t_fractal
 	double	julia_c_im;
 	double	move_x;
 	double	move_y;
+	double	color_r;
+	double	color_g;
+	double	color_b;
 
 }	t_fractal;
 
@@ -107,5 +111,6 @@ void	move_top(t_all *all);
 void	move_left(t_all *all);
 void	move_right(t_all *all);
 void	finish_prog(t_all *all);
+void	switch_color(t_all *all, int param);
 
 #endif
