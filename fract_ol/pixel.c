@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 20:02:37 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/06 00:17:32 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/08 10:43:26 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	is_in_window(t_all *all, int x, int y)
 void	color_pixel(t_all *all, int offset_total, double i)
 {
 	double	t;
-
+	
 	t = i / all->f.max_iter;
 	if (i == all->f.max_iter)
 	{
@@ -57,9 +57,9 @@ void	color_pixel(t_all *all, int offset_total, double i)
 	}
 	else
 	{
-		all->g.addr[offset_total] = all->f.color_r + 127 * cos(2 * N_PI * t);
-		all->g.addr[offset_total + 1] = all->f.color_g + 127 * cos(2 * N_PI * t + 2);
-		all->g.addr[offset_total + 2] = all->f.color_b + 127 * cos(2 * N_PI * t + 4);
+		all->g.addr[offset_total] = all->f.r_1 + all->f.r_2 * cos( 2 * N_PI + t);
+		all->g.addr[offset_total + 1] = all->f.g_1 + all->f.g_2 * cos(2 * N_PI * t + 2);
+		all->g.addr[offset_total + 2] = all->f.b_1 + all->f.b_2 * cos(2 * N_PI * t + 4);
 	}
 }
 

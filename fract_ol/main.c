@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 09:54:08 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/06 00:24:08 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/08 11:49:07 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,12 @@ void	initialisation(t_all *all)
 	all->f.move_x = 0;
 	all->f.move_y = 0;
 	all->z.initial_range_re = all->f.max_re - all->f.min_re;
-	all->f.color_r = 210;
-	all->f.color_b = 100;
-	all->f.color_b = 220;
+	all->f.r_1 = 80;
+	all->f.g_1 = 200;
+	all->f.b_1 = 120;
+	all->f.r_2 = 100;
+	all->f.g_2 = 140;
+	all->f.b_2 = 90;
 }
 
 static int	create_graphics(t_all *all)

@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:22:52 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/05 23:52:51 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/08 10:38:31 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,12 @@ typedef struct t_fractal
 	double	julia_c_im;
 	double	move_x;
 	double	move_y;
-	double	color_r;
-	double	color_g;
-	double	color_b;
+	double	r_1;
+	double	g_1;
+	double	b_1;
+	double	r_2;
+	double	g_2;
+	double	b_2;
 
 }	t_fractal;
 
