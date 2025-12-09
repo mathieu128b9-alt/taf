@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 09:54:08 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/08 11:49:07 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/09 10:41:37 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,12 @@ static int	create_graphics(t_all *all)
 	return (0);
 }
 
-int	main(void)
+void	mode_fractal(t_all *all, int argc, char **argv)
+{
+	
+}
+
+int	main(int argc, char **argv)
 {
 	t_all	all;
 	
