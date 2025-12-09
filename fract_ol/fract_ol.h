@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:22:52 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/08 10:38:31 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/09 12:45:02 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct t_fractal
 	double	r_2;
 	double	g_2;
 	double	b_2;
+	int		mode;
 
 }	t_fractal;
 
@@ -115,5 +116,7 @@ void	move_left(t_all *all);
 void	move_right(t_all *all);
 void	finish_prog(t_all *all);
 void	switch_color(t_all *all, int param);
+double	julia(t_all *all, double i, double mandel_c_re, double mandel_c_im);
+int		mouse_motion(int x, int y, void *param);
 
 #endif

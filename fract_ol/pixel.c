@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 20:02:37 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/08 10:43:26 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/09 12:05:14 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,12 @@ int	put_pixel(t_all *all, int x, int y)
 		return (1);
 	offset_y = y * all->g.len_line;
 	offset_x = x * all->g.bytes_per_pixel;
-	i = mandelbroot(all, 0, c_re, c_im);
+	if (all->f.mode == 1)
+		i = mandelbroot(all, 0, c_re, c_im);
+	else if (all->f.mode == 2)
+		i = julia(all, 0, c_re, c_im);
+	else
+		return (1);
 	color_pixel(all, (offset_x + offset_y), i);
 	return (0);
 }

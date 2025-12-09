@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 09:54:08 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/09 10:41:37 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/09 12:47:52 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,26 @@ static int	create_graphics(t_all *all)
 	return (0);
 }
 
-void	mode_fractal(t_all *all, int argc, char **argv)
+int	mode_fractal(t_all *all, int argc, char **argv)
 {
-	
+	if (argc == 2)
+	{
+		if (argv[1][0] == 'M')
+			all->f.mode = 1;
+		else if (argv[1][0] == 'J')
+			all->f.mode = 2;
+		else
+		{
+			ft_putstr_fd("veuillez donner un argument valide, M = mandelbrot, J = julia\n", 1);
+			return (1);
+		}
+	}
+	else
+	{
+		ft_putstr_fd("veuillez donner un argument unique, M = mandelbrot, J = julia\n", 1);
+		return (1);
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -67,6 +84,8 @@ int	main(int argc, char **argv)
 	
 	reset_value(&all);
 	initialisation(&all);
+	if (mode_fractal(&all, argc, argv) == 1)
+		return (1);
 	if (create_graphics(&all) == 1)
 		return (1);
 	if (display(&all) == 1)
@@ -74,6 +93,7 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(all.g.mlx_ptr, all.g.win_ptr, all.g.img_ptr, 0, 0);
 	mlx_key_hook(all.g.win_ptr, which_button, &all);
 	mlx_mouse_hook(all.g.win_ptr, which_mouse_button, &all);
+	mlx_hook(all.g.win_ptr, 6, 64, mouse_motion, &all);
 	mlx_loop(all.g.mlx_ptr);
 	return (0);
 }

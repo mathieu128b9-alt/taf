@@ -6,24 +6,30 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:44:06 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/09 11:04:37 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/09 12:41:49 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fract_ol.h"
 
-static void	mouse_point_julia(t_all *all)
+int	mouse_motion(int x, int y, void *param)
 {
-	mlx_mouse_get_pos(all->g.mlx_ptr, all->g.win_ptr,
-		&all->z.mouse_x, &all->z.mouse_y);
-	all->z.mouse_re = (((all->f.max_re - all->f.min_re)
-				/ all->g.width) * all->z.mouse_x) + all->f.min_re;
-	all->z.mouse_im = all->f.max_im
-		-(((all->f.max_im - all->f.min_im) / all->g.height) * all->z.mouse_y);
-	all->f.julia_c_re = all->z.mouse_re;
-	all->f.julia_c_im = all->z.mouse_im;
-	display(all);
-	mlx_put_image_to_window(all->g.mlx_ptr, all->g.win_ptr, all->g.img_ptr, 0, 0);
+	t_all *all;
+
+	all = param;
+	if (all->f.mode == 2)
+	{
+		all->z.mouse_re = (((all->f.max_re - all->f.min_re)
+				/ all->g.width) * x) + all->f.min_re;
+		all->z.mouse_im = all->f.max_im
+			-(((all->f.max_im - all->f.min_im) / all->g.height) * y);
+		all->f.julia_c_re = all->z.mouse_re;
+		all->f.julia_c_im = all->z.mouse_im;
+		display(all);
+		mlx_put_image_to_window(all->g.mlx_ptr, all->g.win_ptr, all->g.img_ptr, 0, 0);
+		return (0);
+	}
+	return (1);
 }
 
 double	julia(t_all *all, double i, double mandel_c_re, double mandel_c_im)
