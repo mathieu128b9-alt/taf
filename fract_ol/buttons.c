@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:56:25 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/09 12:33:51 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/11 06:41:45 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	which_button(int keycode, void *param)
 {
 	t_all *all;
 	all = param;
-	
+
 	if (keycode == KEY_LEFT)
 		move_left(all);
 	else if (keycode == KEY_RIGHT)
@@ -91,6 +91,8 @@ int	which_button(int keycode, void *param)
 		switch_color(all, keycode);
 	else if (keycode == KEY_ESC)
 		finish_prog(all);
+	else if (keycode == KEY_J)
+		all->f.julia_fix++;
 	return (0);
 }
 

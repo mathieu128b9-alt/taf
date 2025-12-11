@@ -6,11 +6,11 @@
 #    By: msuter <msuter@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/30 10:51:46 by msuter            #+#    #+#              #
-#    Updated: 2025/12/09 12:05:53 by msuter           ###   ########.fr        #
+#    Updated: 2025/12/11 06:50:41 by msuter           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fract_ol
+NAME = fractol
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -O2
 

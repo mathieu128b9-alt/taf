@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 20:02:37 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/09 12:05:14 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/11 07:44:14 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int	put_pixel(t_all *all, int x, int y)
 		i = mandelbroot(all, 0, c_re, c_im);
 	else if (all->f.mode == 2)
 		i = julia(all, 0, c_re, c_im);
+	else if (all->f.mode == 3)
+		i = phoenix_julia(all, 0, c_re, c_im);
 	else
 		return (1);
 	color_pixel(all, (offset_x + offset_y), i);

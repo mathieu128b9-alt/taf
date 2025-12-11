@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 09:54:08 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/09 12:47:52 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/11 08:14:33 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ void	initialisation(t_all *all)
 	all->f.r_2 = 100;
 	all->f.g_2 = 140;
 	all->f.b_2 = 90;
+	all->f.julia_fix = 1;
+	all->f.phoenix_p_re = -0.9;
+	all->f.phoenix_p_im = 0.3;
 }
 
 static int	create_graphics(t_all *all)
@@ -64,15 +67,17 @@ int	mode_fractal(t_all *all, int argc, char **argv)
 			all->f.mode = 1;
 		else if (argv[1][0] == 'J')
 			all->f.mode = 2;
+		else if (argv[1][0] == 'F')
+			all->f.mode = 3;
 		else
 		{
-			ft_putstr_fd("veuillez donner un argument valide, M = mandelbrot, J = julia\n", 1);
+			ft_putstr_fd("veuillez donner un argument valide, M = mandelbrot, J = julia, F = foenix\n", 1);
 			return (1);
 		}
 	}
 	else
 	{
-		ft_putstr_fd("veuillez donner un argument unique, M = mandelbrot, J = julia\n", 1);
+		ft_putstr_fd("veuillez donner un argument unique, M = mandelbrot, J = julia, F = foenix\n", 1);
 		return (1);
 	}
 	return (0);
@@ -93,7 +98,8 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(all.g.mlx_ptr, all.g.win_ptr, all.g.img_ptr, 0, 0);
 	mlx_key_hook(all.g.win_ptr, which_button, &all);
 	mlx_mouse_hook(all.g.win_ptr, which_mouse_button, &all);
-	mlx_hook(all.g.win_ptr, 6, 64, mouse_motion, &all);
+	if (all.f.mode == 2 || all.f.mode == 3)
+		mlx_hook(all.g.win_ptr, 6, 64, mouse_motion, &all);
 	mlx_loop(all.g.mlx_ptr);
 	return (0);
 }
