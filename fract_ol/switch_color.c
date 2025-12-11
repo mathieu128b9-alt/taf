@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 23:31:43 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/08 11:53:12 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/11 08:46:35 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	switch_color(t_all *all, int keycode)
 	}
 	else if (keycode >= 51 && keycode <= 52)
 		switch_color_2(all, keycode);
-	
 	display(all);
-	mlx_put_image_to_window(all->g.mlx_ptr, all->g.win_ptr, all->g.img_ptr, 0, 0);
+	mlx_put_image_to_window(all->g.mlx_ptr,
+		all->g.win_ptr, all->g.img_ptr, 0, 0);
 }

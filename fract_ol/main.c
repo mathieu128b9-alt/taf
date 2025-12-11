@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 09:54:08 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/11 08:14:33 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/11 08:40:33 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	initialisation(t_all *all)
 	all->f.max_im = 1.5;
 	all->f.julia_c_im = 0;
 	all->f.julia_c_re = 0;
-	all->z.ratio_zoom_in = 0.95;
-	all->z.ratio_zoom_out = 1.05;
+	all->z.r_zoom_in = 0.95;
+	all->z.r_zoom_out = 1.05;
 	all->z.global_zoom = 1;
 	all->g.width = 1440;
 	all->g.height = 810;
@@ -45,13 +45,16 @@ static int	create_graphics(t_all *all)
 	all->g.mlx_ptr = mlx_init ();
 	if (!all->g.mlx_ptr)
 		return (error (all, "erreur du pointeur mlx"));
-	all->g.win_ptr = mlx_new_window (all->g.mlx_ptr, all->g.width, all->g.height, "fract_ol");
+	all->g.win_ptr = mlx_new_window (all->g.mlx_ptr,
+			all->g.width, all->g.height, "fract_ol");
 	if (!all->g.win_ptr)
 		return (error (all, "erreur du pointeur window"));
-	all->g.img_ptr = mlx_new_image (all->g.mlx_ptr, all->g.width, all->g.height);
+	all->g.img_ptr = mlx_new_image (all->g.mlx_ptr,
+			all->g.width, all->g.height);
 	if (!all->g.img_ptr)
 		return (error (all, "erreur du pointeur image"));
-	all->g.addr = mlx_get_data_addr(all->g.img_ptr, &all->g.bytes_per_pixel,
+	all->g.addr = mlx_get_data_addr(all->g.img_ptr,
+			&all->g.bytes_per_pixel,
 			&all->g.len_line, &all->g.endian);
 	if (!all->g.addr)
 		return (error (all, "erreur lors de l'allocation du tab addr"));
@@ -71,13 +74,15 @@ int	mode_fractal(t_all *all, int argc, char **argv)
 			all->f.mode = 3;
 		else
 		{
-			ft_putstr_fd("veuillez donner un argument valide, M = mandelbrot, J = julia, F = foenix\n", 1);
+			ft_putstr_fd("veuillez donner un argument valide,\
+						M = mandelbrot, J = julia, F = foenix\n", 1);
 			return (1);
 		}
 	}
 	else
 	{
-		ft_putstr_fd("veuillez donner un argument unique, M = mandelbrot, J = julia, F = foenix\n", 1);
+		ft_putstr_fd("veuillez donner un argument unique,\
+					 M = mandelbrot, J = julia, F = foenix\n", 1);
 		return (1);
 	}
 	return (0);
@@ -86,7 +91,7 @@ int	mode_fractal(t_all *all, int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_all	all;
-	
+
 	reset_value(&all);
 	initialisation(&all);
 	if (mode_fractal(&all, argc, argv) == 1)

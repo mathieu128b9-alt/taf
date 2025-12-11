@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:22:52 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/11 08:10:18 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/11 08:29:19 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 typedef struct t_zoom
 {
 	double	global_zoom;
-	double	ratio_zoom_in;
-	double	ratio_zoom_out;
+	double	r_zoom_in;
+	double	r_zoom_out;
 	double	center_re;
 	double	center_im;
 	double	current_range_re;
@@ -44,8 +44,8 @@ typedef struct t_zoom
 	double	half_im;
 	int		mouse_x;
 	int		mouse_y;
-	double	mouse_re;
-	double	mouse_im;
+	double	m_re;
+	double	m_im;
 	double	scale_re;
 	double	scale_im;
 	double	initial_range_re;
