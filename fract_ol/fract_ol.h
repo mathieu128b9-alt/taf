@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:22:52 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/11 08:29:19 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/11 08:49:39 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # define N_THREAD 8
 # define N_PI 3.14159265358979323846
 # define KEY_J 106
-
 
 typedef struct t_zoom
 {
@@ -103,7 +102,7 @@ typedef struct t_thread
 {
 	int		thrd_y_srt;
 	int		thrd_y_end;
-	t_all 	*all;
+	t_all	*all;
 
 }	t_thread;
 
