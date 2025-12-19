@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 08:25:45 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/28 09:26:49 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/19 13:00:00 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	verif_double(int *tab_a, int size_a)
 		{
 			if (tab_a[i] == tab_a[j])
 			{
-				ft_printf("Error\n");
+				ft_putstr_fd("Error\n", 2);
 				return (1);
 			}
 			j++;
@@ -46,7 +46,7 @@ int	min_max(long res)
 {
 	if (res < (long)INT_MIN || res > (long)INT_MAX)
 	{
-		ft_printf("Error\n");
+		ft_putstr_fd("Error\n", 2);
 		return (1);
 	}
 	return (0);
@@ -62,15 +62,15 @@ int	valid_number(int argc, char **argv)
 	{
 		j = 0;
 		if (!argv[i][j])
-			return (ft_printf("Error\n"), 1);
+			return (ft_putstr_fd("Error\n", 2), 1);
 		if (argv[i][j] == '+' || argv[i][j] == '-')
 			j++;
 		if (!argv[i][j])
-			return (ft_printf("Error\n"), 1);
+			return (ft_putstr_fd("Error\n", 2), 1);
 		while (argv[i][j])
 		{
 			if (argv[i][j] < '0' || argv[i][j] > '9')
-				return (ft_printf("Error\n"), 1);
+				return (ft_putstr_fd("Error\n", 2), 1);
 			j++;
 		}
 		i++;
