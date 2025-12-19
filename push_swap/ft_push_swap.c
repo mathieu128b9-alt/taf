@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:14 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/28 09:34:51 by msuter           ###   ########.fr       */
+/*   Updated: 2025/12/19 13:32:29 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,24 @@ static void	reorganise_order_tab_a(int *tab_a, int size_a)
 			rotate_a(tab_a, &size_a);
 }
 
+static void	verif_mall(int *tab_a, int *tab_b)
+{
+	if (!tab_a && tab_b)
+	{
+		free (tab_b);
+		exit(1);
+	}
+	else if (!tab_b && tab_a)
+	{
+		free (tab_a);
+		exit(1);
+	}
+	else if (!tab_a && !tab_b)
+	{
+		exit(1);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	int	*tab_a;
@@ -79,6 +97,7 @@ int	main(int argc, char **argv)
 	tab_a = malloc(sizeof(int) * size_a);
 	size_b = 0;
 	tab_b = malloc(sizeof(int) * size_a);
+	verif_mall(tab_a, tab_b);
 	if (valid_number(argc, argv) == 1)
 		return (free_all(tab_a, tab_b));
 	if (convert_to_int(argc, argv, tab_a) == 1)
@@ -94,5 +113,4 @@ int	main(int argc, char **argv)
 	reorganise_order_tab_a(tab_a, size_a);
 	free(tab_a);
 	free(tab_b);
-	return (0);
 }
