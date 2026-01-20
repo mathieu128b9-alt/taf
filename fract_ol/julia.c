@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:44:06 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/11 08:37:49 by msuter           ###   ########.fr       */
+/*   Updated: 2026/01/20 17:01:51 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ double	julia(t_all *all, double i, double mandel_c_re, double mandel_c_im)
 double	phoenix_julia(t_all *all, double iter, double z_re, double z_im)
 {
 	double	temp_re;
+	double	temp_im;
 	double	z_prev_re;
 	double	z_prev_im;
 
@@ -70,16 +71,18 @@ double	phoenix_julia(t_all *all, double iter, double z_re, double z_im)
 	while (iter < all->f.max_iter)
 	{
 		temp_re = z_re;
-		z_prev_re = z_re;
-		z_prev_im = z_im;
-		z_re = temp_re * temp_re - z_im * z_im
+		temp_im = z_im;
+		z_re = temp_re * temp_re - temp_im * temp_im
 			+ all->f.julia_c_re + all->f.phoenix_p_re * z_prev_re
 			- all->f.phoenix_p_im * z_prev_im;
-		z_im = 2 * temp_re * z_im
+		z_im = 2 * temp_re * temp_im
 			+ all->f.julia_c_im + all->f.phoenix_p_re * z_prev_im
 			+ all->f.phoenix_p_im * z_prev_re;
 		if (z_re * z_re + z_im * z_im > 4.0)
 			return (iter);
+		z_prev_re = temp_re;
+		z_prev_im = temp_im;
+		
 		iter++;
 	}
 	return (iter);

@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 10:22:52 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/11 08:49:39 by msuter           ###   ########.fr       */
+/*   Updated: 2026/01/20 17:26:59 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	move_bot(t_all *all);
 void	move_top(t_all *all);
 void	move_left(t_all *all);
 void	move_right(t_all *all);
-void	finish_prog(t_all *all);
+int		finish_prog(t_all *all);
 void	switch_color(t_all *all, int param);
 double	julia(t_all *all, double i, double mandel_c_re, double mandel_c_im);
 int		mouse_motion(int x, int y, void *param);

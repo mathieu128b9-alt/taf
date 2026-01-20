@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 11:56:25 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/11 08:33:51 by msuter           ###   ########.fr       */
+/*   Updated: 2026/01/20 17:14:02 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	zoom_in(t_all *all)
 	all->z.current_range_re = all->f.max_re - all->f.min_re;
 	zoom_level = all->z.initial_range_re / all->z.current_range_re;
 	if (all->f.max_iter < 2000)
-		all->f.max_iter = 300 + (10 * log10(zoom_level));
+		all->f.max_iter = 300 + (10 * log(zoom_level));
 	display(all);
 	mlx_put_image_to_window(all->g.mlx_ptr, all->g.win_ptr,
 		all->g.img_ptr, 0, 0);

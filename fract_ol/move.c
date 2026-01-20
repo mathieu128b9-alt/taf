@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 17:07:36 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/11 08:41:51 by msuter           ###   ########.fr       */
+/*   Updated: 2026/01/20 17:27:46 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	move_bot(t_all *all)
 		all->g.img_ptr, 0, 0);
 }
 
-void	finish_prog(t_all *all)
+int	finish_prog(t_all *all)
 {
 	mlx_destroy_image(all->g.mlx_ptr, all->g.img_ptr);
 	mlx_destroy_window(all->g.mlx_ptr, all->g.win_ptr);

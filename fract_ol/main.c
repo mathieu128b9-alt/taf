@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 09:54:08 by msuter            #+#    #+#             */
-/*   Updated: 2026/01/20 16:10:58 by msuter           ###   ########.fr       */
+/*   Updated: 2026/01/20 17:26:32 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int	main(int argc, char **argv)
 	mlx_mouse_hook(all.g.win_ptr, which_mouse_button, &all);
 	if (all.f.mode == 2 || all.f.mode == 3)
 		mlx_hook(all.g.win_ptr, 6, 64, mouse_motion, &all);
+	mlx_hook(all.g.win_ptr, 17, 0, finish_prog, &all);
 	mlx_loop(all.g.mlx_ptr);
 	return (0);
 }
