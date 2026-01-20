@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 09:54:08 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/11 08:40:33 by msuter           ###   ########.fr       */
+/*   Updated: 2026/01/20 16:10:58 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	initialisation(t_all *all)
 	all->z.r_zoom_in = 0.95;
 	all->z.r_zoom_out = 1.05;
 	all->z.global_zoom = 1;
-	all->g.width = 1440;
-	all->g.height = 810;
+	all->g.width = 900;
+	all->g.height = 600;
 	all->f.move_x = 0;
 	all->f.move_y = 0;
 	all->z.initial_range_re = all->f.max_re - all->f.min_re;
