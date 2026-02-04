@@ -6,34 +6,13 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 14:22:10 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/14 18:25:37 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/04 16:55:56 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	create_all(t_global *gl, int argc)
-{
-	if (argc != 5)
-	{
-		ft_printf("le nombre d'arguments est incorrect");
-		exit(1);
-	}
-	if (pipe(gl->pipe_fd) == -1)
-	{
-		ft_printf("erreur lord de la creation du pipe");
-		exit(1);
-	}
-	return (0);
-}
-
-int	error_message(char *error_type)
-{
-	ft_printf("%s", error_type);
-	return (1);
-}
-
-int first_prog(t_global *gl, char **argv)
+int	first_prog(t_global *gl, char **argv, char **envp)
 {
 	gl->fd_in = open(argv[1], O_RDONLY);
 	if (gl->fd_in == -1)
@@ -41,10 +20,30 @@ int first_prog(t_global *gl, char **argv)
 		perror("erreur d'ouverture du fichier 1");
 		exit(1);
 	}
+	dup2(gl->fd_in, STDIN_FILENO);
 	dup2(gl->pipe_fd[1], STDOUT_FILENO);
+	close(gl->pipe_fd[0]);
+	close(gl->fd_in);
+	close(gl->pipe_fd[1]);
+	search_path(envp, argv[2], gl);
+	execve(gl->final, gl->cmd, envp);
+	return (0);
 }
 
-int main(int argc, char **argv)
+int	sec_prog(t_global *gl, char **argv, char **envp)
+{
+	gl->fd_out = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	dup2(gl->pipe_fd[0], STDIN_FILENO);
+	dup2(gl->fd_out, STDOUT_FILENO);
+	close(gl->pipe_fd[1]);
+	close(gl->fd_out);
+	close(gl->pipe_fd[0]);
+	search_path(envp, argv[3], gl);
+	execve(gl->final, gl->cmd, envp);
+	return (0);
+}
+
+int main(int argc, char **argv, char **envp)
 {
 	t_global gl;
 
@@ -53,5 +52,15 @@ int main(int argc, char **argv)
 	if (gl.pid1 == -1)
 		return (error_message("erreur lord du fork 1"));
 	if (gl.pid1 == 0)
-		first_prog(&gl, *argv);
+		first_prog(&gl, argv, envp);
+	free_all(&gl);
+	gl.pid2 = fork();
+	if (gl.pid2 == -1)
+		return (error_message("erreur lord du fork 2"));
+	if (gl.pid2 == 0)
+		sec_prog(&gl, argv, envp);
+	close(gl.pipe_fd[0]);
+	close(gl.pipe_fd[1]);
+	wait(NULL);
+	return (0);
 }
