@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 14:22:10 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/04 16:55:56 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/06 12:12:10 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int main(int argc, char **argv, char **envp)
 		sec_prog(&gl, argv, envp);
 	close(gl.pipe_fd[0]);
 	close(gl.pipe_fd[1]);
+	wait(NULL);
 	wait(NULL);
 	return (0);
 }

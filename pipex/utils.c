@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:36:29 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/04 17:05:16 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/06 12:32:31 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	search_path(char **envp, char *exec, t_global *gl)
 		gl->final = ft_strjoin(gl->test, gl->cmd[0]);
 		free(gl->test);
 		if (access(gl->final, X_OK) == 0)
-			return ;
+			return(free_all(gl));
 		free(gl->final);
 		i++;
 	}
@@ -63,8 +63,22 @@ void	search_path(char **envp, char *exec, t_global *gl)
 
 void	free_all(t_global *gl)
 {
-	free(gl->final);
+	int	i;
+
+	i = 0;
+	//free(gl->final);
+	while (gl->cmd[i])
+	{
+		free(gl->cmd[i]);
+		i++;
+	}
 	free(gl->cmd);
+	i = 0;
+	while(gl->path[i])
+	{
+		free(gl->path[i]);
+		i++;
+	}
 	free(gl->path);
 	return ;
 }
