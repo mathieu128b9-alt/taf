@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+         #
+#    By: msuter <msuter@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/11 15:55:54 by msuter            #+#    #+#              #
-#    Updated: 2026/02/06 13:19:56 by mathieu          ###   ########.fr        #
+#    Updated: 2026/02/06 13:29:05 by msuter           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIBFT	= libftprintf/libft/libft.a
 
 INCLUDES	= -I. -Ilibftprintf -Ilibftprintf/libft
 
-all: $(PRINTF) $(NAME)
+all: $(NAME)
 	clear
 
 $(NAME): $(OBJS) $(PRINTF) $(LIBFT)
@@ -34,7 +34,6 @@ $(NAME): $(OBJS) $(PRINTF) $(LIBFT)
 
 $(PRINTF):
 	$(MAKE) -C libftprintf
-	clear
 
 clean:
 	rm -f $(OBJS)

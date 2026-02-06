@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:36:29 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/06 13:12:50 by mathieu          ###   ########.fr       */
+/*   Updated: 2026/02/06 13:50:26 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	path_error(t_global *gl)
 	}
 	free(gl->cmd);
 	i = 0;
-	while(gl->path[i])
+	while (gl->path[i])
 	{
 		free(gl->path[i]);
 		i++;
@@ -57,13 +57,13 @@ int	error_message(char *error_type)
 
 void	search_path(char **envp, char *exec, t_global *gl)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (envp[i] != NULL)
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
-			break;
+			break ;
 		i++;
 	}
 	gl->path = ft_split(envp[i] + 5, ':');
@@ -78,8 +78,8 @@ void	search_path(char **envp, char *exec, t_global *gl)
 			return ;
 		free(gl->final);
 		i++;
-	path_error(gl);
 	}
+	path_error(gl);
 }
 
 void	free_all(t_global *gl)
@@ -93,9 +93,9 @@ void	free_all(t_global *gl)
 		free(gl->cmd[i]);
 		i++;
 	}
-	free(gl->cmd);
+	free (gl->cmd);
 	i = 0;
-	while(gl->path[i])
+	while (gl->path[i])
 	{
 		free(gl->path[i]);
 		i++;

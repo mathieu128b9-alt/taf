@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 14:22:10 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/06 13:16:45 by mathieu          ###   ########.fr       */
+/*   Updated: 2026/02/06 13:49:19 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	sec_prog(t_global *gl, char **argv, char **envp)
 	return (0);
 }
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
-	t_global gl;
+	t_global	gl;
 
 	create_all(&gl, argc);
 	gl.pid1 = fork();
