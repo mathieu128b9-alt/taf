@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:44:06 by msuter            #+#    #+#             */
-/*   Updated: 2026/01/20 17:01:51 by msuter           ###   ########.fr       */
+/*   Updated: 2026/01/28 15:37:23 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ double	phoenix_julia(t_all *all, double iter, double z_re, double z_im)
 			return (iter);
 		z_prev_re = temp_re;
 		z_prev_im = temp_im;
-		
 		iter++;
 	}
 	return (iter);
