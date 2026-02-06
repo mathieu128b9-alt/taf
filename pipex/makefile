@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msuter <msuter@student.42.fr>              +#+  +:+       +#+         #
+#    By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/11 15:55:54 by msuter            #+#    #+#              #
-#    Updated: 2026/02/04 17:04:28 by msuter           ###   ########.fr        #
+#    Updated: 2026/02/06 13:19:56 by mathieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ $(NAME): $(OBJS) $(PRINTF) $(LIBFT)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(PRINTF):
-	$(MAKE) -C libftprintf all
+	$(MAKE) -C libftprintf
 	clear
 
 clean:

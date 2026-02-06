@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 14:22:10 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/06 12:12:10 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/06 13:16:45 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int	first_prog(t_global *gl, char **argv, char **envp)
 	close(gl->pipe_fd[1]);
 	search_path(envp, argv[2], gl);
 	execve(gl->final, gl->cmd, envp);
+	perror("execve failed");
+	free_all(gl);
+	exit(1);
 	return (0);
 }
 
@@ -40,6 +43,9 @@ int	sec_prog(t_global *gl, char **argv, char **envp)
 	close(gl->pipe_fd[0]);
 	search_path(envp, argv[3], gl);
 	execve(gl->final, gl->cmd, envp);
+	perror("execve failed");
+	free_all(gl);
+	exit(1);
 	return (0);
 }
 
@@ -53,7 +59,6 @@ int main(int argc, char **argv, char **envp)
 		return (error_message("erreur lord du fork 1"));
 	if (gl.pid1 == 0)
 		first_prog(&gl, argv, envp);
-	free_all(&gl);
 	gl.pid2 = fork();
 	if (gl.pid2 == -1)
 		return (error_message("erreur lord du fork 2"));
