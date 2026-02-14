@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:28 by msuter            #+#    #+#             */
-/*   Updated: 2025/11/28 09:45:09 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/14 15:26:33 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ int		free_all(int *tab_a, int *tab_b);
 int		min_max(long res);
 int		valid_number(int argc, char **argv);
 long	ft_atol(const char *str);
+void	sort_stack(int *tab_a, int *tab_b, int *size_a, int *size_b);
+void	reorganise_order_tab_a(int *tab_a, int size_a);
 
 #endif

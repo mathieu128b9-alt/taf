@@ -6,7 +6,7 @@
 #    By: msuter <msuter@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 17:56:42 by msuter            #+#    #+#              #
-#    Updated: 2025/12/19 13:35:00 by msuter           ###   ########.fr        #
+#    Updated: 2026/02/14 15:42:30 by msuter           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CFLAGS	= -Wall -Wextra -Werror
 
 SRCS	= utils/push.c utils/reverse_rotate.c utils/rotate.c \
 			utils/swap.c calculate_min_move.c finale_move.c \
-			ft_push_swap.c indice.c is_in_lis.c lis.c verification.c
+			ft_push_swap.c indice.c is_in_lis.c lis.c verification.c \
+			low_case.c
 
 OBJS	= $(SRCS:.c=.o)
 

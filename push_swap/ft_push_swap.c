@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:14 by msuter            #+#    #+#             */
-/*   Updated: 2025/12/19 13:32:29 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/14 15:43:15 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	convert_to_int(int argc, char **argv, int *tab_a)
 	return (0);
 }
 
-static void	reorganise_order_tab_a(int *tab_a, int size_a)
+void	reorganise_order_tab_a(int *tab_a, int size_a)
 {
 	int	indice;
 	int	i;
@@ -106,11 +106,7 @@ int	main(int argc, char **argv)
 		return (free_all(tab_a, tab_b));
 	if (already_sorted(tab_a, size_a) == 1)
 		return (free_all(tab_a, tab_b));
-	replace_to_indice(tab_a, &size_a);
-	is_in_lis(tab_a, &size_a, tab_b, &size_b);
-	while (size_b != 0)
-		who_push(tab_a, &size_a, tab_b, &size_b);
-	reorganise_order_tab_a(tab_a, size_a);
+	sort_stack(tab_a, tab_b, &size_a, &size_b);
 	free(tab_a);
 	free(tab_b);
 }
