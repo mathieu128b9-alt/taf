@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 10:54:35 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/16 11:43:57 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/17 11:23:22 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ typedef enum e_token
 	TOKEN_END,
 }	e_token;
 
+typedef	struct t_token
+{
+	e_token	type;
+	char	*content;
+}	t_token;
+
 typedef struct t_redir
 {
 	int		type;
@@ -59,6 +65,6 @@ typedef struct t_cmd
 	int		nb_redirection;
 	t_cmd	*next;
 }	t_cmd;
-char	**lexing(int argc, char **argv, char **split_argv);
+void	lexing(char **lex);
 
 #endif

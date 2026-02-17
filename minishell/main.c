@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 09:54:06 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/16 11:44:47 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/17 11:17:39 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	char	**split_argv;
+	char	**lex;
 
-	lexing(argc, *argv, *split_argv);
+	lexing(*lex);
 }
