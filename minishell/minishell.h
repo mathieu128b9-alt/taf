@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 10:54:35 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/17 11:23:22 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/18 16:13:46 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <dirent.h>
 # include <string.h>
 # include <sys/ioctl.h>
-# include "libft.h"
+# include "libft/libft.h"
 
 typedef enum e_redir
 {
@@ -58,13 +58,13 @@ typedef struct t_redir
 	char	*file;
 }	t_redir;
 
-typedef struct t_cmd
-{
-	char	**commande;
-	t_redir	redirection;
-	int		nb_redirection;
-	t_cmd	*next;
-}	t_cmd;
+// typedef struct t_cmd
+// {
+// 	char	**commande;
+// 	t_redir	redirection;
+// 	int		nb_redirection;
+// 	t_cmd	*next;
+// }	t_cmd;
 void	lexing(char **lex);
 
 #endif
