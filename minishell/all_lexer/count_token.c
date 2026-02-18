@@ -6,31 +6,82 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:30:30 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/18 17:33:05 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/18 21:35:33 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	is_space(char c)
+void	quotes(char *imput, int *i, int *flag)
 {
-	if (c == '\t' || c == '\n' || c == '\r' || c == ' ')
-		return (1);
-	else
-		return (0);
+	if (imput[*i] == '"')
+	{
+		(*i)++;
+		while (imput[*i] && imput[*i] != '"')
+			(*i)++;
+		if (imput[*i] == '"')
+		{
+			*flag = 0;
+			(*i)++;
+			return ;
+		}
+		printf("erreur, il manque une double quote");
+		exit(1);
+	}
 }
 
-void	after_space(char *imput, int *count, int *i, int *flag)
+void	single_quotes(char *imput, int *i, int *flag)
+{
+	if (imput[*i] == '\'')
+	{
+		(*i)++;
+		while (imput[*i] && imput[*i] != '\'')
+			(*i)++;
+		if (imput[*i] == '\'')
+		{
+			*flag = 0;
+			(*i)++;
+			return ;
+		}
+		else
+		{
+			printf("erreur, il manque une double quote");
+			exit(1);
+		}
+	}
+}
+
+void	after_space(char *imput, int *i, int *flag)
 {
 	if (imput[*i + 1] == '\0' || is_space(imput[*i + 1]) == 1)
 		(*i)++;
-	else if (imput[*i + 1] == '|' || imput[*i + 1] == '>' || imput[*i + 1] == '<')
+	else if (imput[*i + 1] == '|'
+		|| imput[*i + 1] == '>' || imput[*i + 1] == '<')
 		(*i)++;
 	else
 	{
 		*flag = 0;
 		(*i)++;
 	}
+}
+
+int	mid_function(char *imput, int *count, int *i, int *flag)
+{
+	single_quotes(imput, i, flag);
+	quotes(imput, i, flag);
+	if (*flag == 0)
+		(*count)++;
+	*flag = 1;
+	if (is_space(imput[*i]) == 1)
+	{
+		after_space(imput, i, flag);
+		return (1);
+	}
+	if (((imput[*i - 1] == '|' || imput[*i - 1] == '<'
+				|| imput[*i - 1] == '>') && is_space(imput[*i]) != 1)
+		|| (imput[*i] == '|' || imput[*i] == '<' || imput[*i] == '>'))
+		*flag = 0;
+	return (0);
 }
 
 int	how_many_tokens(char *imput)
@@ -46,33 +97,9 @@ int	how_many_tokens(char *imput)
 		i++;
 	while (imput[i])
 	{
-		if (flag == 0)
-			count++;
-		flag = 1;
-		if (is_space(imput[i]) == 1)
-		{
-			after_space(imput, &count, &i, &flag);
-			continue;
-		}
-		if (imput[i] == '|' || imput[i] == '<' || imput[i] == '>')
-			flag = 0;
-		if ((imput[i - 1] == '|' || imput[i - 1] == '<' || imput[i - 1] == '>') && is_space(imput[i]) != 1)
-			flag = 0;
+		if (mid_function(imput, &count, &i, &flag) == 1)
+			continue ;
 		i++;
 	}
 	return (count + 1);
 }
-
-
-int main(void)
-{
-	int test = how_many_tokens(" test | aaa");
-	printf("%d\n", test);
-}
-
-/*
-	ok, la logique marche plutot pas mal, mtn faut ajouter les quotes, juste une boucle qui avance tant que on
-	a pas trouve la fin de quote, les single et double
-*/
-
-		

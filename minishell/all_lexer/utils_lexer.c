@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils_lexer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/16 09:54:06 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/18 21:43:30 by msuter           ###   ########.fr       */
+/*   Created: 2026/02/18 21:06:52 by msuter            #+#    #+#             */
+/*   Updated: 2026/02/18 21:34:28 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-/*
-! ce main c'est pour tester le comptage de mon lexer, 
-int main(void)
+int	is_space(char c)
 {
-	int test = how_many_tokens("echo | test");
-	printf("%d\n", test);
+	if (c == '\t' || c == '\n' || c == '\r' || c == ' ')
+		return (1);
+	else
+		return (0);
 }
- */

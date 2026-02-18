@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 10:54:35 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/18 16:13:46 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/18 21:26:51 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,7 @@ typedef struct t_redir
 // 	t_cmd	*next;
 // }	t_cmd;
 void	lexing(char **lex);
+int		is_space(char c);
+int		how_many_tokens(char *imput);
 
 #endif
