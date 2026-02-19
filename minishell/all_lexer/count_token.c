@@ -6,13 +6,13 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:30:30 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/19 09:37:38 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/19 22:59:27 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static void	quotes(char *imput, int *i, int *flag)
+static int	quotes(char *imput, int *i, int *flag)
 {
 	if (imput[*i] == '"')
 	{
@@ -23,14 +23,14 @@ static void	quotes(char *imput, int *i, int *flag)
 		{
 			*flag = 0;
 			(*i)++;
-			return ;
+			return (0);
 		}
 		printf("erreur, il manque une double quote");
-		exit(1);
+		return (-1);
 	}
 }
 
-static void	single_quotes(char *imput, int *i, int *flag)
+static int	single_quotes(char *imput, int *i, int *flag)
 {
 	if (imput[*i] == '\'')
 	{
@@ -41,10 +41,10 @@ static void	single_quotes(char *imput, int *i, int *flag)
 		{
 			*flag = 0;
 			(*i)++;
-			return ;
+			return (0);
 		}
 		printf("erreur, il manque une double quote");
-		exit(1);
+		return (-1);
 	}
 }
 
@@ -64,15 +64,15 @@ static void	after_space(char *imput, int *i, int *flag)
 
 static int	mid_function(char *imput, int *count, int *i, int *flag)
 {
-	single_quotes(imput, i, flag);
-	quotes(imput, i, flag);
+	if (single_quotes(imput, i, flag) == -1 || quotes(imput, i, flag) == -1)
+		return (-1);
 	if (*flag == 0)
 		(*count)++;
 	*flag = 1;
 	if (is_space(imput[*i]) == 1)
 	{
 		after_space(imput, i, flag);
-		return (1);
+		return (2);
 	}
 	if (((imput[*i - 1] == '|' || imput[*i - 1] == '<'
 				|| imput[*i - 1] == '>') && is_space(imput[*i]) != 1)
@@ -94,9 +94,13 @@ int	how_many_tokens(char *imput)
 		i++;
 	while (imput[i])
 	{
-		if (mid_function(imput, &count, &i, &flag) == 1)
+		if (mid_function(imput, &count, &i, &flag) == -1)
+			return (-1);
+		else if (mid_function(imput, &count, &i, &flag) == 2)
 			continue ;
 		i++;
 	}
 	return (count + 1);
 }
+//j'ai mis return -1 pask on peux avoir le cas d'un token et faut que ca fonctionne,
+//donc mon -1 sert de retour d'erreur dans ma fonction principale

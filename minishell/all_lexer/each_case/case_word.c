@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   each_case_for_lexing.c                             :+:      :+:    :+:   */
+/*   case_word.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 14:07:14 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/19 21:58:03 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/19 22:57:16 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ int	case_single_quote(char *imput, t_token *token, int *i, int *size_word)
 	temp = *i + 1;
 	while (imput[temp] && imput[temp] != '\'')
 	{
-		size_word++;
+		*size_word++;
 		temp++;
 		if (imput[temp] == '\'')
-			return (size_word + 1);
+		{
+			(*size_word)++;
+			return (0);
+		}
 	}
-	return (1);
+	return (-1);
 }
 
 int	case_double_quote(char *imput, t_token *token, int *i, int *size_word)
@@ -34,33 +37,30 @@ int	case_double_quote(char *imput, t_token *token, int *i, int *size_word)
 	temp = *i + 1;
 	while (imput[temp] && imput[temp] != '\"')
 	{
-		size_word++;
+		*size_word++;
 		temp++;
 		if (imput[temp] == '\"')
-			return (size_word + 1);
+		{
+			(*size_word)++;
+			return (0);
+		}
 	}
-	return (1);
+	return (-1);
 }
 
-void	case_word(char *imput, t_token *token, int *i, int *nb)
+void	case_word(char *imput, t_token *token, int *i, int *size_word)
 {
-	int size_word;
-
-	size_word = 0;
 	if (imput[*i] == '\'')
 	{
-		size_word++;
-		case_single_quote(imput, token, i, &size_word);
+		*size_word++;
+		if (case_single_quote(imput, token, i, size_word) == 0)
+			return (0);
 	}
 	if (imput[*i] == '\"')
 	{
-		size_word++;
-		case_double_quote(imput, token, i, &size_word);
+		*size_word++;
+		if (case_double_quote(imput, token, i, size_word) == 0)
+			return (0);
 	}
-	while (imput[*i] && imput[*i] != ' ')
-	{
-		
-	}
-	printf("erreur, il manque une quote");
-	exit(1);
+	return (-1);
 }

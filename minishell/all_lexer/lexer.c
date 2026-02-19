@@ -6,14 +6,17 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:02:49 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/19 14:08:07 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/19 22:53:42 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	which_case(char *imput, t_token *token, int *i, int *nb)
+void	which_case(char *imput, t_token *token, int *i)
 {
+	int	size_word;
+
+	size_word = 0;
 	if (imput[*i] == '|')
 		case_pipe();
 	else if (imput[*i] == '>')
@@ -21,7 +24,7 @@ void	which_case(char *imput, t_token *token, int *i, int *nb)
 	else if (imput[*i] == '<')
 		case_out_or_heredoc();
 	else
-		case_word(imput, token, i, nb);
+		case_word(imput, token, i);
 }
 
 void	lexing(t_token *token)
@@ -40,7 +43,7 @@ void	lexing(t_token *token)
 		case_error(imput, token, "erreur lors du malloc du token");
 	while (imput[i])
 	{
-		which_case(imput, token, &i, &nb);
+		which_case(imput, token, &i);
 	}
 	free(imput);
 }
