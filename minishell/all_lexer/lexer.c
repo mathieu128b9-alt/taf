@@ -6,40 +6,13 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:02:49 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/19 10:48:20 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/19 14:08:07 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	case_word(char *imput, t_token *token, int *i)
-{
-	int	temp;
-	int	size_word;
-
-	temp = i;
-	size_word = 0;
-	if (imput[*i] == '\'')
-	{
-		while (imput[temp] && imput[temp] != '\'')
-		{
-			size_word++;
-			temp++;
-		}
-	}
-	if (imput[*i] == '\"')
-	{
-		
-	}
-	while (imput[*i] && imput[*i] != ' ')
-	{
-		
-	}
-	printf("erreur, il manque une quote");
-	exit(1);
-}
-
-void	which_case(char *imput, t_token *token, int *i)
+void	which_case(char *imput, t_token *token, int *i, int *nb)
 {
 	if (imput[*i] == '|')
 		case_pipe();
@@ -48,13 +21,16 @@ void	which_case(char *imput, t_token *token, int *i)
 	else if (imput[*i] == '<')
 		case_out_or_heredoc();
 	else
-		case_word(imput, token, i);
+		case_word(imput, token, i, nb);
 }
 
 void	lexing(t_token *token)
 {
 	char	*imput;
 	int		i;
+	int		nb;
+
+	nb = 0;
 	i = 0;
 	imput = readline("minishell>");
 	if (!imput)
@@ -64,7 +40,7 @@ void	lexing(t_token *token)
 		case_error(imput, token, "erreur lors du malloc du token");
 	while (imput[i])
 	{
-		which_case(imput, token, &i);
+		which_case(imput, token, &i, &nb);
 	}
 	free(imput);
 }
