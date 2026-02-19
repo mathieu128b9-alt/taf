@@ -6,33 +6,74 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:02:49 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/18 21:34:45 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/19 10:48:20 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// void	which_case(char *imput)
-// {
+void	case_word(char *imput, t_token *token, int *i)
+{
+	int	temp;
+	int	size_word;
 
-// }
+	temp = i;
+	size_word = 0;
+	if (imput[*i] == '\'')
+	{
+		while (imput[temp] && imput[temp] != '\'')
+		{
+			size_word++;
+			temp++;
+		}
+	}
+	if (imput[*i] == '\"')
+	{
+		
+	}
+	while (imput[*i] && imput[*i] != ' ')
+	{
+		
+	}
+	printf("erreur, il manque une quote");
+	exit(1);
+}
 
-// void	lexing(char **lex)
-// {
-// 	char	*imput;
-// 	int		i;
+void	which_case(char *imput, t_token *token, int *i)
+{
+	if (imput[*i] == '|')
+		case_pipe();
+	else if (imput[*i] == '>')
+		case_in_or_happend();
+	else if (imput[*i] == '<')
+		case_out_or_heredoc();
+	else
+		case_word(imput, token, i);
+}
 
-// 	i = 0;
-// 	imput = readline("minishell>");
-// 	if (!imput)
-// 	{
-// 		free(imput);
-// 		printf("erreur lors du malloc (lexing)");
-// 		exit(1);
-// 	}
-// 	while (imput[i])
-// 	{
+void	lexing(t_token *token)
+{
+	char	*imput;
+	int		i;
+	i = 0;
+	imput = readline("minishell>");
+	if (!imput)
+		case_error(imput, NULL, "erreur lors du malloc du imput");
+	token = malloc(sizeof(t_token) * how_many_tokens(imput));
+	if(!token)
+		case_error(imput, token, "erreur lors du malloc du token");
+	while (imput[i])
+	{
+		which_case(imput, token, &i);
+	}
+	free(imput);
+}
 
-// 	}
-// 	free(imput);
-// }
+/* 
+! alors, la le but ca va etre de faire en sorte que je puisse faire le compte de mon mot,
+! pour ca j'ai cree une variable count_word, et je fais pas avancer mon i reel, pour pas
+! perdre le debut de mon mot, quans j'ai trouve, je dois malloc, et copier le mot,
+! en cas de soucis on retourne une erreur, il manque forcement une quote, pask j'ai secur
+! le reste avec des return
+
+*/

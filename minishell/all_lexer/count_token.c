@@ -6,13 +6,13 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:30:30 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/18 21:35:33 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/19 09:37:38 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	quotes(char *imput, int *i, int *flag)
+static void	quotes(char *imput, int *i, int *flag)
 {
 	if (imput[*i] == '"')
 	{
@@ -30,7 +30,7 @@ void	quotes(char *imput, int *i, int *flag)
 	}
 }
 
-void	single_quotes(char *imput, int *i, int *flag)
+static void	single_quotes(char *imput, int *i, int *flag)
 {
 	if (imput[*i] == '\'')
 	{
@@ -43,15 +43,12 @@ void	single_quotes(char *imput, int *i, int *flag)
 			(*i)++;
 			return ;
 		}
-		else
-		{
-			printf("erreur, il manque une double quote");
-			exit(1);
-		}
+		printf("erreur, il manque une double quote");
+		exit(1);
 	}
 }
 
-void	after_space(char *imput, int *i, int *flag)
+static void	after_space(char *imput, int *i, int *flag)
 {
 	if (imput[*i + 1] == '\0' || is_space(imput[*i + 1]) == 1)
 		(*i)++;
@@ -65,7 +62,7 @@ void	after_space(char *imput, int *i, int *flag)
 	}
 }
 
-int	mid_function(char *imput, int *count, int *i, int *flag)
+static int	mid_function(char *imput, int *count, int *i, int *flag)
 {
 	single_quotes(imput, i, flag);
 	quotes(imput, i, flag);
