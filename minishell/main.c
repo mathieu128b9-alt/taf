@@ -6,17 +6,19 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 09:54:06 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/18 21:43:30 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/20 01:45:58 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-! ce main c'est pour tester le comptage de mon lexer, 
 int main(void)
 {
-	int test = how_many_tokens("echo | test");
-	printf("%d\n", test);
+	t_token *token;
+	char *imput;
+
+	imput = readline("minishell>");
+	if (!imput)
+		case_error(imput, NULL, "erreur lors du malloc du imput");
+	token = lexing(&token, imput);
 }
- */
