@@ -6,51 +6,61 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:02:49 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/20 03:11:37 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/22 01:10:45 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	which_case(char *imput, int *i, int *size_word)
+static int	which_case(char *imput, t_contexte *c, t_token *token)
 {
-	if (imput[*i] == '|')
-		case_pipe();
-	else if (imput[*i] == '>')
-		case_in_or_happend();
-	else if (imput[*i] == '<')
-		case_out_or_heredoc();
+	int	verif_quote;
+
+	verif_quote = 0;
+	if (imput[c->i] == '|')
+	{
+		token[c->nb].type = TOKEN_PIPE;
+		token[c->nb].content = NULL;
+		c->nb++;
+		c->i++;
+	}
+	else if (imput[c->i] == '>')
+		 case_out_or_happend(imput ,c, token);
+	else if (imput[c->i] == '<')
+		case_in_or_heredoc(imput ,c, token);
 	else
-		case_word(imput, i, size_word);
+		verif_quote = case_word(imput, c);
+	return (verif_quote);
 }
 
 t_token	*lexing(char *imput)
 {
-	int		size_word;
+	t_contexte	c;
 	t_token *token;
-	int		i;
-	int		nb;
 
-	nb = 0;
-	i = 0;
-	token = malloc(sizeof(t_token) * how_many_tokens(imput));
+	c.nb = 0;
+	c.i = 0;
+	c.size_word = 0;
+	token = malloc(sizeof(t_token) * how_many_tokens(imput) + 1);
 	if(!token)
 		case_error(imput, token, "erreur lors du malloc du token");
-	while (imput[i])
+	while (imput[c.i])
 	{
-		while (is_space(imput[i]))
-			i++;
-		which_case(imput, &i, &size_word);
-		if (imput[i + size_word] == '\0' || imput[i + size_word] == ' ' || imput[i + size_word] == '|'
-			|| imput[i + size_word] == '<' || imput[i + size_word] == '>')
+		while (is_space(imput[c.i]))
+			c.i++;
+		which_case(imput, &c, token);
+		if (imput[c.i + c.size_word] == '\0' || imput[c.i + c.size_word] == ' ' || imput[c.i + c.size_word] == '|'
+			|| imput[c.i + c.size_word] == '<' || imput[c.i + c.size_word] == '>')
 		{
-			token[nb].content = malloc(sizeof(char) * size_word + 1);
-			ft_strlcpy(token[nb].content, imput + i, size_word + 1);
-			nb++;
-			i += size_word;
-			size_word = 0;
+			token[c.nb].content = malloc(sizeof(char) * c.size_word + 1);
+			ft_strlcpy(token[c.nb].content, imput + c.i, c.size_word + 1);
+			token[c.nb].type = TOKEN_WORD;
+			c.nb++;
+			c.i += c.size_word;
+			c.size_word = 0;
 		}
 	}
+	token[c.nb].type = TOKEN_END;
 	free(imput);
 	return (token);
 }
