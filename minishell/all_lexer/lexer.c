@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:02:49 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/22 01:10:45 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/22 01:28:05 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_token	*lexing(char *imput)
 	c.nb = 0;
 	c.i = 0;
 	c.size_word = 0;
-	token = malloc(sizeof(t_token) * how_many_tokens(imput) + 1);
+	token = malloc(sizeof(t_token) * (how_many_tokens(imput) + 1));
 	if(!token)
 		case_error(imput, token, "erreur lors du malloc du token");
 	while (imput[c.i])

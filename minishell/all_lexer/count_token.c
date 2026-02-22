@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:30:30 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/22 01:13:12 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/22 01:39:55 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	how_many_tokens(char *imput)
 	int	i;
 	int	count;
 	int	flag;
+	int	res;
 
 	count = 0;
 	i = 0;
@@ -92,9 +93,10 @@ int	how_many_tokens(char *imput)
 		i++;
 	while (imput[i])
 	{
-		if (mid_function(imput, &count, &i, &flag) == -1)
+		res = mid_function(imput, &count, &i, &flag);
+		if (res == -1)
 			return (-1);
-		else if (mid_function(imput, &count, &i, &flag) == 2)
+		else if (res == 2)
 			continue ;
 		i++;
 	}
