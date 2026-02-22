@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:30:30 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/22 01:39:55 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/22 11:53:30 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int	quotes(char *imput, int *i, int *flag)
 			return (0);
 		}
 	}
+	else
+		return (0);
 	return (-1);
 }
 
@@ -43,6 +45,8 @@ static int	single_quotes(char *imput, int *i, int *flag)
 			return (0);
 		}
 	}
+	else
+		return (0);
 	return (-1);
 }
 
@@ -55,7 +59,7 @@ static void	after_space(char *imput, int *i, int *flag)
 		(*i)++;
 	else
 	{
-		*flag = 0;
+		 *flag = 0;
 		(*i)++;
 	}
 }
@@ -100,7 +104,5 @@ int	how_many_tokens(char *imput)
 			continue ;
 		i++;
 	}
-	return (count);
+	return (count + 1);
 }
-//j'ai mis return -1 pask on peux avoir le cas d'un token et faut que ca fonctionne,
-//donc mon -1 sert de retour d'erreur dans ma fonction principale

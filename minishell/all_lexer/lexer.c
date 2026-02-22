@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:02:49 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/22 01:28:05 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/22 12:04:13 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,19 @@ t_token	*lexing(char *imput)
 {
 	t_contexte	c;
 	t_token *token;
+	int	verif_nb;
 
+	
 	c.nb = 0;
 	c.i = 0;
 	c.size_word = 0;
-	token = malloc(sizeof(t_token) * (how_many_tokens(imput) + 1));
+	verif_nb = how_many_tokens(imput);
+	if (verif_nb == -1)
+	{
+		printf("erreur, il manque une quote");
+		
+	}
+	token = malloc(sizeof(t_token) * (verif_nb + 1));
 	if(!token)
 		case_error(imput, token, "erreur lors du malloc du token");
 	while (imput[c.i])
@@ -49,8 +57,8 @@ t_token	*lexing(char *imput)
 		while (is_space(imput[c.i]))
 			c.i++;
 		which_case(imput, &c, token);
-		if (imput[c.i + c.size_word] == '\0' || imput[c.i + c.size_word] == ' ' || imput[c.i + c.size_word] == '|'
-			|| imput[c.i + c.size_word] == '<' || imput[c.i + c.size_word] == '>')
+		if (c.size_word > 0 && (imput[c.i + c.size_word] == '\0' || imput[c.i + c.size_word] == ' ' || imput[c.i + c.size_word] == '|'
+			|| imput[c.i + c.size_word] == '<' || imput[c.i + c.size_word] == '>'))
 		{
 			token[c.nb].content = malloc(sizeof(char) * c.size_word + 1);
 			ft_strlcpy(token[c.nb].content, imput + c.i, c.size_word + 1);
