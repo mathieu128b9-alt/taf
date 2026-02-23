@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:02:49 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/22 12:04:13 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/24 00:14:54 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,19 @@ static int	which_case(char *imput, t_contexte *c, t_token *token)
 	return (verif_quote);
 }
 
-t_token	*lexing(char *imput)
+t_token	*lexing(char *imput, int verif_nb)
 {
 	t_contexte	c;
 	t_token *token;
-	int	verif_nb;
 
-	
 	c.nb = 0;
 	c.i = 0;
 	c.size_word = 0;
-	verif_nb = how_many_tokens(imput);
 	if (verif_nb == -1)
-	{
-		printf("erreur, il manque une quote");
-		
-	}
+		return (NULL);
 	token = malloc(sizeof(t_token) * (verif_nb + 1));
 	if(!token)
-		case_error(imput, token, "erreur lors du malloc du token");
+		case_error(imput, token, "erreur lors du malloc du token", verif_nb);
 	while (imput[c.i])
 	{
 		while (is_space(imput[c.i]))
@@ -64,11 +58,12 @@ t_token	*lexing(char *imput)
 			ft_strlcpy(token[c.nb].content, imput + c.i, c.size_word + 1);
 			token[c.nb].type = TOKEN_WORD;
 			c.nb++;
+			if (imput[c.size_word - 1] == '\0')
+				return (token);
 			c.i += c.size_word;
 			c.size_word = 0;
 		}
 	}
 	token[c.nb].type = TOKEN_END;
-	free(imput);
 	return (token);
 }

@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:30:30 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/22 11:53:30 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/24 00:13:41 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ static int	mid_function(char *imput, int *count, int *i, int *flag)
 		after_space(imput, i, flag);
 		return (2);
 	}
-	if (((imput[*i - 1] == '|' || imput[*i - 1] == '<'
+	if (*i > 0 && (((imput[*i - 1] == '|' || imput[*i - 1] == '<'
 				|| imput[*i - 1] == '>') && is_space(imput[*i]) != 1)
-		|| (imput[*i] == '|' || imput[*i] == '<' || imput[*i] == '>'))
+		|| (imput[*i] == '|' || imput[*i] == '<' || imput[*i] == '>')))
 		*flag = 0;
 	return (0);
 }
@@ -102,7 +102,8 @@ int	how_many_tokens(char *imput)
 			return (-1);
 		else if (res == 2)
 			continue ;
-		i++;
+		if (imput[i] != '\0')
+			i++;
 	}
 	return (count + 1);
 }

@@ -6,26 +6,45 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 09:54:06 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/22 01:15:31 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/24 00:15:08 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+
+void	testing(t_token *token)
+{
+	int i = 0;
+
+	while (token[i].type != TOKEN_END)
+	{
+		printf("%s\n", token[i].content);
+		printf("%d\n", token[i].type);
+		i++;
+	}
+}
 
 int main(void)
 {
 	t_token *token;
 	char *imput;
 
-	imput = readline("minishell>");
-	if (!imput)
-		case_error(imput, NULL, "erreur lors du malloc du imput");
-	token = lexing(imput);
-
-	int i = 0;
-	while (token[i].type != TOKEN_END)
+	while (1)
 	{
-		printf("%d\n", token[i].type);
-		i++;
+		imput = readline("minishell>");
+		int verif_nb = how_many_tokens(imput);
+		if (!imput)
+			case_error(imput, NULL, "erreur lors du malloc du imput", verif_nb);
+		token = lexing(imput, verif_nb);
+		testing(token);
+		if (token == NULL)
+		{
+			case_continue(imput, token, "erreur, il manque une quote");
+			continue ;
+		}
+		if (ft_strncmp(token[0].content, "exit", 5) == 0)
+			end_prog(imput, token, verif_nb);
+		free_token(imput, token, verif_nb);
 	}
 }

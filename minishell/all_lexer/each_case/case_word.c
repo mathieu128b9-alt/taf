@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 14:07:14 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/22 00:36:57 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/23 23:45:27 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	case_double_quote(char *imput, t_contexte *c)
 		temp++;
 		if (imput[temp] == '\"')
 		{
-			(c->size_word)++;
+			c->size_word++;
 			return (0);
 		}
 	}

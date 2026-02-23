@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 21:06:52 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/19 10:10:27 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/23 23:58:07 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,57 @@ int	is_space(char c)
 		return (0);
 }
 
-void	case_error(char *imput, t_token *token, char *message_erroor)
+void	case_error(char *imput, t_token *token, char *message_erroor, int nb_token)
 {
-	free(imput);
+	int	i;
+
+	nb_token = how_many_tokens(imput);
+	i = 0;
+	while (i < nb_token)
+	{
+		free(token[i].content);
+		i++;
+	}
 	free(token);
+	free(imput);
 	printf("%s\n", message_erroor);
 	exit(1);
+}
+
+void	case_continue(char *imput, t_token *token, char *message_erroor)
+{
+	free(token);
+	free(imput);
+	printf("%s\n", message_erroor);
+}
+
+void	end_prog(char *imput, t_token *token, int nb_token)
+{
+	int	i;
+
+	nb_token = how_many_tokens(imput);
+	i = 0;
+	while (i < nb_token)
+	{
+		free(token[i].content);
+		i++;
+	}
+	free(token);
+	free(imput);
+	exit (0);
+}
+
+void	free_token(char *imput, t_token *token, int nb_token)
+{
+	int	i;
+
+	nb_token = how_many_tokens(imput);
+	i = 0;
+	while (i < nb_token)
+	{
+		free(token[i].content);
+		i++;
+	}
+	free(token);
+	free(imput);
 }
