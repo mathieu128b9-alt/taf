@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 09:54:06 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/24 00:15:08 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/24 14:29:57 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	testing(t_token *token)
 
 	while (token[i].type != TOKEN_END)
 	{
-		printf("%s\n", token[i].content);
+		//printf("%s\n", token[i].content);
 		printf("%d\n", token[i].type);
 		i++;
 	}
@@ -34,6 +34,7 @@ int main(void)
 	{
 		imput = readline("minishell>");
 		int verif_nb = how_many_tokens(imput);
+		printf("TEST how_many_tokens retourne: %d\n", verif_nb);
 		if (!imput)
 			case_error(imput, NULL, "erreur lors du malloc du imput", verif_nb);
 		token = lexing(imput, verif_nb);

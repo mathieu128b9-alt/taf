@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:02:49 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/24 00:14:54 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/24 14:13:40 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_token	*lexing(char *imput, int verif_nb)
 			c.size_word = 0;
 		}
 	}
+	printf("DEBUG LEXING: tokens créés = %d\n", c.nb);
 	token[c.nb].type = TOKEN_END;
 	return (token);
 }

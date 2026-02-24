@@ -6,104 +6,73 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:30:30 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/24 00:13:41 by msuter           ###   ########.fr       */
+/*   Updated: 2026/02/24 14:28:09 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int	quotes(char *imput, int *i, int *flag)
+int	case_d_quote(char *imput, t_contexte *c)
 {
-	if (imput[*i] == '"')
+	c->i++;
+	while (imput[c->i] && imput[c->i] != '\"')
+		c->i++;
+	if (imput[c->i] == '\"')
 	{
-		(*i)++;
-		while (imput[*i] && imput[*i] != '"')
-			(*i)++;
-		if (imput[*i] == '"')
-		{
-			*flag = 0;
-			(*i)++;
-			return (0);
-		}
-	}
-	else
+		c->i++;
+		while (imput[c->i] && !is_space(imput[c->i]) 
+			&& imput[c->i] != '|' && imput[c->i] != '<' && imput[c->i] != '>')
+			c->i++;
 		return (0);
+	}
 	return (-1);
 }
 
-static int	single_quotes(char *imput, int *i, int *flag)
+int	case_quote(char *imput, t_contexte *c)
 {
-	if (imput[*i] == '\'')
+	c->i++;
+	while (imput[c->i] && imput[c->i] != '\'')
+		c->i++;
+	if (imput[c->i] == '\'')
 	{
-		(*i)++;
-		while (imput[*i] && imput[*i] != '\'')
-			(*i)++;
-		if (imput[*i] == '\'')
-		{
-			*flag = 0;
-			(*i)++;
-			return (0);
-		}
-	}
-	else
+		c->i++;
+		while (imput[c->i] && !is_space(imput[c->i]) 
+			&& imput[c->i] != '|' && imput[c->i] != '<' && imput[c->i] != '>')
+			c->i++;
 		return (0);
+	}
 	return (-1);
-}
-
-static void	after_space(char *imput, int *i, int *flag)
-{
-	if (imput[*i + 1] == '\0' || is_space(imput[*i + 1]) == 1)
-		(*i)++;
-	else if (imput[*i + 1] == '|'
-		|| imput[*i + 1] == '>' || imput[*i + 1] == '<')
-		(*i)++;
-	else
-	{
-		 *flag = 0;
-		(*i)++;
-	}
-}
-
-static int	mid_function(char *imput, int *count, int *i, int *flag)
-{
-	if (single_quotes(imput, i, flag) == -1 || quotes(imput, i, flag) == -1)
-		return (-1);
-	if (*flag == 0)
-		(*count)++;
-	*flag = 1;
-	if (is_space(imput[*i]) == 1)
-	{
-		after_space(imput, i, flag);
-		return (2);
-	}
-	if (*i > 0 && (((imput[*i - 1] == '|' || imput[*i - 1] == '<'
-				|| imput[*i - 1] == '>') && is_space(imput[*i]) != 1)
-		|| (imput[*i] == '|' || imput[*i] == '<' || imput[*i] == '>')))
-		*flag = 0;
-	return (0);
 }
 
 int	how_many_tokens(char *imput)
 {
-	int	i;
-	int	count;
-	int	flag;
-	int	res;
+	t_contexte	c;
 
-	count = 0;
-	i = 0;
-	flag = 1;
-	while (is_space(imput[i]) == 1)
-		i++;
-	while (imput[i])
+	c.i = 0;
+	c.nb = 0;
+	while(imput[c.i])
 	{
-		res = mid_function(imput, &count, &i, &flag);
-		if (res == -1)
-			return (-1);
-		else if (res == 2)
-			continue ;
-		if (imput[i] != '\0')
-			i++;
+		while (is_space(imput[c.i]) == 1)
+			c.i++;
+		if (imput[c.i] == '\0')
+			break ;
+		if (imput[c.i] == '\'')
+		{
+			if (case_quote(imput, &c) == -1)
+				return (-1);
+		}
+		else if (imput[c.i] == '\"')
+		{
+			if (case_d_quote(imput, &c) == -1)
+				return (-1);
+		}
+		else if (imput[c.i] == '|' || imput[c.i] == '<' || imput[c.i] == '>')
+			c.i++;
+		else
+			while (imput[c.i] && !is_space(imput[c.i]) 
+			&& imput[c.i] != '|' && imput[c.i] != '<' && imput[c.i] != '>')
+				c.i++;
+		c.nb++;
 	}
-	return (count + 1);
+	return(c.nb);
 }
