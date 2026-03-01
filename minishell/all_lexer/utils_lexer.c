@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 21:06:52 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/23 23:58:07 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/01 14:07:45 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	is_space(char c)
 		return (0);
 }
 
-void	case_error(char *imput, t_token *token, char *message_erroor, int nb_token)
+void	case_error(char *imput, t_token *token,
+	char *message_erroor, int nb_token)
 {
 	int	i;
 

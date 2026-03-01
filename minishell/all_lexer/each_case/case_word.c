@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 14:07:14 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/23 23:45:27 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/01 14:06:37 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	case_single_quote(char *imput, t_contexte *c)
 {
-	int temp;
+	int	temp;
 
 	temp = c->i + c->size_word;
 	while (imput[temp] && imput[temp] != '\'')
@@ -32,7 +32,7 @@ static int	case_single_quote(char *imput, t_contexte *c)
 
 static int	case_double_quote(char *imput, t_contexte *c)
 {
-	int temp;
+	int	temp;
 
 	temp = c->i + c->size_word;
 	while (imput[temp] && imput[temp] != '\"')
@@ -53,7 +53,7 @@ static int	case_no_quotes(char *imput, t_contexte *c)
 	int	temp;
 
 	temp = c->i + c->size_word;
-	while(imput[temp] && imput[temp] != ' ' && imput[temp] != '|'
+	while (imput[temp] && imput[temp] != ' ' && imput[temp] != '|'
 		&& imput[temp] != '<' && imput[temp] != '>')
 	{
 		c->size_word++;

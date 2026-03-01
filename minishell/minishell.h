@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 10:54:35 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/24 12:59:21 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/01 14:44:26 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@
 # include <sys/ioctl.h>
 # include "libft/libft.h"
 
-typedef enum e_redir
+typedef enum t_enum_redir
 {
 	REDIR_IN,
 	REDIR_OUT,
 	REDIR_APPEND,
 	REDIR_HEREDOC,
-}	e_redir;
+}	t_enum_redir;
 
 typedef enum e_token
 {
@@ -44,12 +44,12 @@ typedef enum e_token
 	TOKEN_APPEND,
 	TOKEN_HEREDOC,
 	TOKEN_END,
-}	e_token;
+}	t_enum_token;
 
-typedef	struct t_token
+typedef struct t_token
 {
-	e_token	type;
-	char	*content;
+	t_enum_token	type;
+	char			*content;
 }	t_token;
 
 typedef struct t_redir
@@ -66,7 +66,7 @@ typedef struct t_redir
 // 	t_cmd	*next;
 // }	t_cmd;
 
-typedef struct	t_contexte
+typedef struct t_contexte
 {
 	int	i;
 	int	size_word;
@@ -75,7 +75,8 @@ typedef struct	t_contexte
 
 int		is_space(char c);
 int		how_many_tokens(char *imput);
-void	case_error(char *imput, t_token *token, char *message_erroor, int nb_token);
+void	case_error(char *imput, t_token *token,
+			char *message_erroor, int nb_token);
 int		case_word(char *imput, t_contexte *c);
 t_token	*lexing(char *imput, int verif_nb);
 void	case_in_or_heredoc(char *imput, t_contexte *c, t_token *token);

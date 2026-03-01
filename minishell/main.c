@@ -6,34 +6,35 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 09:54:06 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/24 14:29:57 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/01 14:47:11 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-
 void	testing(t_token *token)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (token[i].type != TOKEN_END)
 	{
-		//printf("%s\n", token[i].content);
+		printf("%s\n", token[i].content);
 		printf("%d\n", token[i].type);
 		i++;
 	}
 }
 
-int main(void)
+int	main(void)
 {
-	t_token *token;
-	char *imput;
+	t_token	*token;
+	char	*imput;
+	int		verif_nb;
 
 	while (1)
 	{
 		imput = readline("minishell>");
-		int verif_nb = how_many_tokens(imput);
+		verif_nb = how_many_tokens(imput);
 		printf("TEST how_many_tokens retourne: %d\n", verif_nb);
 		if (!imput)
 			case_error(imput, NULL, "erreur lors du malloc du imput", verif_nb);

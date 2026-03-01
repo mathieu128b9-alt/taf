@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:02:49 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/24 14:13:40 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/01 14:03:11 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,41 @@ static int	which_case(char *imput, t_contexte *c, t_token *token)
 		c->i++;
 	}
 	else if (imput[c->i] == '>')
-		 case_out_or_happend(imput ,c, token);
+		case_out_or_happend(imput, c, token);
 	else if (imput[c->i] == '<')
-		case_in_or_heredoc(imput ,c, token);
+		case_in_or_heredoc(imput, c, token);
 	else
 		verif_quote = case_word(imput, c);
 	return (verif_quote);
 }
 
+int	set_token(char *imput, t_token *token, t_contexte *c)
+{
+	while (is_space(imput[c->i]))
+		c->i++;
+	which_case(imput, c, token);
+	if (c->size_word > 0 && (imput[c->i + c->size_word] == '\0'
+			|| imput[c->i + c->size_word] == ' '
+			|| imput[c->i + c->size_word] == '|'
+			|| imput[c->i + c->size_word] == '<'
+			|| imput[c->i + c->size_word] == '>'))
+	{
+		token[c->nb].content = malloc(sizeof(char) * c->size_word + 1);
+		ft_strlcpy(token[c->nb].content, imput + c->i, c->size_word + 1);
+		token[c->nb].type = TOKEN_WORD;
+		c->nb++;
+		if (imput[c->size_word - 1] == '\0')
+			return (1);
+		c->i += c->size_word;
+		c->size_word = 0;
+	}
+	return (0);
+}
+
 t_token	*lexing(char *imput, int verif_nb)
 {
 	t_contexte	c;
-	t_token *token;
+	t_token		*token;
 
 	c.nb = 0;
 	c.i = 0;
@@ -44,25 +67,12 @@ t_token	*lexing(char *imput, int verif_nb)
 	if (verif_nb == -1)
 		return (NULL);
 	token = malloc(sizeof(t_token) * (verif_nb + 1));
-	if(!token)
+	if (!token)
 		case_error(imput, token, "erreur lors du malloc du token", verif_nb);
 	while (imput[c.i])
 	{
-		while (is_space(imput[c.i]))
-			c.i++;
-		which_case(imput, &c, token);
-		if (c.size_word > 0 && (imput[c.i + c.size_word] == '\0' || imput[c.i + c.size_word] == ' ' || imput[c.i + c.size_word] == '|'
-			|| imput[c.i + c.size_word] == '<' || imput[c.i + c.size_word] == '>'))
-		{
-			token[c.nb].content = malloc(sizeof(char) * c.size_word + 1);
-			ft_strlcpy(token[c.nb].content, imput + c.i, c.size_word + 1);
-			token[c.nb].type = TOKEN_WORD;
-			c.nb++;
-			if (imput[c.size_word - 1] == '\0')
-				return (token);
-			c.i += c.size_word;
-			c.size_word = 0;
-		}
+		if (set_token(imput, token, &c) == 1)
+			return (token);
 	}
 	printf("DEBUG LEXING: tokens créés = %d\n", c.nb);
 	token[c.nb].type = TOKEN_END;

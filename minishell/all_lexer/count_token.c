@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:30:30 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/24 14:28:09 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/01 14:21:31 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	case_d_quote(char *imput, t_contexte *c)
 	if (imput[c->i] == '\"')
 	{
 		c->i++;
-		while (imput[c->i] && !is_space(imput[c->i]) 
+		while (imput[c->i] && !is_space(imput[c->i])
 			&& imput[c->i] != '|' && imput[c->i] != '<' && imput[c->i] != '>')
 			c->i++;
 		return (0);
@@ -36,7 +36,7 @@ int	case_quote(char *imput, t_contexte *c)
 	if (imput[c->i] == '\'')
 	{
 		c->i++;
-		while (imput[c->i] && !is_space(imput[c->i]) 
+		while (imput[c->i] && !is_space(imput[c->i])
 			&& imput[c->i] != '|' && imput[c->i] != '<' && imput[c->i] != '>')
 			c->i++;
 		return (0);
@@ -44,35 +44,46 @@ int	case_quote(char *imput, t_contexte *c)
 	return (-1);
 }
 
+int	mid(char *imput, t_contexte *c)
+{
+	while (is_space(imput[c->i]) == 1)
+		c->i++;
+	if (imput[c->i] == '\0')
+		return (2);
+	if (imput[c->i] == '\'')
+	{
+		if (case_quote(imput, c) == -1)
+			return (-1);
+	}
+	else if (imput[c->i] == '\"')
+	{
+		if (case_d_quote(imput, c) == -1)
+			return (-1);
+	}
+	else if (imput[c->i] == '|' || imput[c->i] == '<' || imput[c->i] == '>')
+		c->i++;
+	else
+		while (imput[c->i] && !is_space(imput[c->i])
+			&& imput[c->i] != '|' && imput[c->i] != '<' && imput[c->i] != '>')
+			c->i++;
+	return (0);
+}
+
 int	how_many_tokens(char *imput)
 {
 	t_contexte	c;
+	int			res;
 
 	c.i = 0;
 	c.nb = 0;
-	while(imput[c.i])
+	while (imput[c.i])
 	{
-		while (is_space(imput[c.i]) == 1)
-			c.i++;
-		if (imput[c.i] == '\0')
+		res = mid(imput, &c);
+		if (res == 2)
 			break ;
-		if (imput[c.i] == '\'')
-		{
-			if (case_quote(imput, &c) == -1)
-				return (-1);
-		}
-		else if (imput[c.i] == '\"')
-		{
-			if (case_d_quote(imput, &c) == -1)
-				return (-1);
-		}
-		else if (imput[c.i] == '|' || imput[c.i] == '<' || imput[c.i] == '>')
-			c.i++;
-		else
-			while (imput[c.i] && !is_space(imput[c.i]) 
-			&& imput[c.i] != '|' && imput[c.i] != '<' && imput[c.i] != '>')
-				c.i++;
+		else if (res == -1)
+			return (-1);
 		c.nb++;
 	}
-	return(c.nb);
+	return (c.nb);
 }
