@@ -6,13 +6,13 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 11:30:30 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/01 14:21:31 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/02 10:40:56 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	case_d_quote(char *imput, t_contexte *c)
+static int	case_d_quote(char *imput, t_contexte *c)
 {
 	c->i++;
 	while (imput[c->i] && imput[c->i] != '\"')
@@ -28,7 +28,7 @@ int	case_d_quote(char *imput, t_contexte *c)
 	return (-1);
 }
 
-int	case_quote(char *imput, t_contexte *c)
+static int	case_quote(char *imput, t_contexte *c)
 {
 	c->i++;
 	while (imput[c->i] && imput[c->i] != '\'')
@@ -44,7 +44,7 @@ int	case_quote(char *imput, t_contexte *c)
 	return (-1);
 }
 
-int	mid(char *imput, t_contexte *c)
+static int	mid(char *imput, t_contexte *c)
 {
 	while (is_space(imput[c->i]) == 1)
 		c->i++;

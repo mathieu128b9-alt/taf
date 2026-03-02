@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:02:49 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/01 14:03:11 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/02 10:41:09 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	which_case(char *imput, t_contexte *c, t_token *token)
 	return (verif_quote);
 }
 
-int	set_token(char *imput, t_token *token, t_contexte *c)
+static int	set_token(char *imput, t_token *token, t_contexte *c)
 {
 	while (is_space(imput[c->i]))
 		c->i++;

@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 10:54:35 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/01 14:44:26 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/02 10:37:53 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,6 @@
 # include <sys/ioctl.h>
 # include "libft/libft.h"
 
-typedef enum t_enum_redir
-{
-	REDIR_IN,
-	REDIR_OUT,
-	REDIR_APPEND,
-	REDIR_HEREDOC,
-}	t_enum_redir;
-
 typedef enum e_token
 {
 	TOKEN_WORD,
@@ -52,26 +44,35 @@ typedef struct t_token
 	char			*content;
 }	t_token;
 
-typedef struct t_redir
-{
-	int		type;
-	char	*file;
-}	t_redir;
-
-// typedef struct t_cmd
-// {
-// 	char	**commande;
-// 	t_redir	redirection;
-// 	int		nb_redirection;
-// 	t_cmd	*next;
-// }	t_cmd;
-
 typedef struct t_contexte
 {
 	int	i;
 	int	size_word;
 	int	nb;
 }	t_contexte;
+
+typedef enum t_enum_redir
+{
+	REDIR_IN,
+	REDIR_OUT,
+	REDIR_APPEND,
+	REDIR_HEREDOC,
+}	t_enum_redir;
+
+typedef struct t_redir
+{
+	int		type;
+	char	*file;
+	t_redir	*r_next;
+}	t_redir;
+
+typedef struct t_parser
+{
+	char		*cmd;
+	char		**arg;
+	t_redir		*redir;
+	t_parser	*next;
+}	t_parser;
 
 int		is_space(char c);
 int		how_many_tokens(char *imput);
