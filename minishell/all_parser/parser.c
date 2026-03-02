@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 18:19:27 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/02 12:32:44 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/02 18:49:47 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_parser	*create_parser(t_token *token)
 	nb = 0;
 	while (token[nb].type != TOKEN_END)
 	{
-		
+		if (token[nb].type == TOKEN_WORD)
+			cmd_or_file(token, parser, &nb);
 	}
 }

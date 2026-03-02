@@ -6,11 +6,22 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 11:12:01 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/02 11:14:35 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/02 19:06:49 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+t_parser	*new_node(void)
+{
+	t_parser *parser;
+
+	parser = malloc(sizeof(t_parser));
+	if (!parser)
+		return (NULL);
+	parser = ft_memset(parser, 0, sizeof(t_parser));
+	return (parser);
+}
 
 int	is_redirect(t_token *token, int	*nb)
 {
