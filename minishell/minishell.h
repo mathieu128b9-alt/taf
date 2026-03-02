@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 10:54:35 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/02 10:37:53 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/02 11:19:09 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,22 @@ typedef struct t_parser
 	t_parser	*next;
 }	t_parser;
 
-int		is_space(char c);
-int		how_many_tokens(char *imput);
+//! commandes generales
 void	case_error(char *imput, t_token *token,
 			char *message_erroor, int nb_token);
+void	case_continue(char *imput, t_token *token, char *message_erroor);
+void	end_prog(char *imput, t_token *token, int nb_token);
+void	free_token(char *imput, t_token *token, int nb_token);
+
+//! commandes concernant mon lexer
+int		is_space(char c);
+int		how_many_tokens(char *imput);
 int		case_word(char *imput, t_contexte *c);
 t_token	*lexing(char *imput, int verif_nb);
 void	case_in_or_heredoc(char *imput, t_contexte *c, t_token *token);
 void	case_out_or_happend(char *imput, t_contexte *c, t_token *token);
-void	case_continue(char *imput, t_token *token, char *message_erroor);
-void	end_prog(char *imput, t_token *token, int nb_token);
-void	free_token(char *imput, t_token *token, int nb_token);
+
+//! commande concernant mon parser
+int		is_redirect(t_token *token, int	*nb);
 
 #endif
