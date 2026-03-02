@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_parser.c                                     :+:      :+:    :+:   */
+/*   t_parser_chained.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/02 11:12:01 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/02 19:37:59 by msuter           ###   ########.fr       */
+/*   Created: 2026/03/02 19:37:39 by msuter            #+#    #+#             */
+/*   Updated: 2026/03/02 19:38:02 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	is_redirect(t_token *token, int	*nb)
+t_parser	*new_node(void)
 {
-	if (token[*nb].type == TOKEN_IN || token[*nb].type == TOKEN_OUT
-		|| token[*nb].type == TOKEN_APPEND || token[*nb].type == TOKEN_HEREDOC)
-		return (1);
-	return (0);
+	t_parser *parser;
+
+	parser = malloc(sizeof(t_parser));
+	if (!parser)
+		return (NULL);
+	parser = ft_memset(parser, 0, sizeof(t_parser));
+	return (parser);
 }

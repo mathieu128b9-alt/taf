@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_parser.c                                     :+:      :+:    :+:   */
+/*   redir_chained.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/02 11:12:01 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/02 19:37:59 by msuter           ###   ########.fr       */
+/*   Created: 2026/03/02 19:37:10 by msuter            #+#    #+#             */
+/*   Updated: 2026/03/02 19:39:16 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	is_redirect(t_token *token, int	*nb)
+t_redir	*new_node(void)
 {
-	if (token[*nb].type == TOKEN_IN || token[*nb].type == TOKEN_OUT
-		|| token[*nb].type == TOKEN_APPEND || token[*nb].type == TOKEN_HEREDOC)
-		return (1);
-	return (0);
+	t_redir *redir;
+
+	redir = malloc(sizeof(t_parser));
+	if (!redir)
+		return (NULL);
+	redir = ft_memset(redir, 0, sizeof(t_parser));
+	return (redir);
 }
