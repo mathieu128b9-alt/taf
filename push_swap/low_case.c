@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 14:25:28 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/14 15:47:09 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/09 16:22:13 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,16 @@ static void	sort_three(int *tab_a, int *size_a)
 static void	sort_four(int *tab_a, int *tab_b, int *size_a, int *size_b)
 {
 	int	index;
+	int	temp;
 
 	index = srch_min_in_a(tab_a, *size_a);
 	if (index > *size_a / 2)
 	{
-		while (index != 0)
+		temp = *size_a - index;
+		while (temp != 0)
 		{
 			rotate_reverse_a(tab_a, size_a);
-			index--;
+			temp--;
 		}
 	}
 	else
@@ -59,14 +61,16 @@ static void	sort_four(int *tab_a, int *tab_b, int *size_a, int *size_b)
 static void	sort_five(int *tab_a, int *tab_b, int *size_a, int *size_b)
 {
 	int	index;
+	int	temp;
 
 	index = srch_min_in_a(tab_a, *size_a);
 	if (index > *size_a / 2)
 	{
-		while (index != 0)
+		temp = *size_a - index;
+		while (temp != 0)
 		{
 			rotate_reverse_a(tab_a, size_a);
-			index--;
+			temp--;
 		}
 	}
 	else
