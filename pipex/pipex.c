@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 14:22:10 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/06 13:49:19 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/11 02:22:24 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ int	first_prog(t_global *gl, char **argv, char **envp)
 int	sec_prog(t_global *gl, char **argv, char **envp)
 {
 	gl->fd_out = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (gl->fd_out == -1)
+	{
+		perror("erreur d'ouverture du fichier 1");
+		exit(1);
+	}
 	dup2(gl->pipe_fd[0], STDIN_FILENO);
 	dup2(gl->fd_out, STDOUT_FILENO);
 	close(gl->pipe_fd[1]);
