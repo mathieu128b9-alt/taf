@@ -6,7 +6,7 @@
 /*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:05:25 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/11 02:06:05 by mathieu          ###   ########.fr       */
+/*   Updated: 2026/03/11 02:17:32 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	replace_to_indice(int *tab_a, int *size_a)
 
 	index = malloc(sizeof(int) * (*size_a));
 	if (!index)
-		return (NULL);
+		return ;
 	j = 0;
 	while (j < *size_a)
 	{
