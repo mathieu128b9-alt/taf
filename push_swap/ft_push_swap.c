@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:56:14 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/14 15:43:15 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/11 02:09:49 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int	main(int argc, char **argv)
 	int	size_a;
 
 	size_a = argc - 1;
+	if (argc <= 1)
+		return (1);
 	tab_a = malloc(sizeof(int) * size_a);
 	size_b = 0;
 	tab_b = malloc(sizeof(int) * size_a);
