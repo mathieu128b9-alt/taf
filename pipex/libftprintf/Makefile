@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msuter <msuter@student.42.fr>              +#+  +:+       +#+         #
+#    By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/18 21:42:01 by msuter            #+#    #+#              #
-#    Updated: 2025/11/04 17:31:43 by msuter           ###   ########.fr        #
+#    Updated: 2026/03/11 02:41:33 by mathieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,10 @@ OBJS = $(SRCS:.c=.o)
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
+all : $(LIBFT) $(NAME)
+
 $(LIBFT):
 	make -C $(LIBFT_DIR)
-
-all : $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
 	@cp $(LIBFT) $(NAME)
