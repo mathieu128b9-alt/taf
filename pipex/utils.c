@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:36:29 by msuter            #+#    #+#             */
-/*   Updated: 2026/02/06 13:50:26 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/11 12:47:57 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	path_error(t_global *gl)
 		i++;
 	}
 	free(gl->path);
-	printf("erreur, le chemin d'acces n'est pas valide");
+	ft_printf("erreur, le chemin d'acces n'est pas valide");
 	exit(1);
 }
 

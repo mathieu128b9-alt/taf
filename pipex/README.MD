@@ -1,4 +1,4 @@
-This project has been created as part of the 42 curriculum by msuter
+*This project has been created as part of the 42 curriculum by msuter*
 Pipex
 Description
 Pipex reproduit le comportement du terminal. Le programme prend un infile contenant des données, applique une première commande, passe le résultat dans un pipe, applique une deuxième commande, et stocke le résultat final dans un outfile. Cela reproduit le comportement de < infile cmd1 | cmd2 > outfile.
