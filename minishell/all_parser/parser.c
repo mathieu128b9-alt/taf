@@ -6,13 +6,28 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 18:19:27 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/02 19:52:28 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/14 16:17:10 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	arg_after_cmd(t_token *token, t_parser *parser, int *nb)
+void	which_type(t_token *token, t_parser *current, int *nb)
+{
+	if (token[*nb].type == TOKEN_IN)
+		current->redir->type = REDIR_IN;
+	else if (token[*nb].type == TOKEN_OUT)
+		current->redir->type = REDIR_OUT;
+	else if (token[*nb].type == TOKEN_APPEND)
+		current->redir->type = REDIR_APPEND;
+	else
+		current->redir->type = REDIR_HEREDOC;
+	(*nb)++;
+	current->redir->file = ft_strdup(token->content);
+	(*nb)++;
+}
+
+void	arg_after_cmd(t_token *token, t_parser *current, int *nb)
 {
 	int	temp;
 	int	count;
@@ -24,36 +39,36 @@ void	arg_after_cmd(t_token *token, t_parser *parser, int *nb)
 		temp++;
 		count++;
 	}
-	parser->arg = malloc(sizeof(char *) * (count + 2));
-	if (!parser->arg)
+	current->arg = malloc(sizeof(char *) * (count + 2));
+	if (!current->arg)
 		return ;
 	count = 0;
-	parser->arg[count] = ft_strdup(parser->cmd);
+	current->arg[count] = ft_strdup(current->cmd);
 	count++;
 	while(*nb != temp)
 	{
-		parser->arg[count] = ft_strdup(token[*nb].content);
+		current->arg[count] = ft_strdup(token[*nb].content);
 		count++;
 		(*nb)++;
 	}
-	parser->arg[count] = NULL;
+	current->arg[count] = NULL;
 }
 
-void	cmd_or_file(t_token *token, t_parser *parser, int *nb)
+void	cmd_or_file(t_token *token, t_parser *current, int *nb)
 {
 	if (*nb == 0)
 	{
-		parser->cmd = ft_strdup(token[*nb].content);
+		current->cmd = ft_strdup(token[*nb].content);
 		(*nb)++;
-		arg_after_cmd(token, parser, nb);
+		arg_after_cmd(token, current, nb);
 	}
 	else if (*nb - 1 >= 0)
 	{
 		if (is_redirect(token, ((*nb) - 1)) == 0)
 		{
-			parser->cmd = ft_strdup(token[*nb].content);
+			current->cmd = ft_strdup(token[*nb].content);
 			(*nb)++;
-			arg_after_cmd(token, parser, nb);
+			arg_after_cmd(token, current, nb);
 		}
 	}
 }
@@ -65,15 +80,14 @@ t_parser	*create_parser(t_token *token)
 	t_parser	*current;
 
 	parser = new_node();
+	parser->redir = new_redir_node();
 	current = parser;
 	nb = 0;
 	while (token[nb].type != TOKEN_END)
 	{
 		if (token[nb].type == TOKEN_WORD)
 			cmd_or_file(token, current, &nb);
-		else if (is_redirect(token, &nb) == 1)
-		{
-			
-		}
+		else if (is_redirect(token, &nb) == 1);
+			which_type(token, current, &nb);
 	}
 }

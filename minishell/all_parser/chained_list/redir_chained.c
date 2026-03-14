@@ -6,13 +6,13 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 19:37:10 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/02 19:39:16 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/14 16:10:28 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_redir	*new_node(void)
+t_redir	*new_redir_node(void)
 {
 	t_redir *redir;
 
