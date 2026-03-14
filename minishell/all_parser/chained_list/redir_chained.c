@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 19:37:10 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/14 16:10:28 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/14 18:01:35 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,12 @@ t_redir	*new_redir_node(void)
 		return (NULL);
 	redir = ft_memset(redir, 0, sizeof(t_parser));
 	return (redir);
+}
+
+t_redir	*attach_redir_node(t_redir *current)
+{
+	t_redir *new = new_node();
+
+	current->r_next = new;
+	return (new);
 }

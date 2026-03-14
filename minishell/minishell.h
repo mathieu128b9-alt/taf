@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 10:54:35 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/14 16:10:48 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/14 18:01:43 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,6 @@ void	case_out_or_happend(char *imput, t_contexte *c, t_token *token);
 int			is_redirect(t_token *token, int	*nb);
 t_parser	*new_node(void);
 t_redir		*new_redir_node(void);
+t_redir	*attach_redir_node(t_redir *current);
 
 #endif

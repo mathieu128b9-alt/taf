@@ -6,13 +6,13 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 18:19:27 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/14 16:17:10 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/14 18:05:14 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	which_type(t_token *token, t_parser *current, int *nb)
+t_redir	*which_type(t_token *token, t_parser *current, int *nb)
 {
 	if (token[*nb].type == TOKEN_IN)
 		current->redir->type = REDIR_IN;
@@ -78,16 +78,27 @@ t_parser	*create_parser(t_token *token)
 	int			nb;
 	t_parser	*parser;
 	t_parser	*current;
+	t_redir		*current_redir;
 
 	parser = new_node();
-	parser->redir = new_redir_node();
 	current = parser;
+	
 	nb = 0;
 	while (token[nb].type != TOKEN_END)
 	{
 		if (token[nb].type == TOKEN_WORD)
 			cmd_or_file(token, current, &nb);
-		else if (is_redirect(token, &nb) == 1);
-			which_type(token, current, &nb);
+		else if (is_redirect(token, &nb) == 1)
+		{
+			if (current->redir == NULL)
+			{
+				parser->redir = which_type(token, current, &nb);
+				parser->redir->r_next = current->redir;
+			}
+			else
+			{
+				current_redir = which_type(token, current, &nb);
+			}
+		}
 	}
 }
