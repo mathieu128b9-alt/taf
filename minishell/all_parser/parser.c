@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 18:19:27 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/20 17:01:28 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/20 17:26:34 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	arg_after_cmd(t_token *token, t_parser *current, int *nb)
 
 void	cmd_or_file(t_token *token, t_parser *current, int *nb)
 {
+	int	test;
+
 	if (*nb == 0)
 	{
 		current->cmd = ft_strdup(token[*nb].content);
@@ -68,7 +70,8 @@ void	cmd_or_file(t_token *token, t_parser *current, int *nb)
 	}
 	else if (*nb - 1 >= 0)
 	{
-		if (is_redirect(token, (&(*nb) - 1)) == 0)
+		test = *nb - 1;
+		if (is_redirect(token, &test) == 0)
 		{
 			current->cmd = ft_strdup(token[*nb].content);
 			(*nb)++;
@@ -96,7 +99,7 @@ t_parser	*create_parser(t_token *token)
 		{
 			if (current->redir == NULL)
 			{
-				parser->redir = which_type(token, &nb);
+				current->redir = which_type(token, &nb);
 				current_redir = parser->redir;
 			}
 			else
