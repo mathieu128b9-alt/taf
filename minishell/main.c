@@ -6,28 +6,48 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 09:54:06 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/02 10:45:00 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/20 17:11:21 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	testing(t_token *token)
+void	testing(t_parser *parser)
 {
-	int	i;
-
-	i = 0;
-	while (token[i].type != TOKEN_END)
+	while (parser != NULL)
 	{
-		printf("%s\n", token[i].content);
-		printf("%d\n", token[i].type);
-		i++;
+		int i = 0;
+		printf("\n\n debut de ma boucle while pour les redir\n\n");
+		while (parser->redir != NULL)
+		{
+			printf("%d\n", parser->redir->type);
+			printf("\n\nprint de mon type\n\n");
+			printf("%s\n", parser->redir->file);
+			printf("\n\nprint de mon file\n\n");
+			printf("nouveau noeud de mon t_redir\n");
+			parser->redir = parser->redir->r_next;
+		}
+		printf("champ de mon parser\n");
+		if (parser->cmd != NULL)
+		{
+			printf("\n\nprint de ma cmd\n\n");
+			printf("%s\n", parser->cmd);
+			printf("\n\n debut de ma boucle while pour les arg\n\n");
+			while (parser->arg[i] != NULL)
+			{
+				printf("\n\nprint de mes arg\n\n");
+				printf("%s\n", parser->arg[i]);
+				i++;
+			}
+		}
+		parser = parser->next;
 	}
 }
 
 int	main(void)
 {
 	t_token	*token;
+	t_parser	*parser;
 	char	*imput;
 	int		verif_nb;
 
@@ -35,16 +55,16 @@ int	main(void)
 	{
 		imput = readline("minishell>");
 		verif_nb = how_many_tokens(imput);
-		printf("TEST how_many_tokens retourne: %d\n", verif_nb);
 		if (!imput)
 			case_error(imput, NULL, "erreur lors du malloc du imput", verif_nb);
 		token = lexing(imput, verif_nb);
-		testing(token);
 		if (token == NULL)
 		{
 			case_continue(imput, token, "erreur, il manque une quote");
 			continue ;
 		}
+		parser = create_parser(token);
+		testing(parser);
 		if (ft_strncmp(token[0].content, "exit", 5) == 0)
 			end_prog(imput, token, verif_nb);
 		free_token(imput, token, verif_nb);

@@ -6,25 +6,29 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 18:19:27 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/14 18:05:14 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/20 17:01:28 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_redir	*which_type(t_token *token, t_parser *current, int *nb)
+t_redir	*which_type(t_token *token, int *nb)
 {
+	t_redir	*temp;
+
+	temp = new_redir_node();
 	if (token[*nb].type == TOKEN_IN)
-		current->redir->type = REDIR_IN;
+		temp->type = REDIR_IN;
 	else if (token[*nb].type == TOKEN_OUT)
-		current->redir->type = REDIR_OUT;
+		temp->type = REDIR_OUT;
 	else if (token[*nb].type == TOKEN_APPEND)
-		current->redir->type = REDIR_APPEND;
+		temp->type = REDIR_APPEND;
 	else
-		current->redir->type = REDIR_HEREDOC;
+		temp->type = REDIR_HEREDOC;
 	(*nb)++;
-	current->redir->file = ft_strdup(token->content);
+	temp->file = ft_strdup(token[*nb].content);
 	(*nb)++;
+	return (temp);
 }
 
 void	arg_after_cmd(t_token *token, t_parser *current, int *nb)
@@ -64,7 +68,7 @@ void	cmd_or_file(t_token *token, t_parser *current, int *nb)
 	}
 	else if (*nb - 1 >= 0)
 	{
-		if (is_redirect(token, ((*nb) - 1)) == 0)
+		if (is_redirect(token, (&(*nb) - 1)) == 0)
 		{
 			current->cmd = ft_strdup(token[*nb].content);
 			(*nb)++;
@@ -92,13 +96,22 @@ t_parser	*create_parser(t_token *token)
 		{
 			if (current->redir == NULL)
 			{
-				parser->redir = which_type(token, current, &nb);
-				parser->redir->r_next = current->redir;
+				parser->redir = which_type(token, &nb);
+				current_redir = parser->redir;
 			}
 			else
 			{
-				current_redir = which_type(token, current, &nb);
+				current_redir->r_next = which_type(token, &nb);
+				current_redir = current_redir->r_next;
 			}
 		}
+		else if (token[nb].type == TOKEN_PIPE)
+		{
+			current->next = new_node();
+			current = current->next;
+			current_redir = NULL;
+			nb++;
+		}
 	}
+	return (parser);
 }
