@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 18:50:23 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/27 19:12:20 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/27 23:10:03 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,15 @@ static void	verif(const char *str, int *i)
 	{
 		if (str[*i] == '-' || str[*i] == '0')
 		{
-			printf("veuillez entrer un nombre positif");
+			printf("veuillez entrer un nombre positif\n");
 			exit (1);
 		}
 		(*i)++;
+		if (str[*i] == '\0')
+		{
+			printf ("veuillez entrer un nombre valide\n");
+			exit (1);
+		}
 	}
 }
 
@@ -40,8 +45,11 @@ long	ft_atoi_c(const char *str)
 	}
 	if (str[i] != '\0')
 	{
-		printf("erreur dans un argument, veuillez recommencer");
+		printf("erreur dans un argument, veuillez recommencer\n");
 		exit(1);
 	}
-	return (total);
+	if (total < 2147483647)
+		return (total);
+	printf ("veuillez entrer un nombre inferieur, la limite est 2147483647\n");
+	exit (1);
 }

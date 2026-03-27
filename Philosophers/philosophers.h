@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 18:50:34 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/27 19:12:16 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/27 23:11:19 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ typedef struct s_gen
 
 }	t_gen;
 
+long	ft_atoi_c(const char *str);
 
 #endif
