@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 09:54:06 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/20 17:11:21 by msuter           ###   ########.fr       */
+/*   Updated: 2026/03/29 20:36:28 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ void	testing(t_parser *parser)
 		printf("\n\n debut de ma boucle while pour les redir\n\n");
 		while (parser->redir != NULL)
 		{
-			printf("%d\n", parser->redir->type);
 			printf("\n\nprint de mon type\n\n");
-			printf("%s\n", parser->redir->file);
+			printf("%d\n", parser->redir->type);
 			printf("\n\nprint de mon file\n\n");
+			printf("%s\n", parser->redir->file);
 			printf("nouveau noeud de mon t_redir\n");
 			parser->redir = parser->redir->r_next;
 		}
-		printf("champ de mon parser\n");
 		if (parser->cmd != NULL)
 		{
 			printf("\n\nprint de ma cmd\n\n");
@@ -54,9 +53,9 @@ int	main(void)
 	while (1)
 	{
 		imput = readline("minishell>");
-		verif_nb = how_many_tokens(imput);
 		if (!imput)
 			case_error(imput, NULL, "erreur lors du malloc du imput", verif_nb);
+		verif_nb = how_many_tokens(imput);
 		token = lexing(imput, verif_nb);
 		if (token == NULL)
 		{
