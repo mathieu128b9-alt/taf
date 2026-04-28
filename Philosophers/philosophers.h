@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 18:50:34 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/27 23:11:19 by msuter           ###   ########.fr       */
+/*   Updated: 2026/04/29 00:56:28 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,8 @@ typedef struct s_gen
 }	t_gen;
 
 long	ft_atoi_c(const char *str);
+void	verif_and_attrib_gen(int argc, char **argv, t_gen *gen);
+void	cleanup(t_gen *gen, int i);
+void	stop_simu(t_gen *gen);
 
 #endif

@@ -6,11 +6,37 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 18:50:23 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/27 23:10:03 by msuter           ###   ########.fr       */
+/*   Updated: 2026/04/29 00:57:27 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	stop_simu(t_gen *gen)
+{
+	pthread_mutex_lock(&gen->protect_p);
+	gen->p_running = 1;
+	pthread_mutex_unlock(&gen->protect_p);
+}
+
+void	cleanup(t_gen *gen, int i)
+{
+	while (i >= 0)
+	{
+		pthread_join(gen->philo[i].thread, NULL);
+		i--;
+	}
+	i = 0;
+	while (i < gen->nb_philo)
+	{
+		pthread_mutex_destroy(&gen->fork[i]);
+		i++;
+	}
+	free(gen->fork);
+	free(gen->philo);
+	pthread_mutex_destroy(&gen->protect_p);
+	pthread_mutex_destroy(&gen->logs);
+}
 
 static void	verif(const char *str, int *i)
 {
