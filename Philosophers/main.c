@@ -6,24 +6,19 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 18:50:29 by msuter            #+#    #+#             */
-/*   Updated: 2026/05/06 19:32:22 by msuter           ###   ########.fr       */
+/*   Updated: 2026/05/06 19:52:58 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	philo_routine(t_gen *gen)
+void	*philo_routine(void *arg)
 {
-	int	i;
+	t_philo *philo;
 
-	i = 0;
-	while (i != gen->nb_philo)
-	{
-		if (i % 2 == 0)
-		{
-			
-		}
-	}
+	philo = arg;
+	if (philo->num % 2 == 0)
+		usleep(1000);
 }
 
 int main (int argc, char **argv)
