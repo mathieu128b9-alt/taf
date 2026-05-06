@@ -6,7 +6,7 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 13:51:34 by msuter            #+#    #+#             */
-/*   Updated: 2026/03/29 14:41:15 by msuter           ###   ########.fr       */
+/*   Updated: 2026/05/06 19:07:45 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	verif_and_attrib_gen(int	argc, char **argv, t_gen *gen)
 			temps_avant_dormir\n nb_de_fois_a_manger\n");
 		exit(1);
 	}
+	gen->p_running = 0;
 	gen->nb_philo = ft_atoi_c(argv[1]);
 	gen->ti_to_die = ft_atoi_c(argv[2]);
 	gen->ti_to_eat = ft_atoi_c(argv[3]);

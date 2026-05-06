@@ -6,11 +6,25 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 18:50:29 by msuter            #+#    #+#             */
-/*   Updated: 2026/04/29 00:54:59 by msuter           ###   ########.fr       */
+/*   Updated: 2026/05/06 19:32:22 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	philo_routine(t_gen *gen)
+{
+	int	i;
+
+	i = 0;
+	while (i != gen->nb_philo)
+	{
+		if (i % 2 == 0)
+		{
+			
+		}
+	}
+}
 
 int main (int argc, char **argv)
 {
@@ -24,15 +38,23 @@ int main (int argc, char **argv)
 		if (pthread_create(&gen.philo[i].thread, NULL, philo_routine, &gen.philo[i]) != 0)
 		{
 			stop_simu(&gen);
-			cleanup(&gen, i);
+			cleanup(&gen, i - 1);
 			exit (1);
 		}
 		i++;
 	}
-	pthread_create(&gen.state, NULL, verif_philo, &gen);
+	if (pthread_create(&gen.state, NULL, verif_philo, &gen))
+	{
+		stop_simu(&gen);
+		cleanup(&gen, i - 1);
+		exit (1);
+	}
 	while (i >= 0)
 	{
 		i--;
 		pthread_join(gen.philo[i].thread, NULL);
 	}
+	pthread_join(gen.state, NULL);
+	cleanup(&gen, i);
+	return (0);
 }
