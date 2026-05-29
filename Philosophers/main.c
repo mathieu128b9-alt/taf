@@ -6,20 +6,11 @@
 /*   By: msuter <msuter@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 18:50:29 by msuter            #+#    #+#             */
-/*   Updated: 2026/05/06 19:52:58 by msuter           ###   ########.fr       */
+/*   Updated: 2026/05/29 11:19:27 by msuter           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-void	*philo_routine(void *arg)
-{
-	t_philo *philo;
-
-	philo = arg;
-	if (philo->num % 2 == 0)
-		usleep(1000);
-}
 
 int main (int argc, char **argv)
 {
